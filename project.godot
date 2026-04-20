@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Cookletropit"
+run/main_scene="uid://ysy087q5lxo2"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
