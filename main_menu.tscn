@@ -1,0 +1,263 @@
+[gd_scene format=3 uid="uid://cxradqn2o1i4b"]
+
+[ext_resource type="Script" uid="uid://bil8nss6w0pqs" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://dbh2mpdvb1mkd" path="res://676767!!!!!.webp" id="2_7vrkn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11"]
+resource_name = "theme_toggle_button"
+bg_color = Color(0.2, 0.2, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2"]
+resource_name = "black_button_hover"
+bg_color = Color(0.3, 0.3, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.6, 0.6, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+resource_name = "black_button_normal"
+bg_color = Color(0.15, 0.15, 0.15, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.5, 0.5, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3"]
+resource_name = "black_button_pressed"
+bg_color = Color(0.25, 0.25, 0.25, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.7, 0.7, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_1"]
+Button/styles/focus = SubResource("StyleBoxFlat_2")
+Button/styles/hover = SubResource("StyleBoxFlat_2")
+Button/styles/normal = SubResource("StyleBoxFlat_1")
+Button/styles/pressed = SubResource("StyleBoxFlat_3")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5"]
+resource_name = "black_panel"
+bg_color = Color(0.1, 0.1, 0.1, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.3, 0.3, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 10
+shadow_offset = Vector2(0, 4)
+
+[node name="MainMenu2" type="Control" unique_id=341418960]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06t4h")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1357700284]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BackgroundPattern" type="TextureRect" parent="." unique_id=176039716]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_7vrkn")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=148916385]
+
+[node name="MainContainer" type="Control" parent="UI" unique_id=1308795724]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ThemeToggleBtn" type="Button" parent="UI/MainContainer" unique_id=599413016]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_11")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_11")
+theme_override_styles/hover = SubResource("StyleBoxFlat_11")
+theme_override_styles/focus = SubResource("StyleBoxFlat_11")
+text = "🎨 THEME"
+
+[node name="Title" type="Label" parent="UI/MainContainer" unique_id=822326208]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 0.8)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 56
+text = "Cooklettropit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtons" type="VBoxContainer" parent="UI/MainContainer" unique_id=2095841943]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -69.5
+offset_right = 54.5
+offset_bottom = 69.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+theme = SubResource("Theme_1")
+
+[node name="StartBtn" type="Button" parent="UI/MainContainer/MenuButtons" unique_id=1587345997]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "START
+ GAME"
+
+[node name="VSeparator" type="VSeparator" parent="UI/MainContainer/MenuButtons" unique_id=1407722412]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="SettingsBtn" type="Button" parent="UI/MainContainer/MenuButtons" unique_id=1847680563]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "SETTINGS"
+
+[node name="QuitBtn" type="Button" parent="UI/MainContainer/MenuButtons" unique_id=1279377005]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "QUIT"
+
+[node name="NetworkInfoPanel" type="Panel" parent="UI/MainContainer" unique_id=1840288446]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -126.0
+offset_right = -20.0
+offset_bottom = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/NetworkInfoPanel" unique_id=950261174]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = -15.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NetworkLabel" type="Label" parent="UI/MainContainer/NetworkInfoPanel/VBoxContainer" unique_id=1459800242]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "Network Info:"
+
+[node name="IPLabel" type="Label" parent="UI/MainContainer/NetworkInfoPanel/VBoxContainer" unique_id=1711512788]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 11
+text = "IP: 127.0.0.1"
+
+[node name="PortLabel" type="Label" parent="UI/MainContainer/NetworkInfoPanel/VBoxContainer" unique_id=1727733773]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 11
+text = "Port: 7000"
+
+[node name="PlayersLabel" type="Label" parent="UI/MainContainer/NetworkInfoPanel/VBoxContainer" unique_id=464027648]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 11
+text = "Players: 0/8"
+
+[node name="AmbientLight" type="ColorRect" parent="." unique_id=695616364]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 3.0
+offset_right = -2.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.3)
+
+[connection signal="pressed" from="UI/MainContainer/MenuButtons/StartBtn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="UI/MainContainer/MenuButtons/QuitBtn" to="." method="_on_quit_btn_pressed"]
