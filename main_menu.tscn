@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxradqn2o1i4b"]
 
 [ext_resource type="Script" uid="uid://bil8nss6w0pqs" path="res://main_menu.gd" id="1_06t4h"]
-[ext_resource type="Texture2D" uid="uid://dbh2mpdvb1mkd" path="res://676767!!!!!.webp" id="2_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://bjmfumi5lbhg5" path="res://Image textures/epic gamer assets/MENU.png.png" id="2_7vrkn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11"]
 resource_name = "theme_toggle_button"
@@ -90,6 +90,7 @@ script = ExtResource("1_06t4h")
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+color = Color(1, 1, 0, 1)
 
 [node name="BackgroundPattern" type="TextureRect" parent="." unique_id=176039716]
 layout_mode = 0
@@ -257,7 +258,7 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.3)
+color = Color(1, 1, 1, 0)
 
 [connection signal="pressed" from="UI/MainContainer/MenuButtons/StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="UI/MainContainer/MenuButtons/QuitBtn" to="." method="_on_quit_btn_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbh2mpdvb1mkd"
-path="res://.godot/imported/676767!!!!!.webp-efe6c9e006a4953ebebcaf3dcf7f44ba.ctex"
+uid="uid://b5g11oqqcu4ch"
+path="res://.godot/imported/STG2.png.png-b4c5ce7d7b8bb5c35a0434cb4a33791b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://676767!!!!!.webp"
-dest_files=["res://.godot/imported/676767!!!!!.webp-efe6c9e006a4953ebebcaf3dcf7f44ba.ctex"]
+source_file="res://Image textures/epic gamer assets/STG2.png.png"
+dest_files=["res://.godot/imported/STG2.png.png-b4c5ce7d7b8bb5c35a0434cb4a33791b.ctex"]
 
 [params]
 

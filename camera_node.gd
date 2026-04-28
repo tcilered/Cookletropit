@@ -5,16 +5,45 @@ extends Node3D
 @export var edge_margin: float = 96.7
 
 @export_group("Tilt Settings")
-@export var max_tilt_degrees: float = 3.0 # Max degrees to lean from moving
-@export var stretch_tilt_degrees: float = 1.67 # Extra degrees to lean when hitting the rubber-band stretch
-@export var tilt_speed: float = 6.0 
+@export var max_tilt_degrees: float = 16.7 # Max degrees to lean from moving
+@export var stretch_tilt_degrees: float = 10.67 # Extra degrees to lean when hitting the rubber-band stretch
+@export var tilt_speed: float = 6.7
 
 @export_group("Map Limits")
 @export var limit_radius: float = 4.0 # The maximum distance the camera can travel from the center (0, 0, 0)
 
 @export_group("Stretch Settings")
-@export var max_stretch: float = 2.0 
+@export var max_stretch: float = 1.67 
 @export var snap_back_speed: float = 4.0 
+
+# Track if the window is currently active
+var is_window_focused: bool = true
+
+func _ready():
+	# Confine the mouse to the window so it can hit the edges without leaving the game
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+
+# Detect when the player Alt-Tabs or clicks a different window
+func _notification(what):
+	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+		# Free the mouse and tell the script to stop panning
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		is_window_focused = false
+	elif what == NOTIFICATION_WM_WINDOW_FOCUS_IN:
+		# Trap the mouse inside the window again
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		is_window_focused = true
+
+# Allow manual release via Escape
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		is_window_focused = false
+		
+	if event is InputEventMouseButton and event.pressed:
+		if is_window_focused == false:
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+			is_window_focused = true
 
 func _process(delta: float) -> void:
 	var cam = get_viewport().get_camera_3d()
@@ -29,15 +58,18 @@ func _process(delta: float) -> void:
 	var move_y: float = 0.0
 
 	# --- Smooth/Analog Screen Edge Detection ---
-	if mouse_pos.x < edge_margin:
-		move_x -= 1.0 - (mouse_pos.x / edge_margin)
-	elif mouse_pos.x > screen_size.x - edge_margin:
-		move_x += 1.0 - ((screen_size.x - mouse_pos.x) / edge_margin)
+	# ONLY calculate this if the window is focused.
+	# If unfocused, move_x and move_y stay 0.0 (simulating a centered mouse).
+	if is_window_focused:
+		if mouse_pos.x < edge_margin:
+			move_x -= 1.0 - (mouse_pos.x / edge_margin)
+		elif mouse_pos.x > screen_size.x - edge_margin:
+			move_x += 1.0 - ((screen_size.x - mouse_pos.x) / edge_margin)
 
-	if mouse_pos.y < edge_margin:
-		move_y += 1.0 - (mouse_pos.y / edge_margin)
-	elif mouse_pos.y > screen_size.y - edge_margin:
-		move_y -= 1.0 - ((screen_size.y - mouse_pos.y) / edge_margin)
+		if mouse_pos.y < edge_margin:
+			move_y += 1.0 - (mouse_pos.y / edge_margin)
+		elif mouse_pos.y > screen_size.y - edge_margin:
+			move_y -= 1.0 - ((screen_size.y - mouse_pos.y) / edge_margin)
 
 	# --- Apply Movement ---
 	if move_x != 0.0 or move_y != 0.0:
@@ -59,11 +91,9 @@ func _process(delta: float) -> void:
 		global_position += move_dir * pan_speed * delta
 
 	# --- Calculate Hard Limits (Circular) ---
-	# We use a 2D Vector for X and Z to easily calculate a top-down circle
 	var current_pos_2d = Vector2(global_position.x, global_position.z)
 	var target_pos_2d = current_pos_2d
 	
-	# If we are outside the circle, find the exact edge point of the circle
 	if current_pos_2d.length() > limit_radius:
 		target_pos_2d = current_pos_2d.normalized() * limit_radius
 		
@@ -87,17 +117,13 @@ func _process(delta: float) -> void:
 	rotation.x = lerp_angle(rotation.x, target_tilt_x, tilt_speed * delta)
 	rotation.z = lerp_angle(rotation.z, target_tilt_z, tilt_speed * delta)
 
-
 	# --- Elastic Stretch Clamping (Circular) ---
-	
-	# 1. Smoothly slide back into the circle if stretched outside
 	if global_position.x != target_x:
 		global_position.x = lerp(global_position.x, target_x, snap_back_speed * delta)
 		
 	if global_position.z != target_z:
 		global_position.z = lerp(global_position.z, target_z, snap_back_speed * delta)
 		
-	# 2. Absolute max stretch clamping (so they can't leave the stretched circle)
 	var max_allowed_radius = limit_radius + max_stretch
 	var final_pos_2d = Vector2(global_position.x, global_position.z)
 	
