@@ -7,14 +7,16 @@ extends Node3D
 @export_group("Tilt Settings")
 @export var max_tilt_degrees: float = 16.7 # Max degrees to lean from moving
 @export var stretch_tilt_degrees: float = 10.67 # Extra degrees to lean when hitting the rubber-band stretch
-@export var tilt_speed: float = 6.7
+@export var tilt_in_speed: float = 6.7 # How fast it leans when you START moving
+@export var tilt_return_speed: float = 1.5 # How slowly it flattens back out when you STOP moving
 
 @export_group("Map Limits")
 @export var limit_radius: float = 4.0 # The maximum distance the camera can travel from the center (0, 0, 0)
 
 @export_group("Stretch Settings")
 @export var max_stretch: float = 1.67 
-@export var snap_back_speed: float = 4.0 
+@export var snap_back_speed: float = 4.0 # Resistance speed while actively pushing against the boundary
+@export var idle_snap_back_speed: float = 67 # How slowly the position returns when you let go at the edge
 
 # Track if the window is currently active
 var is_window_focused: bool = true
@@ -46,33 +48,11 @@ func _input(event):
 			is_window_focused = true
 
 func _process(delta: float) -> void:
-	var cam = get_viewport().get_camera_3d()
-	if not cam:
-		return
-		
-	var viewport = get_viewport()
-	var mouse_pos = viewport.get_mouse_position()
-	var screen_size = viewport.get_visible_rect().size
-	
-	var move_x: float = 0.0
-	var move_y: float = 0.0
-
-	# --- Smooth/Analog Screen Edge Detection ---
-	# ONLY calculate this if the window is focused.
-	# If unfocused, move_x and move_y stay 0.0 (simulating a centered mouse).
-	if is_window_focused:
-		if mouse_pos.x < edge_margin:
-			move_x -= 1.0 - (mouse_pos.x / edge_margin)
-		elif mouse_pos.x > screen_size.x - edge_margin:
-			move_x += 1.0 - ((screen_size.x - mouse_pos.x) / edge_margin)
-
-		if mouse_pos.y < edge_margin:
-			move_y += 1.0 - (mouse_pos.y / edge_margin)
-		elif mouse_pos.y > screen_size.y - edge_margin:
-			move_y -= 1.0 - ((screen_size.y - mouse_pos.y) / edge_margin)
-
 	# --- Apply Movement ---
-	if move_x != 0.0 or move_y != 0.0:
+	# We use abs() > 0.05 to ignore microscopic floating-point errors
+	var is_actively_moving = abs(move_x) > 0.05 or abs(move_y) > 0.05
+	
+	if is_actively_moving:
 		var cam_right = cam.global_transform.basis.x
 		var cam_up = cam.global_transform.basis.y
 		
@@ -114,15 +94,19 @@ func _process(delta: float) -> void:
 	var target_tilt_x = deg_to_rad((move_y * max_tilt_degrees) + extra_tilt_x)
 	var target_tilt_z = deg_to_rad((-move_x * max_tilt_degrees) + extra_tilt_z)
 	
-	rotation.x = lerp_angle(rotation.x, target_tilt_x, tilt_speed * delta)
-	rotation.z = lerp_angle(rotation.z, target_tilt_z, tilt_speed * delta)
+	var current_tilt_speed = tilt_in_speed if is_actively_moving else tilt_return_speed
+	
+	rotation.x = lerp_angle(rotation.x, target_tilt_x, current_tilt_speed * delta)
+	rotation.z = lerp_angle(rotation.z, target_tilt_z, current_tilt_speed * delta)
 
 	# --- Elastic Stretch Clamping (Circular) ---
+	var current_snap_speed = snap_back_speed if is_actively_moving else idle_snap_back_speed
+
 	if global_position.x != target_x:
-		global_position.x = lerp(global_position.x, target_x, snap_back_speed * delta)
+		global_position.x = lerp(global_position.x, target_x, current_snap_speed * delta)
 		
 	if global_position.z != target_z:
-		global_position.z = lerp(global_position.z, target_z, snap_back_speed * delta)
+		global_position.z = lerp(global_position.z, target_z, current_snap_speed * delta)
 		
 	var max_allowed_radius = limit_radius + max_stretch
 	var final_pos_2d = Vector2(global_position.x, global_position.z)
