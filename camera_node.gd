@@ -16,7 +16,7 @@ extends Node3D
 @export_group("Stretch Settings")
 @export var max_stretch: float = 1.67 
 @export var snap_back_speed: float = 4.0 # Resistance speed while actively pushing against the boundary
-@export var idle_snap_back_speed: float = 67 # How slowly the position returns when you let go at the edge
+@export var idle_snap_back_speed: float = 0.01 # How slowly the position returns when you let go at the edge
 
 # Track if the window is currently active
 var is_window_focused: bool = true
@@ -48,9 +48,43 @@ func _input(event):
 			is_window_focused = true
 
 func _process(delta: float) -> void:
+	var cam = get_viewport().get_camera_3d()
+	if not cam:
+		return
+		
+	var viewport = get_viewport()
+	var mouse_pos = viewport.get_mouse_position()
+	var screen_size = viewport.get_visible_rect().size
+	
+	var move_x: float = 0.0
+	var move_y: float = 0.0
+
+	# --- Smooth/Analog Screen Edge Detection ---
+	if is_window_focused:
+		if mouse_pos.x < edge_margin:
+			move_x -= 1.0 - (mouse_pos.x / edge_margin)
+		elif mouse_pos.x > screen_size.x - edge_margin:
+			move_x += 1.0 - ((screen_size.x - mouse_pos.x) / edge_margin)
+
+		if mouse_pos.y < edge_margin:
+			move_y += 1.0 - (mouse_pos.y / edge_margin)
+		elif mouse_pos.y > screen_size.y - edge_margin:
+			move_y -= 1.0 - ((screen_size.y - mouse_pos.y) / edge_margin)
+
+	# --- Keyboard (WASD / Arrows) Movement ---
+	var k_x: float = 0.0
+	var k_y: float = 0.0
+	
+	if Input.is_physical_key_pressed(KEY_W) or Input.is_action_pressed("ui_up"): k_y += 1.0
+	if Input.is_physical_key_pressed(KEY_S) or Input.is_action_pressed("ui_down"): k_y -= 1.0
+	if Input.is_physical_key_pressed(KEY_A) or Input.is_action_pressed("ui_left"): k_x -= 1.0
+	if Input.is_physical_key_pressed(KEY_D) or Input.is_action_pressed("ui_right"): k_x += 1.0
+
+	move_x = clamp(move_x + k_x, -1.0, 1.0)
+	move_y = clamp(move_y + k_y, -1.0, 1.0)
+
 	# --- Apply Movement ---
-	# We use abs() > 0.05 to ignore microscopic floating-point errors
-	var is_actively_moving = abs(move_x) > 0.05 or abs(move_y) > 0.05
+	var is_actively_moving = move_x != 0.0 or move_y != 0.0
 	
 	if is_actively_moving:
 		var cam_right = cam.global_transform.basis.x
@@ -94,6 +128,7 @@ func _process(delta: float) -> void:
 	var target_tilt_x = deg_to_rad((move_y * max_tilt_degrees) + extra_tilt_x)
 	var target_tilt_z = deg_to_rad((-move_x * max_tilt_degrees) + extra_tilt_z)
 	
+	# Determine if we should snap fast (because we are moving) or drift slowly (because we stopped)
 	var current_tilt_speed = tilt_in_speed if is_actively_moving else tilt_return_speed
 	
 	rotation.x = lerp_angle(rotation.x, target_tilt_x, current_tilt_speed * delta)

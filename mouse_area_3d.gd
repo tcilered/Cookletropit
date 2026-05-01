@@ -1,46 +1,36 @@
 extends Area3D
 
+# The Resource that holds all this item's specific data
+@export var item_info: ItemData 
+
+# Define custom signals that carry the object (self) to the main world
+signal object_hovered(interacted_node)
+signal object_unhovered(interacted_node)
+signal object_clicked(interacted_node)
+
 func _ready():
-	# Connect the built-in mouse signals to our custom functions
+	# Connect Godot's built-in mouse signals to our own functions
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	
-	# Connect the input_event signal to detect clicks
 	input_event.connect(_on_input_event)
 
 func _on_mouse_entered():
-	print("Mouse hovered over the 3D object!")
-	
-	# Make the object slightly larger uniformly across X, Y, and Z axes
-	# (Note: You might want to change this to Vector3(1.1, 1.1, 1.1) to actually enlarge it!)
-	scale = Vector3(1, 1, 1) 
-	
-	# 1. Target the visual node named "cube" (lowercase c)
-	var base_material = $Cube.mesh.surface_get_material(0)
-	
-	if base_material:
-		var hover_material = base_material.duplicate()
-		hover_material.albedo_color = Color(1, 0, 0) # Red
-		
-		# 2. Apply it to the visual node named "cube"
-		$Cube.set_surface_override_material(0, hover_material)
+	object_hovered.emit(self)
 
 func _on_mouse_exited():
-	print("Mouse left the 3D object.")
-	GlobalData.player_stats.gold += 1
-	
-	scale = Vector3(1.0, 1.0, 1.0)
-	
-	# Remove the override from the visual node named "cube" to revert the color
-	$Cube.set_surface_override_material(0, null)
+	object_unhovered.emit(self)
 
-# --- NEW FUNCTION FOR CLICK DETECTION ---
-func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int):
-	# Check if the event is a mouse button event
-	if event is InputEventMouseButton:
-		# Check if the left mouse button was clicked (pressed down)
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("3D Object was clicked!")
+func _on_input_event(_camera, event, _position, _normal, _shape_idx):
+	# Check for a left mouse click
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		# 1. Unconditional print so you ALWAYS know the click registered
+		print("Area3D was clicked!") 
+		
+		# 2. Check if the resource is there
+		if item_info != null:
+			print(" -> Attached Resource: ", item_info.item_name)
+		else:
+			print(" -> WARNING: item_info is empty! Drag a .tres file into the Inspector.")
 			
-			# Add whatever you want to happen on click here!
-			# For example: GlobalData.player_stats.gold += 10
+		# 3. Emit the signal to the world regardless
+		object_clicked.emit(self)

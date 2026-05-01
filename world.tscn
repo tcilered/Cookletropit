@@ -19,16 +19,6 @@ script = ExtResource("1_tlwt5")
 [node name="Node3D" type="Node3D" parent="." unique_id=1606248747]
 transform = Transform3D(1, 0, 0, 0, 0.31301683, 0, 0, 0, 1, 0, 3.6764674, 0)
 script = ExtResource("1_f3sb7")
-pan_speed = null
-edge_margin = null
-max_tilt_degrees = null
-stretch_tilt_degrees = null
-tilt_in_speed = null
-tilt_return_speed = null
-limit_radius = null
-max_stretch = null
-snap_back_speed = null
-idle_snap_back_speed = null
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=176010044]
 transform = Transform3D(1, 0, 0, 0, 0.7660444, 2.053524, 0, -0.6427875, 2.4472947, 0, 3.1532278, 0)
@@ -48,6 +38,9 @@ font_size = 67
 script = ExtResource("5_036b0")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1736814107]
-transform = Transform3D(586.2034, 0, 0, 0, 0.32275528, 0, 0, 0, 499.03543, 0, -39.265553, 0)
+transform = Transform3D(586.2034, 0, 0, 0, 0.32275528, 0, 0, 0, 499.03543, 0, -1.6653805, 0)
 mesh = SubResource("BoxMesh_036b0")
 surface_material_override/0 = SubResource("StandardMaterial3D_dwbse")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2069671284]
+transform = Transform3D(1, 0, 0, 0, -0.5460434, 0.8377568, 0, -0.8377568, -0.5460434, 0, 35.122635, -24.054976)
