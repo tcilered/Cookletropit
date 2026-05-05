@@ -13,13 +13,14 @@ func _ready():
 # --- Receiver Functions ---
 
 func _on_object_hovered(node):
-	print("Main World: hovering over: ", node.name)
+	print("Main World: hovering in: ", node.name)
 	
 	# We check if 'item_info' is assigned before trying to read it
 	if node.item_info:
 		print("This item is called ", node.item_info.item_name, " and is worth ", node.item_info.item_value)
 
 func _on_object_unhovered(node):
+	print("Main World: stopped hovering in: ", node.name)
 	if node.item_info:
 		print("Main World: stopped hovering over: ", node.item_info.item_name)
 

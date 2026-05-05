@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_w66x6")
+item_name = "CUBE"
+discription = "A strangly perfect cube. The density and perfect smoothness has you pondering your mortality."
