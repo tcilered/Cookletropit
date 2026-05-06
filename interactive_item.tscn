@@ -15,8 +15,8 @@ metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 script = ExtResource("1_ngc87")
 item_info = SubResource("Resource_6li8q")
 
-[node name="item" type="CollisionShape3D" parent="." unique_id=399961867]
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=399961867]
 shape = SubResource("CapsuleShape3D_6li8q")
 
-[node name="Item" type="MeshInstance3D" parent="." unique_id=339416613]
+[node name="Mesh" type="MeshInstance3D" parent="Collision" unique_id=339416613]
 mesh = SubResource("CapsuleMesh_cj57l")

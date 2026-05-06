@@ -13,7 +13,12 @@ func _ready():
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	input_event.connect(_on_input_event)
-
+	if item_info != null and item_info.item_mesh != null:
+		$Collision/Mesh.mesh = item_info.item_mesh
+		$Collision/Mesh.mesh.material.albedo_texture = item_info.surface_texture
+		# 2. Regenerate the collision shape from that mesh
+		var new_shape = item_info.item_mesh.create_convex_shape()
+		$Collision.shape = new_shape
 func _on_mouse_entered():
 	object_hovered.emit(self)
 
