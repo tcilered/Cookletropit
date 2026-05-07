@@ -1,7 +1,7 @@
 extends Node3D
-
+var anchor_position: Vector3 = Vector3.ZERO
 @export_group("Movement Settings")
-@export var pan_speed: float = 5.0
+@export var pan_speed: float = 6.0
 @export var edge_margin: float = 96.7
 
 @export_group("Tilt Settings")
@@ -11,7 +11,8 @@ extends Node3D
 @export var tilt_return_speed: float = 1.5 # How slowly it flattens back out when you STOP moving
 
 @export_group("Map Limits")
-@export var limit_radius: float = 4.0 # The maximum distance the camera can travel from the center (0, 0, 0)
+@export var limit_radius: float = 67.0 # The maximum distance the camera can travel from the center (0, 0, 0)
+
 
 @export_group("Stretch Settings")
 @export var max_stretch: float = 1.67 
@@ -20,7 +21,20 @@ extends Node3D
 
 # Track if the window is currently active
 var is_window_focused: bool = true
-
+# Inside your movement script (Node3D/Cameranode)
+func _on_object_clicked_move_requested(new_center: Vector3, new_radius: float):
+	anchor_position = new_center
+	limit_radius = new_radius
+	
+	# Smoothly move the controller to the new anchor
+	var tween = create_tween()
+	tween.tween_property(self, "global_position", new_center, 1.0)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+		
+	
+	print("moved to new position")
+		
 func _ready():
 	# Confine the mouse to the window so it can hit the edges without leaving the game
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED

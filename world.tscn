@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://sb1wlrm6r5fr" path="res://67 funk.jpg" id="4_pkg7o"]
 [ext_resource type="Script" uid="uid://5q8e5da4ovnc" path="res://text.gd" id="5_036b0"]
 [ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://item_data.gd" id="6_dwbse"]
+[ext_resource type="Script" uid="uid://dmpm030rkf62i" path="res://roulette_bowl.gd" id="8_gbfbk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
 albedo_texture = ExtResource("4_pkg7o")
@@ -33,25 +34,30 @@ item_mesh = SubResource("BoxMesh_gbfbk")
 surface_texture = ExtResource("4_pkg7o")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
+[sub_resource type="BoxMesh" id="BoxMesh_ioo17"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wse8f"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
 [node name="Node3D" type="Node3D" unique_id=1769170537]
 script = ExtResource("1_tlwt5")
 
-[node name="Node3D" type="Node3D" parent="." unique_id=1606248747]
+[node name="Cameranode" type="Node3D" parent="." unique_id=1606248747]
 transform = Transform3D(1, 0, 0, 0, 0.31301683, 0, 0, 0, 1, 0, 3.6764674, 0)
 script = ExtResource("1_f3sb7")
 
-[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=176010044]
-transform = Transform3D(1, 0, 0, 0, 0.7660444, 2.053524, 0, -0.6427875, 2.4472947, 0, 3.1532278, 0)
+[node name="Camera3D" type="Camera3D" parent="Cameranode" unique_id=176010044]
+transform = Transform3D(1, 0, 0, 0, 3.8137891, 5.3883677, 0, -0.86847043, -0.38935584, 0, 3.1532278, 0.9559734)
 
 [node name="Mouse_detection_area3D" parent="." unique_id=1931984631 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0552531)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=728415868]
-transform = Transform3D(1, 0, 0, 0, 0.7539075, 0.6569806, 0, -0.6569806, 0.7539075, 0.733521, 1.0132166, -2.892966)
+transform = Transform3D(1, 0, 0, 0, 0.7539075, 0.6569806, 0, -0.6569806, 0.7539075, 0.733521, 1.0132166, -9.230962)
 mesh = SubResource("BoxMesh_tlwt5")
 
 [node name="Label3D" type="Label3D" parent="MeshInstance3D" unique_id=1938283990]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014690399, -0.16734457, 0.6600071)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014690399, -0.030903816, 0.5034367)
 billboard = 1
 text = "67"
 font = ExtResource("4_aqk2v")
@@ -67,5 +73,23 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dwbse")
 transform = Transform3D(1, 0, 0, 0, -0.5460434, 0.8377568, 0, -0.8377568, -0.5460434, 0, 35.122635, -24.054976)
 
 [node name="Area3D" parent="." unique_id=1888708795 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(2.5060241, 0, 0, 0, 2.3050823, 0, 0, 0, 1.8607745, -0.147169, 0, -6.1767125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.147169, 0, -6.1767125)
 item_info = SubResource("Resource_pkg7o")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1511647192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2761056, -3.0799322)
+mesh = SubResource("BoxMesh_ioo17")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=361163961 node_paths=PackedStringArray("target")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("8_gbfbk")
+target = NodePath("../../Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=2060388115]
+shape = SubResource("ConcavePolygonShape3D_wse8f")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=310226256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.966404, -3.0799322)
+
+[connection signal="move_requested" from="MeshInstance3D2/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]
