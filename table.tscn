@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://qw6ocycqh2dj"]
+
+[ext_resource type="Script" uid="uid://ddt7dwehsj5yu" path="res://table_square.gd" id="1_jd0nb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v5i0k"]
+size = Vector3(1, 0.022949219, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kl0hw"]
+size = Vector3(1, 0.1, 1)
+
+[node name="Node3D" type="Node3D" unique_id=105314924]
+
+[node name="17_Area3D" type="Area3D" parent="." unique_id=207384824]
+script = ExtResource("1_jd0nb")
+
+[node name="17_Collision" type="CollisionShape3D" parent="17_Area3D" unique_id=1678701590]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.768124, 0)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="17_Area3D" unique_id=1540294962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70984155, 0)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1486514924]
+transform = Transform3D(1, 0, 0, 0, 0.10416386, 0.9945602, 0, -0.9945602, 0.10416386, 0, 2.8470755, 0.19311702)

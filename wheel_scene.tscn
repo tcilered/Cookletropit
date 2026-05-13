@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://item_data.gd" id="2_64hgq"]
 [ext_resource type="Texture2D" uid="uid://bwruywpmjyq2m" path="res://Image textures/epic gamer assets/temptable.png" id="3_64hgq"]
 [ext_resource type="Texture2D" uid="uid://dbh2mpdvb1mkd" path="res://Image textures/676767!!!!!.webp" id="4_bqloa"]
-[ext_resource type="PackedScene" uid="uid://be4xxvia1d5ac" path="res://charms!.glb" id="6_xvrru"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqloa"]
 
@@ -46,6 +45,3 @@ transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.8660254, 0, -0.8660254, 0.4999
 [node name="table" parent="." unique_id=599493698 instance=ExtResource("1_rxs0v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7280667)
 item_info = SubResource("Resource_xvrru")
-
-[node name="charms!" parent="." unique_id=955233362 instance=ExtResource("6_xvrru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1607094, 0, 4.780245)
