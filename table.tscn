@@ -3,18 +3,22 @@
 [ext_resource type="Script" uid="uid://ddt7dwehsj5yu" path="res://table_square.gd" id="1_jd0nb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5i0k"]
-size = Vector3(1, 0.022949219, 1)
+size = Vector3(1, 0.022949219, 1.4976807)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jd0nb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kl0hw"]
-size = Vector3(1, 0.1, 1)
+material = SubResource("StandardMaterial3D_jd0nb")
+size = Vector3(1, 0.1, 1.5)
 
 [node name="Node3D" type="Node3D" unique_id=105314924]
 
 [node name="17_Area3D" type="Area3D" parent="." unique_id=207384824]
 script = ExtResource("1_jd0nb")
+is_even = true
 
 [node name="17_Collision" type="CollisionShape3D" parent="17_Area3D" unique_id=1678701590]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.768124, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.768, 0)
 shape = SubResource("BoxShape3D_v5i0k")
 
 [node name="17_Mesh" type="MeshInstance3D" parent="17_Area3D" unique_id=1540294962]
@@ -23,3 +27,17 @@ mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1486514924]
 transform = Transform3D(1, 0, 0, 0, 0.10416386, 0.9945602, 0, -0.9945602, 0.10416386, 0, 2.8470755, 0.19311702)
+
+[node name="17_Area3D2" type="Area3D" parent="." unique_id=1954574673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+script = ExtResource("1_jd0nb")
+square_id = 16
+square_colour = "black"
+
+[node name="17_Collision" type="CollisionShape3D" parent="17_Area3D2" unique_id=318556387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.768, 0)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="17_Area3D2" unique_id=433082377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70984155, 0)
+mesh = SubResource("BoxMesh_kl0hw")
