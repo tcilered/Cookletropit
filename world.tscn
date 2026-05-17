@@ -52,7 +52,7 @@ script = ExtResource("1_f3sb7")
 transform = Transform3D(1, 0, 0, 0, 3.8137891, 5.3883677, 0, -0.86847043, -0.38935584, 0, 3.1532278, 0.9559734)
 
 [node name="Mouse_detection_area3D" parent="." unique_id=1931984631 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7127172)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7004786, 0, 1.7127172)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=728415868]
 transform = Transform3D(1, 0, 0, 0, 0.7539075, 0.6569806, 0, -0.6569806, 0.7539075, 0.733521, 1.0132166, -9.230962)
@@ -75,11 +75,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dwbse")
 transform = Transform3D(1, 0, 0, 0, -0.5460434, 0.8377568, 0, -0.8377568, -0.5460434, 0, 35.122635, -24.054976)
 
 [node name="Area3D" parent="." unique_id=1888708795 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.147169, 0, -6.1767125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8476477, 0, -6.1767125)
 item_info = SubResource("Resource_pkg7o")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1511647192]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2761056, -3.0799322)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7004786, 1.2761056, -3.0799322)
 mesh = SubResource("BoxMesh_ioo17")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=361163961 node_paths=PackedStringArray("target")]
@@ -95,6 +95,7 @@ shape = SubResource("ConcavePolygonShape3D_wse8f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.966404, -3.0799322)
 
 [node name="Wheel" parent="." unique_id=1393983754 instance=ExtResource("9_ioo17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7004786, 0, 0)
 
 [node name="Node3D" parent="." unique_id=105314924 instance=ExtResource("10_wse8f")]
 

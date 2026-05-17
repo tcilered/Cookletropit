@@ -4,6 +4,7 @@ signal placing_requested(play_type, square_id, global_spawn_pos)
 signal hover_entered(square_id)
 signal hover_exited(square_id)
 signal hover_moved(play_type, square_id, global_pos)
+
 @export var square_id: int = 17
 
 @export_group("Identification")
@@ -17,12 +18,74 @@ signal hover_moved(play_type, square_id, global_pos)
 
 var current_hover_zone: String = "none"
 
+# REMOVED 'square_id' parameter to fix the shadowing warning. 
+# It will now use the @export var square_id automatically.
+func get_shared_border_dynamic(zone: String) -> String:
+	if zone == "center":
+		return "straight_" + str(square_id)
+		
+	var adjacent_id = -1
+	
+	# INVERTED MATH: 
+	# 1, 4, 7 are now mapped as the TOP edge.
+	# 3, 6, 9 are now mapped as the BOTTOM edge.
+	var is_top_edge = (square_id % 3 == 1)    
+	var is_bottom_edge = (square_id % 3 == 0) 
+	
+	# 1. Figure out what number is on the other side
+	match zone:
+		"edge_right": 
+			adjacent_id = square_id + 3
+		"edge_left": 
+			adjacent_id = square_id - 3
+		"edge_top": 
+			if not is_top_edge:
+				adjacent_id = square_id - 1 # Moving UP now subtracts 1
+		"edge_bottom": 
+			if not is_bottom_edge:
+				adjacent_id = square_id + 1 # Moving DOWN now adds 1
+				
+		# Corners have also been fully inverted to match the new vertical layout
+		"corner_top_right":
+			if not is_top_edge:
+				return get_corner_string(square_id, square_id-1, square_id+3, square_id+2)
+		"corner_bottom_right":
+			if not is_bottom_edge:
+				return get_corner_string(square_id, square_id+1, square_id+3, square_id+4)
+		"corner_top_left":
+			if not is_top_edge:
+				return get_corner_string(square_id, square_id-1, square_id-3, square_id-4)
+		"corner_bottom_left":
+			if not is_bottom_edge:
+				return get_corner_string(square_id, square_id+1, square_id-3, square_id-2)
+
+	# 2. Check if the adjacent square is a valid number (1-36)
+	if adjacent_id >= 1 and adjacent_id <= 36:
+		var min_id = min(square_id, adjacent_id)
+		var max_id = max(square_id, adjacent_id)
+		return "split_%d_%d" % [min_id, max_id]
+		
+	# Handle edges that touch the 0/00 or the outside of the board
+	return "board_edge_" + zone + "_on_" + str(square_id)
+	# 2. Check if the adjacent square is a valid number (1-36)
+	if adjacent_id >= 1 and adjacent_id <= 36:
+		var min_id = min(square_id, adjacent_id)
+		var max_id = max(square_id, adjacent_id)
+		return "split_%d_%d" % [min_id, max_id]
+		
+	# Handle edges that touch the 0/00 or the outside of the board
+	return "board_edge_" + zone + "_on_" + str(square_id)
+
+func get_corner_string(a: int, b: int, c: int, d: int) -> String:
+	var nums = [a, b, c, d]
+	nums.sort()
+	return "corner_%d_%d_%d_%d" % [nums[0], nums[1], nums[2], nums[3]]
+
 func _ready():
-	var mesh_node = get_node("17_Mesh")
+	var mesh_node = get_node("17_Mesh") # Note: You might want to make this dynamic later (e.g. get_node(str(square_id) + "_Mesh"))
 	var mat = mesh_node.get_active_material(0)
 	
 	if mat:
-		# Create a unique copy of the material for THIS specific square
 		var unique_mat = mat.duplicate()
 		mesh_node.set_surface_override_material(0, unique_mat)
 		
@@ -40,8 +103,8 @@ func _on_mouse_exited():
 	current_hover_zone = "none"
 	hover_exited.emit(square_id)
 
-func _input_event(camera, event, click_position, click_normal, shape_idx):
-	# 1. Math: Convert world position to local space
+# ADDED underscores to unused parameters to fix warnings
+func _input_event(_camera, event, click_position, _click_normal, _shape_idx):
 	var local_pos = to_local(click_position)
 	var edge_margin = 0.35 
 	
@@ -50,7 +113,6 @@ func _input_event(camera, event, click_position, click_normal, shape_idx):
 	var on_top = local_pos.z > edge_margin 
 	var on_bottom = local_pos.z < -edge_margin
 	
-	# 2. Logic: Determine the specific zone
 	var detected_zone = "center"
 	
 	if on_right and on_top: detected_zone = "corner_top_right"
@@ -62,14 +124,16 @@ func _input_event(camera, event, click_position, click_normal, shape_idx):
 	elif on_top: detected_zone = "edge_top"
 	elif on_bottom: detected_zone = "edge_bottom"
 	
-	
 	if event is InputEventMouseMotion:
 		if current_hover_zone != detected_zone:
 			current_hover_zone = detected_zone
-			print("Hovering Zone: ", detected_zone, " on Square: ", square_id)
-			hover_moved.emit(current_hover_zone, square_id, click_position)
+			# Convert the raw edge into the unified string before emitting
+			var unified_zone = get_shared_border_dynamic(detected_zone)
+			print("Hovering Zone: ", unified_zone, " on Square: ", square_id)
+			hover_moved.emit(unified_zone, square_id, click_position)
 
-	# 4. Debug Print for PLACING
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print("PLACED PLAY: '", detected_zone, "' at global position: ", click_position)
-		placing_requested.emit(detected_zone, square_id, click_position)
+		# Convert the raw edge into the unified string before emitting
+		var unified_zone = get_shared_border_dynamic(detected_zone)
+		print("PLACED PLAY: '", unified_zone, "' at global position: ", click_position)
+		placing_requested.emit(unified_zone, square_id, click_position)
