@@ -9,7 +9,6 @@ signal hover_moved(play_type, square_id, global_pos)
 
 @export_group("Identification")
 @export_enum("red", "black", "green") var square_colour: String = "red"
-
 @export_group("Roulette Logic")
 @export_enum("none", "1st Column", "2nd Column", "3rd Column") var column: String = "none"
 @export_enum("none", "1st Dozen", "2nd Dozen", "3rd Dozen") var dozen: String = "none"
@@ -18,8 +17,6 @@ signal hover_moved(play_type, square_id, global_pos)
 
 var current_hover_zone: String = "none"
 
-# REMOVED 'square_id' parameter to fix the shadowing warning. 
-# It will now use the @export var square_id automatically.
 func get_shared_border_dynamic(zone: String) -> String:
 	if zone == "center":
 		return "straight_" + str(square_id)

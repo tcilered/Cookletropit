@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://sgnxw43vjgit" path="res://camera_node.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://cn8y6jtj76axv" path="res://world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://interactive_item.tscn" id="2_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://be4xxvia1d5ac" path="res://charms!.glb" id="2_ic0uy"]
 [ext_resource type="FontFile" uid="uid://bstjikfqpgc8h" path="res://text/BridgeParapet.ttf" id="4_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://sb1wlrm6r5fr" path="res://67 funk.jpg" id="4_pkg7o"]
 [ext_resource type="Script" uid="uid://5q8e5da4ovnc" path="res://text.gd" id="5_036b0"]
@@ -43,6 +44,7 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [node name="Node3D" type="Node3D" unique_id=1769170537]
 script = ExtResource("1_tlwt5")
+table_square_scene = ExtResource("2_ic0uy")
 
 [node name="Cameranode" type="Node3D" parent="." unique_id=1606248747]
 transform = Transform3D(1, 0, 0, 0, 0.31301683, 0, 0, 0, 1, 0, 3.6764674, 0)
@@ -94,9 +96,9 @@ shape = SubResource("ConcavePolygonShape3D_wse8f")
 [node name="Marker3D" type="Marker3D" parent="." unique_id=310226256]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.966404, -3.0799322)
 
-[node name="Wheel" parent="." unique_id=1393983754 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7004786, 0, 0)
+[node name="Wheel_Scene" parent="." unique_id=1393983754 instance=ExtResource("9_ioo17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.521222, 0, 0)
 
-[node name="Node3D" parent="." unique_id=105314924 instance=ExtResource("10_wse8f")]
+[node name="Table_Scene" parent="." unique_id=105314924 instance=ExtResource("10_wse8f")]
 
 [connection signal="move_requested" from="MeshInstance3D2/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]
