@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://sgnxw43vjgit" path="res://camera_node.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://cn8y6jtj76axv" path="res://world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://interactive_item.tscn" id="2_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://be4xxvia1d5ac" path="res://charms!.glb" id="2_ic0uy"]
+[ext_resource type="PackedScene" uid="uid://b36ld3njpe3il" path="res://models/letitride.glb" id="2_ic0uy"]
 [ext_resource type="FontFile" uid="uid://bstjikfqpgc8h" path="res://text/BridgeParapet.ttf" id="4_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://sb1wlrm6r5fr" path="res://67 funk.jpg" id="4_pkg7o"]
 [ext_resource type="Script" uid="uid://5q8e5da4ovnc" path="res://text.gd" id="5_036b0"]
@@ -73,9 +73,6 @@ transform = Transform3D(586.2034, 0, 0, 0, 0.32275528, 0, 0, 0, 499.03543, 0.004
 mesh = SubResource("BoxMesh_036b0")
 surface_material_override/0 = SubResource("StandardMaterial3D_dwbse")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2069671284]
-transform = Transform3D(1, 0, 0, 0, -0.5460434, 0.8377568, 0, -0.8377568, -0.5460434, 0, 35.122635, -24.054976)
-
 [node name="Area3D" parent="." unique_id=1888708795 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8476477, 0, -6.1767125)
 item_info = SubResource("Resource_pkg7o")
@@ -101,4 +98,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.521222, 0, 0)
 
 [node name="Table_Scene" parent="." unique_id=105314924 instance=ExtResource("10_wse8f")]
 
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=724063881]
+transform = Transform3D(0.41136682, 0.90580446, -0.10146731, -0.10751306, 0.158767, 0.98144484, 0.9051068, -0.3928248, 0.16269733, -8.165295, 94.64332, 0)
+light_energy = 1.1
+
 [connection signal="move_requested" from="MeshInstance3D2/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]
+[connection signal="numrolled" from="Wheel_Scene" to="." method="_on_wheel_scene_numrolled"]

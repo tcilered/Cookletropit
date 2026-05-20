@@ -1,6 +1,12 @@
 extends Node3D
 
 @export var table_square_scene: PackedScene
+var bet = 0
+var bet_placed = false
+var roll_recived = int()
+
+func _pysics_process():
+	pass
 
 func _ready():
 	# Loop through all the children in this scene
@@ -55,9 +61,11 @@ func _on_object_clicked(node):
 func _on_square_placing_requested(play_type: String, origin_square_id: int, global_spawn_pos: Vector3) -> void:
 	print("World received PLACE BET: ", play_type, " from Square ", origin_square_id)
 	
-	# Example: Spawning a visual chip at the exact clicked spot
-	if table_square_scene:
+
+	if bet_placed == false:
 		var new_chip = table_square_scene.instantiate()
+		bet_placed = true
+		bet = origin_square_id
 		add_child(new_chip)
 		new_chip.global_position = global_spawn_pos
 		
@@ -78,3 +86,10 @@ func _on_square_hover_moved(play_type: String, origin_square_id: int, global_pos
 	# Great place to move a "ghost/preview chip" around so players see 
 	# exactly what bet they are highlighting before clicking!
 	pass
+
+
+func _on_wheel_scene_numrolled(roll: Variant) -> void:
+	roll_recived = roll
+	print(roll_recived)
+	if roll_recived == bet:
+		print("you won")

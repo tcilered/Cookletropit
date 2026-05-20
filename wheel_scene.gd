@@ -1,5 +1,6 @@
 extends Node3D
 # Standard European Roulette sequence
+signal numrolled(roll)
 var wheel_numbers = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26]
 #connect signals for hovering and clicking
 # This list stores any active charm resources you've picked up
@@ -46,7 +47,7 @@ func spin_wheel():
 	for charm in active_charms:
 		if charm.has_method("apply_to_roll"):
 			roll = charm.apply_to_roll(roll)
-			
+			roll = int(roll)
 	return roll
 
 # --- Signal Handling ---
@@ -67,6 +68,7 @@ func _on_object_clicked(node):
 	if node.item_info.item_name == "bowl":
 		print("--- SPINNING ---")
 		var result = spin_wheel()
+		emit_signal("numrolled",result)
 		print("Result: ", result)
 	
 	# Logic for picking up a charm (simulating Balatro shop)
