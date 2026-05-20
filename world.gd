@@ -56,14 +56,21 @@ func _on_object_unhovered(node):
 		print("Main World: stopped hovering over: ", node.item_info.item_name)
 
 func _on_object_clicked(node):
+	var active_names = GlobalData.active_charms_global.map(func(charm): return charm.get("name", ""))
 	# Unconditional print so you know the World heard the signal
 	print("Main World detected a click on an object!")
-	if GlobalData.player_stats.gold >= int(node.item_info.item_value) :
+	if node.item_info.item_name in active_names:
+		print("you already have this mr Jeff Bezos")
+		pass
+		
+	elif GlobalData.player_stats.gold >= int(node.item_info.item_value) :
 		print("you can afford it, shame")
 		emit_signal("main_world_item_toggeled",node)
 		GlobalData.player_stats.gold -= int(node.item_info.item_value)
+		
 	else:
 		if GlobalData.player_stats.gold <= 0 :
+			print(GlobalData.active_charms_global)
 			print("Litteraly out of money!!!!!! L skill issue")
 			pass
 		else:
@@ -114,4 +121,5 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 	roll_recived = roll
 	print(roll_recived)
 	if roll_recived == bet:
-		print("you won")
+		print("you win")
+		GlobalData.player_stats.gold += 100
