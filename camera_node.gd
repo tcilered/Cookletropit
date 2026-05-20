@@ -11,13 +11,13 @@ var anchor_position: Vector3 = Vector3.ZERO
 @export var tilt_return_speed: float = 1.5 # How slowly it flattens back out when you STOP moving
 
 @export_group("Map Limits")
-@export var limit_radius: float = 67.0 # The maximum distance the camera can travel from the center (0, 0, 0)
+@export var limit_radius: float = 167.0 # The maximum distance the camera can travel from the center (0, 0, 0)
 
 
 @export_group("Stretch Settings")
 @export var max_stretch: float = 1.67 
 @export var snap_back_speed: float = 4.0 # Resistance speed while actively pushing against the boundary
-@export var idle_snap_back_speed: float = 0.01 # How slowly the position returns when you let go at the edge
+@export var idle_snap_back_speed: float = 0.05 # How slowly the position returns when you let go at the edge
 
 # Track if the window is currently active
 var is_window_focused: bool = true

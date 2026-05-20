@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bc4wla2imjsox" path="res://wheel_scene.gd" id="1_7ae7t"]
 [ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://interactive_item.tscn" id="1_rxs0v"]
 [ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://item_data.gd" id="2_64hgq"]
-[ext_resource type="Texture2D" uid="uid://bwruywpmjyq2m" path="res://Image textures/epic gamer assets/temptable.png" id="3_64hgq"]
 [ext_resource type="Texture2D" uid="uid://dbh2mpdvb1mkd" path="res://Image textures/676767!!!!!.webp" id="4_bqloa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqloa"]
@@ -19,29 +18,11 @@ item_mesh = SubResource("BoxMesh_xvrru")
 surface_texture = ExtResource("4_bqloa")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64hgq"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_7ae7t"]
-material = SubResource("StandardMaterial3D_64hgq")
-
-[sub_resource type="Resource" id="Resource_xvrru"]
-script = ExtResource("2_64hgq")
-item_name = "table"
-item_value = 670
-item_mesh = SubResource("PlaneMesh_7ae7t")
-surface_texture = ExtResource("3_64hgq")
-metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
-
 [node name="Node3D" type="Node3D" unique_id=1393983754]
 script = ExtResource("1_7ae7t")
 
 [node name="bowl" parent="." unique_id=1931984631 instance=ExtResource("1_rxs0v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.642916)
 item_info = SubResource("Resource_bqloa")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=760963947]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.8660254, 0, -0.8660254, 0.49999997, 0, 3.1979983, 1.5701864)
-
-[node name="table" parent="." unique_id=599493698 instance=ExtResource("1_rxs0v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7280667)
-item_info = SubResource("Resource_xvrru")

@@ -72,7 +72,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7004786, 0, 1.7127172)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=728415868]
-transform = Transform3D(1, 0, 0, 0, 0.7539075, 0.6569806, 0, -0.6569806, 0.7539075, 10.83135, 1.0132166, -7.3436117)
+transform = Transform3D(1, 0, 0, 0, 0.7539075, 0.6569806, 0, -0.6569806, 0.7539075, -0.17290425, 1.0132166, -9.230962)
 mesh = SubResource("BoxMesh_tlwt5")
 
 [node name="Label3D" type="Label3D" parent="MeshInstance3D" unique_id=1938283990]
@@ -122,9 +122,6 @@ light_energy = 0.8
 [node name="item_1" parent="." unique_id=1803237243 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.281625, 1.0953298, -7.297491)
 item_info = SubResource("Resource_70uel")
-
-[node name="lucky" parent="." unique_id=2123669947 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.905397, 2.6980267, -3.9313748)
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]

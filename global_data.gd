@@ -3,11 +3,11 @@ extends Node
 # Changed the extension from .json to .save since it's now binary data
 var save_path = "user://Cookletropitsavegame.save"
 
-
+var active_charms_global = []
 
 var player_stats = {
 	"health": 100,
-	"gold": 0,
+	"gold": 67,
 	"current_level": 1,
 	"last_position": Vector2(150, 300) 
 }

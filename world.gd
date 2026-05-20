@@ -4,9 +4,20 @@ extends Node3D
 var bet = 0
 var bet_placed = false
 var roll_recived = int()
+var time_passed: float = 0.0
+signal main_world_item_toggeled(item)
 
-func _pysics_process():
+func _physics_process(delta: float) -> void:
 	pass
+	
+	###Bug testing runs every 3sec
+	
+	#time_passed += delta
+	#
+	#if time_passed >= 3.0:
+		#print("time passed")
+		#time_passed -= 3.0 
+		
 
 func _ready():
 	# Loop through all the children in this scene
@@ -47,6 +58,17 @@ func _on_object_unhovered(node):
 func _on_object_clicked(node):
 	# Unconditional print so you know the World heard the signal
 	print("Main World detected a click on an object!")
+	if GlobalData.player_stats.gold >= int(node.item_info.item_value) :
+		print("you can afford it, shame")
+		emit_signal("main_world_item_toggeled",node)
+		GlobalData.player_stats.gold -= int(node.item_info.item_value)
+	else:
+		if GlobalData.player_stats.gold <= 0 :
+			print("Litteraly out of money!!!!!! L skill issue")
+			pass
+		else:
+			print("Too poor, speed please i need this my mom is kinda homeless")
+			pass
 	
 	if node.item_info != null:
 		print("Main World says the item is: ", node.item_info.item_name)
