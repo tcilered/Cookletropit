@@ -64,14 +64,6 @@ func get_shared_border_dynamic(zone: String) -> String:
 		
 	# Handle edges that touch the 0/00 or the outside of the board
 	return "board_edge_" + zone + "_on_" + str(square_id)
-	# 2. Check if the adjacent square is a valid number (1-36)
-	if adjacent_id >= 1 and adjacent_id <= 36:
-		var min_id = min(square_id, adjacent_id)
-		var max_id = max(square_id, adjacent_id)
-		return "split_%d_%d" % [min_id, max_id]
-		
-	# Handle edges that touch the 0/00 or the outside of the board
-	return "board_edge_" + zone + "_on_" + str(square_id)
 
 func get_corner_string(a: int, b: int, c: int, d: int) -> String:
 	var nums = [a, b, c, d]

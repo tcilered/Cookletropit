@@ -7,7 +7,7 @@ var active_charms_global = []
 
 var player_stats = {
 	"health": 100,
-	"gold": 67,
+	"gold": 676767,
 	"current_level": 1,
 	"last_position": Vector2(150, 300) 
 }

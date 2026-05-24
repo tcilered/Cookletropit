@@ -80,7 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014690399, -0.16538239, 0.
 billboard = 1
 text = "67"
 font = ExtResource("4_aqk2v")
-font_size = 67
+font_size = 100
 script = ExtResource("5_036b0")
 
 [node name="ground" type="MeshInstance3D" parent="." unique_id=1736814107]
