@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b3hbx8851aakf"]
 
-[ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://item_data.gd" id="1_w66x6"]
+[ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://data/item_data.gd" id="1_w66x6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w66x6"]
 

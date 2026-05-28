@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://qw6ocycqh2dj"]
 
 [ext_resource type="Script" uid="uid://ddt7dwehsj5yu" path="res://table_square.gd" id="1_jd0nb"]
-[ext_resource type="Texture2D" uid="uid://sb1wlrm6r5fr" path="res://67 funk.jpg" id="2_v5i0k"]
+[ext_resource type="Texture2D" uid="uid://sb1wlrm6r5fr" path="res://Image textures/67 funk.jpg" id="2_v5i0k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5i0k"]
 size = Vector3(1, 0.022949219, 1.4976807)

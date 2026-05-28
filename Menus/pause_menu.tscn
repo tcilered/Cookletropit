@@ -1,9 +1,6 @@
-[gd_scene format=3 uid="uid://cxradqn2o1i4b"]
+[gd_scene format=3 uid="uid://pxhkl3gpo886"]
 
-[ext_resource type="Script" uid="uid://bil8nss6w0pqs" path="res://main_menu.gd" id="1_06t4h"]
-[ext_resource type="Texture2D" uid="uid://bjmfumi5lbhg5" path="res://Image textures/epic gamer assets/MENU.png.png" id="2_7vrkn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyi4u"]
 resource_name = "theme_toggle_button"
 bg_color = Color(0.2, 0.2, 0.2, 1)
 border_width_left = 2
@@ -55,13 +52,13 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="Theme" id="Theme_1"]
+[sub_resource type="Theme" id="Theme_hdmo1"]
 Button/styles/focus = SubResource("StyleBoxFlat_2")
 Button/styles/hover = SubResource("StyleBoxFlat_2")
 Button/styles/normal = SubResource("StyleBoxFlat_1")
 Button/styles/pressed = SubResource("StyleBoxFlat_3")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwcfo"]
 resource_name = "black_panel"
 bg_color = Color(0.1, 0.1, 0.1, 0.9)
 border_width_left = 2
@@ -77,32 +74,7 @@ shadow_color = Color(0, 0, 0, 0.5)
 shadow_size = 10
 shadow_offset = Vector2(0, 4)
 
-[node name="MainMenu2" type="Control" unique_id=341418960]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_06t4h")
-
-[node name="Background" type="ColorRect" parent="." unique_id=1357700284]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color(1, 1, 0, 1)
-
-[node name="BackgroundPattern" type="TextureRect" parent="." unique_id=176039716]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource("2_7vrkn")
-expand_mode = 3
-stretch_mode = 6
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=148916385]
-
-[node name="MainContainer" type="Control" parent="UI" unique_id=1308795724]
+[node name="Control" type="Control" unique_id=590563932]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,7 +82,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ThemeToggleBtn" type="Button" parent="UI/MainContainer" unique_id=599413016]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1085549144]
+
+[node name="MainContainer" type="Control" parent="UI" unique_id=5837147]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ThemeToggleBtn" type="Button" parent="UI/MainContainer" unique_id=964916185]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -122,13 +104,13 @@ offset_bottom = 50.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_11")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_11")
-theme_override_styles/hover = SubResource("StyleBoxFlat_11")
-theme_override_styles/focus = SubResource("StyleBoxFlat_11")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wyi4u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wyi4u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wyi4u")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wyi4u")
 text = "🎨 THEME"
 
-[node name="Title" type="Label" parent="UI/MainContainer" unique_id=822326208]
+[node name="Title" type="Label" parent="UI/MainContainer" unique_id=994137389]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -149,7 +131,7 @@ text = "Cooklettropit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuButtons" type="VBoxContainer" parent="UI/MainContainer" unique_id=2095841943]
+[node name="MenuButtons" type="VBoxContainer" parent="UI/MainContainer" unique_id=1944240653]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -163,23 +145,22 @@ offset_bottom = 69.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.1, 1.1)
-theme = SubResource("Theme_1")
+theme = SubResource("Theme_hdmo1")
 
-[node name="StartBtn" type="Button" parent="UI/MainContainer/MenuButtons" unique_id=1587345997]
+[node name="continue" type="Button" parent="UI/MainContainer/MenuButtons" unique_id=1541298595]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 18
-text = "START
- GAME"
+text = "CONTINUE"
 
-[node name="VSeparator" type="VSeparator" parent="UI/MainContainer/MenuButtons" unique_id=1407722412]
+[node name="VSeparator" type="VSeparator" parent="UI/MainContainer/MenuButtons" unique_id=838375922]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="SettingsBtn" type="Button" parent="UI/MainContainer/MenuButtons" unique_id=1847680563]
+[node name="SettingsBtn_p" type="Button" parent="UI/MainContainer/MenuButtons" unique_id=1251783174]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
@@ -187,7 +168,7 @@ theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 18
 text = "SETTINGS"
 
-[node name="QuitBtn" type="Button" parent="UI/MainContainer/MenuButtons" unique_id=1279377005]
+[node name="QuitBtn_p" type="Button" parent="UI/MainContainer/MenuButtons" unique_id=963483245]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
@@ -195,7 +176,12 @@ theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 18
 text = "QUIT"
 
-[node name="NetworkInfoPanel" type="Panel" parent="UI/MainContainer" unique_id=1840288446]
+[node name="NewBtn_p" type="Button" parent="UI/MainContainer/MenuButtons" unique_id=1086230381]
+layout_mode = 2
+text = "START NEW 
+GAME"
+
+[node name="NetworkInfoPanel" type="Panel" parent="UI/MainContainer" unique_id=157948282]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -208,9 +194,9 @@ offset_right = -20.0
 offset_bottom = -26.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nwcfo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/NetworkInfoPanel" unique_id=950261174]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainContainer/NetworkInfoPanel" unique_id=1285678497]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,43 +208,13 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NetworkLabel" type="Label" parent="UI/MainContainer/NetworkInfoPanel/VBoxContainer" unique_id=1459800242]
+[node name="stats" type="Label" parent="UI/MainContainer/NetworkInfoPanel/VBoxContainer" unique_id=164763079]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 14
-text = "Network Info:"
 
-[node name="IPLabel" type="Label" parent="UI/MainContainer/NetworkInfoPanel/VBoxContainer" unique_id=1711512788]
+[node name="PlayersLabel" type="Label" parent="UI/MainContainer/NetworkInfoPanel/VBoxContainer" unique_id=1487611861]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 theme_override_font_sizes/font_size = 11
-text = "IP: 127.0.0.1"
-
-[node name="PortLabel" type="Label" parent="UI/MainContainer/NetworkInfoPanel/VBoxContainer" unique_id=1727733773]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_font_sizes/font_size = 11
-text = "Port: 7000"
-
-[node name="PlayersLabel" type="Label" parent="UI/MainContainer/NetworkInfoPanel/VBoxContainer" unique_id=464027648]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-theme_override_font_sizes/font_size = 11
-text = "Players: 0/8"
-
-[node name="AmbientLight" type="ColorRect" parent="." unique_id=695616364]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = 3.0
-offset_right = -2.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-
-[connection signal="pressed" from="UI/MainContainer/MenuButtons/StartBtn" to="." method="_on_start_btn_pressed"]
-[connection signal="pressed" from="UI/MainContainer/MenuButtons/QuitBtn" to="." method="_on_quit_btn_pressed"]
+text = "Players: 6/7"

@@ -1,7 +1,7 @@
 extends Node3D
 var anchor_position: Vector3 = Vector3.ZERO
 @export_group("Movement Settings")
-@export var pan_speed: float = 6.0
+@export var pan_speed: float = 4.0
 @export var edge_margin: float = 96.7
 
 @export_group("Tilt Settings")

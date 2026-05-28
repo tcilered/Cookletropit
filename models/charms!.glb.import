@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://be4xxvia1d5ac"
-path="res://.godot/imported/charms!.glb-7ceddc60d26aaab72698e5631c512be0.scn"
+path="res://.godot/imported/charms!.glb-0a5f418b9a819561ad2fdb43c0bac6a3.scn"
 
 [deps]
 
-source_file="res://charms!.glb"
-dest_files=["res://.godot/imported/charms!.glb-7ceddc60d26aaab72698e5631c512be0.scn"]
+source_file="res://models/charms!.glb"
+dest_files=["res://.godot/imported/charms!.glb-0a5f418b9a819561ad2fdb43c0bac6a3.scn"]
 
 [params]
 
