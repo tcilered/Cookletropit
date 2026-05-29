@@ -1,7 +1,6 @@
 extends Node3D
-
-@export var table_square_scene: PackedScene
-
+@export var pause_menu: Control
+@export var table_square_scene: PackedScene 
 # Track bets using a Dictionary. Key: unique_bet_string, Value: Dictionary of bet data
 var active_bets: Dictionary = {}
 const BET_AMOUNT: int = 67 # Fixed bet amount per placement
@@ -10,10 +9,22 @@ var roll_recived = int()
 var time_passed: float = 0.0
 signal main_world_item_toggeled(item)
 
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		# FIX 2: Only pause if the game is currently running
+		if not get_tree().paused:
+			GlobalData.save_game()
+			get_tree().paused = true
+			pause_menu.show()
+
 func _physics_process(delta: float) -> void:
 	pass
 
 func _ready():
+	
+	if pause_menu:
+			pause_menu.hide()
 	# Loop through all the children in this scene
 	for child in get_children():
 		if child.has_signal("object_clicked"):

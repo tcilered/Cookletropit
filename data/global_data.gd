@@ -7,13 +7,13 @@ var active_charms_global = []
 
 var player_stats = {
 	"health": 100,
-	"gold": 60000,
+	"gold": 676767,
 	"current_level": 67,
 	"last_position": Vector2(150, 300) 
 }
 
 ###
-# LOADING AND SAVING
+#LOADING AND SAVING
 ###
 
 func save_game():
@@ -46,7 +46,7 @@ func load_game():
 func reset_data():
 	player_stats = {
 		"health": 100,
-		"gold": 670,
+		"gold": 0,
 		"current_level": 1,
 		"last_position": Vector2.ZERO
 	}

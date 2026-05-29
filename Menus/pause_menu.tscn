@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://pxhkl3gpo886"]
 
+[ext_resource type="Script" uid="uid://drrhr2tv3dsjl" path="res://Menus/pause_menu.gd" id="1_i2531"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyi4u"]
 resource_name = "theme_toggle_button"
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -74,13 +76,15 @@ shadow_color = Color(0, 0, 0, 0.5)
 shadow_size = 10
 shadow_offset = Vector2(0, 4)
 
-[node name="Control" type="Control" unique_id=590563932]
+[node name="Pause_Menu" type="Control" unique_id=590563932]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_i2531")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1085549144]
 
@@ -218,3 +222,11 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 theme_override_font_sizes/font_size = 11
 text = "Players: 6/7"
+
+[node name="Background" type="ColorRect" parent="." unique_id=2019076871]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(1, 1, 0, 0.09803922)

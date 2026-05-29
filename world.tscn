@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://d047m3l4eca0d" path="res://wheel_scene.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://qw6ocycqh2dj" path="res://table.tscn" id="10_wse8f"]
 [ext_resource type="Texture2D" uid="uid://bwruywpmjyq2m" path="res://Image textures/epic gamer assets/temptable.png" id="12_k3n1d"]
+[ext_resource type="PackedScene" uid="uid://pxhkl3gpo886" path="res://Menus/pause_menu.tscn" id="13_2o6r5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
 albedo_texture = ExtResource("4_pkg7o")
@@ -56,8 +57,9 @@ item_mesh = SubResource("PlaneMesh_7ae7t")
 surface_texture = ExtResource("12_k3n1d")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
-[node name="Node3D" type="Node3D" unique_id=1769170537]
+[node name="Node3D" type="Node3D" unique_id=1769170537 node_paths=PackedStringArray("pause_menu")]
 script = ExtResource("1_tlwt5")
+pause_menu = NodePath("CanvasLayer/Pause_Menu")
 table_square_scene = ExtResource("2_ic0uy")
 
 [node name="Cameranode" type="Node3D" parent="." unique_id=1606248747]
@@ -125,6 +127,11 @@ item_info = SubResource("Resource_70uel")
 
 [node name="lucky" parent="." unique_id=2123669947 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.905397, 2.6980267, -3.9313748)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=927881650]
+visible = false
+
+[node name="Pause_Menu" parent="CanvasLayer" unique_id=590563932 instance=ExtResource("13_2o6r5")]
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]
