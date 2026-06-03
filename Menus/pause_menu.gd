@@ -5,8 +5,7 @@ extends Control
 @onready var pause_menu: Control = self 
 
 func _ready() -> void:
-	# Hide the menu when the game starts
-	hide() 
+	self.hide() 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -30,3 +29,7 @@ func _on_new_btn_p_pressed() -> void:
 func _on_quit_btn_p_pressed() -> void:
 	GlobalData.save_game()
 	get_tree().quit()
+
+
+func _on_settings_btn_p_pressed() -> void:
+	pass # Replace with function body.

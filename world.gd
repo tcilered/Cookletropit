@@ -22,10 +22,10 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _ready():
-	
 	if pause_menu:
 			pause_menu.hide()
-	# Loop through all the children in this scene
+
+
 	for child in get_children():
 		if child.has_signal("object_clicked"):
 			child.object_hovered.connect(_on_object_hovered)
