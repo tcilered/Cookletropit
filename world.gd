@@ -11,19 +11,17 @@ signal main_world_item_toggeled(item)
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
-		# FIX 2: Only pause if the game is currently running
-		if not get_tree().paused:
-			GlobalData.save_game()
-			get_tree().paused = true
-			pause_menu.show()
+	pass
 
 func _physics_process(delta: float) -> void:
 	pass
 
 func _ready():
 	if pause_menu:
-			pause_menu.hide()
+		print("hiding pause menu")
+		pause_menu.hide()
+	else:
+		print("_ready in main broken")
 
 
 	for child in get_children():

@@ -132,6 +132,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.905397, 2.6980267, -3.931
 visible = false
 
 [node name="Pause_Menu" parent="CanvasLayer" unique_id=590563932 instance=ExtResource("13_2o6r5")]
+visible = false
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]
