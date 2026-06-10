@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://qw6ocycqh2dj" path="res://table.tscn" id="10_wse8f"]
 [ext_resource type="Texture2D" uid="uid://bwruywpmjyq2m" path="res://Image textures/epic gamer assets/temptable.png" id="12_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://pxhkl3gpo886" path="res://Menus/pause_menu.tscn" id="13_2o6r5"]
+[ext_resource type="PackedScene" uid="uid://bnw5ul35snqlv" path="res://titble_table.glb" id="14_2u3nc"]
+[ext_resource type="Script" uid="uid://o67k7plch6kb" path="res://wheel.gd" id="15_udxuc"]
+[ext_resource type="PackedScene" uid="uid://d0o6nsmbv7lml" path="res://roulette_table/scene.gltf" id="16_ikiii"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
 albedo_texture = ExtResource("4_pkg7o")
@@ -63,7 +66,7 @@ pause_menu = NodePath("CanvasLayer/Pause_Menu")
 table_square_scene = ExtResource("2_ic0uy")
 
 [node name="Cameranode" type="Node3D" parent="." unique_id=1606248747]
-transform = Transform3D(1, 0, 0, 0, 0.31301683, 0, 0, 0, 1, 0, 3.6764674, 0)
+transform = Transform3D(1, 0, 0, 0, 0.30235103, 0.25881904, 0, -0.081014715, 0.9659258, 0, 3.6764674, 0)
 script = ExtResource("1_f3sb7")
 
 [node name="Camera3D" type="Camera3D" parent="Cameranode" unique_id=176010044]
@@ -133,6 +136,16 @@ visible = false
 
 [node name="Pause_Menu" parent="CanvasLayer" unique_id=590563932 instance=ExtResource("13_2o6r5")]
 visible = false
+
+[node name="titble_table" parent="." unique_id=411949206 instance=ExtResource("14_2u3nc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3131912, 0.06275797, 2.000254)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=722914792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30563682, 0.3284468, 3.0092697)
+script = ExtResource("15_udxuc")
+
+[node name="Sketchfab_Scene" parent="Node3D" unique_id=53710093 instance=ExtResource("16_ikiii")]
+transform = Transform3D(0.367, 0, 0, 0, 0.367, 0, 0, 0, 0.367, -0.00776428, -0.3284468, -0.0015659332)
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]

@@ -1,37 +1,41 @@
 extends Node3D
 var anchor_position: Vector3 = Vector3.ZERO
 @export_group("Movement Settings")
-@export var pan_speed: float = 4.0
-@export var edge_margin: float = 96.7
+@export var pan_speed: float = 6.0
+@export var edge_margin: float = 16.7+6+7
 
 @export_group("Tilt Settings")
 @export var max_tilt_degrees: float = 16.7 # Max degrees to lean from moving
-@export var stretch_tilt_degrees: float = 10.67 # Extra degrees to lean when hitting the rubber-band stretch
+@export var stretch_tilt_degrees: float = 8.67 # Extra degrees to lean when hitting the rubber-band stretch
 @export var tilt_in_speed: float = 6.7 # How fast it leans when you START moving
 @export var tilt_return_speed: float = 1.5 # How slowly it flattens back out when you STOP moving
 
 @export_group("Map Limits")
-@export var limit_radius: float = 167.0 # The maximum distance the camera can travel from the center (0, 0, 0)
+@export var limit_radius: float = 67.0 - 16 - 17 # The maximum distance the camera can travel from the center (0, 0, 0)
 
 
 @export_group("Stretch Settings")
 @export var max_stretch: float = 1.67 
-@export var snap_back_speed: float = 4.0 # Resistance speed while actively pushing against the boundary
-@export var idle_snap_back_speed: float = 0.05 # How slowly the position returns when you let go at the edge
+@export var snap_back_speed: float = 6.7 # Resistance speed while actively pushing against the boundary
+@export var idle_snap_back_speed: float = 2 # How slowly the position returns when you let go at the edge
 
 # Track if the window is currently active
 var is_window_focused: bool = true
+var is_panning: bool = false
 # Inside your movement script (Node3D/Cameranode)
 func _on_object_clicked_move_requested(new_center: Vector3, new_radius: float):
 	anchor_position = new_center
 	limit_radius = new_radius
 	
-	# Smoothly move the controller to the new anchor
+	is_panning = true # Disable snapback during camera flight
+	
 	var tween = create_tween()
 	tween.tween_property(self, "global_position", new_center, 1.0)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
 		
+	# Re-enable snapback once the camera arrives
+	tween.finished.connect(func(): is_panning = false)
 	
 	print("moved to new position")
 		
@@ -118,12 +122,23 @@ func _process(delta: float) -> void:
 			
 		global_position += move_dir * pan_speed * delta
 
-	# --- Calculate Hard Limits (Circular) ---
+	# =================================================================
+	# NEW FIXED SNAPPING & BOUNDARY LOGIC STARTS HERE
+	# =================================================================
+	
+	# Don't apply snapback or limits while the camera is auto-panning to a new anchor
+	if is_panning:
+		return 
+
 	var current_pos_2d = Vector2(global_position.x, global_position.z)
+	var anchor_2d = Vector2(anchor_position.x, anchor_position.z)
+	
+	# Calculate the distance from the CURRENT ANCHOR, not the world origin (0,0)
+	var offset_from_anchor = current_pos_2d - anchor_2d
 	var target_pos_2d = current_pos_2d
 	
-	if current_pos_2d.length() > limit_radius:
-		target_pos_2d = current_pos_2d.normalized() * limit_radius
+	if offset_from_anchor.length() > limit_radius:
+		target_pos_2d = anchor_2d + offset_from_anchor.normalized() * limit_radius
 		
 	var target_x = target_pos_2d.x
 	var target_z = target_pos_2d.y
@@ -142,7 +157,6 @@ func _process(delta: float) -> void:
 	var target_tilt_x = deg_to_rad((move_y * max_tilt_degrees) + extra_tilt_x)
 	var target_tilt_z = deg_to_rad((-move_x * max_tilt_degrees) + extra_tilt_z)
 	
-	# Determine if we should snap fast (because we are moving) or drift slowly (because we stopped)
 	var current_tilt_speed = tilt_in_speed if is_actively_moving else tilt_return_speed
 	
 	rotation.x = lerp_angle(rotation.x, target_tilt_x, current_tilt_speed * delta)
@@ -151,16 +165,15 @@ func _process(delta: float) -> void:
 	# --- Elastic Stretch Clamping (Circular) ---
 	var current_snap_speed = snap_back_speed if is_actively_moving else idle_snap_back_speed
 
-	if global_position.x != target_x:
-		global_position.x = lerp(global_position.x, target_x, current_snap_speed * delta)
-		
-	if global_position.z != target_z:
-		global_position.z = lerp(global_position.z, target_z, current_snap_speed * delta)
+	global_position.x = lerp(global_position.x, target_x, current_snap_speed * delta)
+	global_position.z = lerp(global_position.z, target_z, current_snap_speed * delta)
 		
 	var max_allowed_radius = limit_radius + max_stretch
 	var final_pos_2d = Vector2(global_position.x, global_position.z)
+	var final_offset = final_pos_2d - anchor_2d
 	
-	if final_pos_2d.length() > max_allowed_radius:
-		final_pos_2d = final_pos_2d.normalized() * max_allowed_radius
+	# Fix the hard limit boundary to also respect the anchor position
+	if final_offset.length() > max_allowed_radius:
+		final_pos_2d = anchor_2d + final_offset.normalized() * max_allowed_radius
 		global_position.x = final_pos_2d.x
 		global_position.z = final_pos_2d.y
