@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://qw6ocycqh2dj"]
 
-[ext_resource type="Script" uid="uid://ddt7dwehsj5yu" path="res://table_square.gd" id="1_jd0nb"]
+[ext_resource type="Script" uid="uid://ddt7dwehsj5yu" path="res://scripts/table_square.gd" id="1_jd0nb"]
 [ext_resource type="Texture2D" uid="uid://sb1wlrm6r5fr" path="res://Image textures/67 funk.jpg" id="2_v5i0k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5i0k"]
@@ -533,5 +533,5 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=605709655]
-transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 12, 1, -4)
+transform = Transform3D(1.649637, 0, 0, 0, -5.9422106e-08, -0.57908, 0, 1.3594193, -2.531239e-08, 5.843144, 0.53483343, 2.0660286)
 mesh = SubResource("SphereMesh_vjl2i")

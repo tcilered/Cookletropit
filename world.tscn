@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://ysy087q5lxo2"]
 
-[ext_resource type="Script" uid="uid://sgnxw43vjgit" path="res://camera_node.gd" id="1_f3sb7"]
-[ext_resource type="Script" uid="uid://cn8y6jtj76axv" path="res://world.gd" id="1_tlwt5"]
+[ext_resource type="Script" uid="uid://sgnxw43vjgit" path="res://scripts/camera_node.gd" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://cn8y6jtj76axv" path="res://scripts/world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://scenes/interactive_item.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://b36ld3njpe3il" path="res://models/letitride.glb" id="2_ic0uy"]
 [ext_resource type="FontFile" uid="uid://bstjikfqpgc8h" path="res://text/BridgeParapet.ttf" id="4_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://sb1wlrm6r5fr" path="res://Image textures/67 funk.jpg" id="4_pkg7o"]
-[ext_resource type="Script" uid="uid://5q8e5da4ovnc" path="res://text.gd" id="5_036b0"]
-[ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://data/item_data.gd" id="6_dwbse"]
-[ext_resource type="Script" uid="uid://dmpm030rkf62i" path="res://roulette_bowl.gd" id="8_gbfbk"]
+[ext_resource type="Script" uid="uid://5q8e5da4ovnc" path="res://scripts/text.gd" id="5_036b0"]
+[ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://data&data.gd/item_data.gd" id="6_dwbse"]
+[ext_resource type="Script" uid="uid://dmpm030rkf62i" path="res://scripts/roulette_bowl.gd" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://d047m3l4eca0d" path="res://scenes/wheel_scene.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://qw6ocycqh2dj" path="res://scenes/table.tscn" id="10_wse8f"]
 [ext_resource type="Texture2D" uid="uid://bwruywpmjyq2m" path="res://Image textures/epic gamer assets/temptable.png" id="12_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://pxhkl3gpo886" path="res://Menus/pause_menu.tscn" id="13_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://bnw5ul35snqlv" path="res://models/titble_table.glb" id="14_2u3nc"]
-[ext_resource type="Script" uid="uid://o67k7plch6kb" path="res://wheel.gd" id="15_udxuc"]
+[ext_resource type="Script" uid="uid://o67k7plch6kb" path="res://scripts/wheel.gd" id="15_udxuc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
 albedo_texture = ExtResource("4_pkg7o")
@@ -69,14 +69,14 @@ transform = Transform3D(1, 0, 0, 0, 0.30235103, 0.25881904, 0, -0.081014715, 0.9
 script = ExtResource("1_f3sb7")
 
 [node name="Camera3D" type="Camera3D" parent="Cameranode" unique_id=176010044]
-transform = Transform3D(1, 0, 0, 0, 3.8137891, 5.3883677, 0, -0.86847043, -0.38935584, 0, 3.1532278, 0.9559734)
+transform = Transform3D(1, 0, 0, 0, 4.5376954, 4.743401, 0, -2.566072, -1.9783593, 0, 3.1532269, 0.9559735)
 
 [node name="Mouse_detection_area3D" parent="." unique_id=1931984631 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7004786, 0, 1.7127172)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=728415868]
-transform = Transform3D(1, 0, 0, 0, 0.7539075, 0.6569806, 0, -0.6569806, 0.7539075, 10.83135, 1.0132166, -7.3436117)
+transform = Transform3D(1, 0, 0, 0, 0.7539075, 0.6569806, 0, -0.6569806, 0.7539075, 10.851237, 1.0132166, -7.343439)
 mesh = SubResource("BoxMesh_tlwt5")
 
 [node name="Label3D" type="Label3D" parent="MeshInstance3D" unique_id=1938283990]
@@ -93,7 +93,7 @@ mesh = SubResource("BoxMesh_036b0")
 surface_material_override/0 = SubResource("StandardMaterial3D_dwbse")
 
 [node name="Area3D" parent="." unique_id=1888708795 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7065163, 0, -10.939062)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.265446, 3.9363918, -7.848139)
 item_info = SubResource("Resource_pkg7o")
 
 [node name="move_camera_on_click" type="MeshInstance3D" parent="." unique_id=1511647192]
@@ -111,20 +111,20 @@ radius_for_this_spot = 67.0
 shape = SubResource("ConcavePolygonShape3D_wse8f")
 
 [node name="camera_node" type="Marker3D" parent="move_camera_on_click" unique_id=310226256]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 12.068819, 3.6902983, 2.6273222)
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 14.228788, 3.6902983, 8.629713)
 
 [node name="Wheel_Scene" parent="." unique_id=1393983754 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.560139, 0, 0)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 15.051096, 0.23735332, 5.550842)
 
 [node name="Table_Scene" parent="." unique_id=105314924 instance=ExtResource("10_wse8f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0389166, 0, 0)
+transform = Transform3D(0.8777306, 0, 0, 0, 1.0004923, 0, 0, 0, 1.1677709, 7.1958666, 0.076058865, 0.21133947)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=724063881]
 transform = Transform3D(0.40588737, 0.68430024, -0.60579586, 0.12663788, 0.61434674, 0.7788074, 0.90510684, -0.39282474, 0.16269724, -37.33247, 94.64332, 0)
 light_energy = 0.8
 
 [node name="item_1" parent="." unique_id=1803237243 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.281625, 1.0953298, -7.297491)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.465779, 3.9735737, -7.856224)
 item_info = SubResource("Resource_70uel")
 
 [node name="lucky" parent="." unique_id=2123669947 instance=ExtResource("2_fj7yv")]
@@ -137,7 +137,7 @@ visible = false
 visible = false
 
 [node name="titble_table" parent="." unique_id=411949206 instance=ExtResource("14_2u3nc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3131912, 0.06275797, 2.000254)
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 11.575145, 0.4434762, 2.000254)
 
 [node name="Node3D" type="Node3D" parent="." unique_id=722914792]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30563682, 0.3284468, 3.0092697)
