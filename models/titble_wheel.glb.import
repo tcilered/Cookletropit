@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cpbngke47ldmh"
-path="res://.godot/imported/titble_wheel.glb-ff3a93c5e6b979bd7ca0130c96b9b667.scn"
+path="res://.godot/imported/titble_wheel.glb-f2d33a7e1ad46948fead5f6044ac4154.scn"
 
 [deps]
 
-source_file="res://titble_wheel.glb"
-dest_files=["res://.godot/imported/titble_wheel.glb-ff3a93c5e6b979bd7ca0130c96b9b667.scn"]
+source_file="res://models/titble_wheel.glb"
+dest_files=["res://.godot/imported/titble_wheel.glb-f2d33a7e1ad46948fead5f6044ac4154.scn"]
 
 [params]
 
