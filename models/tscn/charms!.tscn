@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://csm3df2c6cu1t"]
+
+[ext_resource type="PackedScene" uid="uid://be4xxvia1d5ac" path="res://models/charms!.glb" id="1_w4a46"]
+
+[node name="charms!" unique_id=687050672 instance=ExtResource("1_w4a46")]

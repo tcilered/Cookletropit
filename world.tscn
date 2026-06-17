@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://sb1wlrm6r5fr" path="res://Image textures/67 funk.jpg" id="4_pkg7o"]
 [ext_resource type="Script" uid="uid://5q8e5da4ovnc" path="res://scripts/text.gd" id="5_036b0"]
 [ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://data&data.gd/item_data.gd" id="6_dwbse"]
+[ext_resource type="PackedScene" uid="uid://csm3df2c6cu1t" path="res://models/tscn/charms!.tscn" id="8_2u3nc"]
 [ext_resource type="Script" uid="uid://dmpm030rkf62i" path="res://scripts/roulette_bowl.gd" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://d047m3l4eca0d" path="res://scenes/wheel_scene.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://qw6ocycqh2dj" path="res://scenes/table.tscn" id="10_wse8f"]
@@ -27,17 +28,12 @@ material = SubResource("StandardMaterial3D_gbfbk")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwbse"]
 albedo_color = Color(0.9590855, 0.9594515, 0.5266093, 0.76862746)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkg7o"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_gbfbk"]
-material = SubResource("StandardMaterial3D_pkg7o")
-
 [sub_resource type="Resource" id="Resource_pkg7o"]
 script = ExtResource("6_dwbse")
 item_name = "The Cube"
 item_value = 67
 discription = "What? You feel very Square."
-item_mesh = SubResource("BoxMesh_gbfbk")
+item_mesh = ExtResource("8_2u3nc")
 surface_texture = ExtResource("4_pkg7o")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
@@ -46,16 +42,10 @@ metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wse8f"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2o6r5"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_7ae7t"]
-material = SubResource("StandardMaterial3D_2o6r5")
-
 [sub_resource type="Resource" id="Resource_70uel"]
 script = ExtResource("6_dwbse")
 item_name = "table"
 item_value = 670
-item_mesh = SubResource("PlaneMesh_7ae7t")
 surface_texture = ExtResource("12_k3n1d")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
@@ -69,17 +59,17 @@ transform = Transform3D(1, 0, 0, 0, 0.30235103, 0.25881904, 0, -0.081014715, 0.9
 script = ExtResource("1_f3sb7")
 
 [node name="Camera3D" type="Camera3D" parent="Cameranode" unique_id=176010044]
-transform = Transform3D(1, 0, 0, 0, 4.5376954, 4.743401, 0, -2.566072, -1.9783593, 0, 3.1532269, 0.9559735)
+transform = Transform3D(1, 0, 0, 0, 1.0540603, 3.0158203, 0, -0.9440025, 0.3299387, 0, 14.30516, 1.8913158)
 
 [node name="Mouse_detection_area3D" parent="." unique_id=1931984631 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7004786, 0, 1.7127172)
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=728415868]
+[node name="text" type="MeshInstance3D" parent="." unique_id=728415868]
 transform = Transform3D(1, 0, 0, 0, 0.7539075, 0.6569806, 0, -0.6569806, 0.7539075, 10.851237, 1.0132166, -7.343439)
 mesh = SubResource("BoxMesh_tlwt5")
 
-[node name="Label3D" type="Label3D" parent="MeshInstance3D" unique_id=1938283990]
+[node name="Label3D" type="Label3D" parent="text" unique_id=1938283990]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014690399, -0.16538239, 0.6577549)
 billboard = 1
 text = "67"
@@ -88,7 +78,7 @@ font_size = 100
 script = ExtResource("5_036b0")
 
 [node name="ground" type="MeshInstance3D" parent="." unique_id=1736814107]
-transform = Transform3D(586.2034, 0, 0, 0, 0.32275528, 0, 0, 0, 499.03543, 0.004273653, -2.912046, 0.03212166)
+transform = Transform3D(586.2034, 0, 0, 0, 0.32275528, 0, 0, 0, 499.03543, 0.020322084, -2.8843927, 0.0043258667)
 mesh = SubResource("BoxMesh_036b0")
 surface_material_override/0 = SubResource("StandardMaterial3D_dwbse")
 
