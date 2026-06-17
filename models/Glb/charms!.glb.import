@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bnw5ul35snqlv"
-path="res://.godot/imported/titble_table.glb-2f7465f903f7c1ae111d51aac30015a1.scn"
+uid="uid://be4xxvia1d5ac"
+path="res://.godot/imported/charms!.glb-e1a1571295b5a846e3177cdcb273d92f.scn"
 
 [deps]
 
-source_file="res://models/titble_table.glb"
-dest_files=["res://.godot/imported/titble_table.glb-2f7465f903f7c1ae111d51aac30015a1.scn"]
+source_file="res://models/Glb/charms!.glb"
+dest_files=["res://.godot/imported/charms!.glb-e1a1571295b5a846e3177cdcb273d92f.scn"]
 
 [params]
 
@@ -17,7 +17,7 @@ nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=0.15
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
@@ -37,6 +37,18 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"meshes": {
+"charms!_Cylinder": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://models/stuff/charms!_Cylinder.res",
+"save_to_file/path": "uid://dd78f40naxkbt"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

@@ -1,8 +1,10 @@
 extends Node3D
 # Customizable variables for the spin
-@export var spin_angle_degrees: float = 360 # How far to spin (can change this in Inspector)
+@export var spin_angle_degrees: float = randi_range(520, 900) # How far to spin (can change this in Inspector)
 @export var spin_duration: float = 2.0        # How long the spin takes in seconds
-# Standard European Roulette sequence
+# maybe for later to have logic in charms to change roatation amount and duration
+var spin_angle_rand_change =  randi_range(300, 360)
+
 signal numrolled(roll)
 var active_charms: Array = []
 # --- Roulette Data ---
@@ -133,6 +135,9 @@ func _on_object_clicked(node):
 		if wheel_instance:
 			var target_radians = deg_to_rad(spin_angle_degrees)
 			var tween = create_tween()
+
+			
+			
 			# Animate the 'rotation:y' property from its current position to its current position + target_radians
 			# Using .set_trans() and .set_ease() makes it start fast and slow down smoothly at the end
 			tween.tween_property(wheel_instance, "rotation:y", wheel_instance.rotation.y + target_radians, spin_duration)\

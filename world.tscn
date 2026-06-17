@@ -3,18 +3,19 @@
 [ext_resource type="Script" uid="uid://sgnxw43vjgit" path="res://scripts/camera_node.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://cn8y6jtj76axv" path="res://scripts/world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://scenes/interactive_item.tscn" id="2_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://b36ld3njpe3il" path="res://models/letitride.glb" id="2_ic0uy"]
+[ext_resource type="PackedScene" uid="uid://b36ld3njpe3il" path="res://models/Glb/letitride.glb" id="2_ic0uy"]
 [ext_resource type="FontFile" uid="uid://bstjikfqpgc8h" path="res://text/BridgeParapet.ttf" id="4_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://sb1wlrm6r5fr" path="res://Image textures/67 funk.jpg" id="4_pkg7o"]
 [ext_resource type="Script" uid="uid://5q8e5da4ovnc" path="res://scripts/text.gd" id="5_036b0"]
 [ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://data&data.gd/item_data.gd" id="6_dwbse"]
 [ext_resource type="PackedScene" uid="uid://csm3df2c6cu1t" path="res://models/tscn/charms!.tscn" id="8_2u3nc"]
 [ext_resource type="Script" uid="uid://dmpm030rkf62i" path="res://scripts/roulette_bowl.gd" id="8_gbfbk"]
+[ext_resource type="Shape3D" uid="uid://b5r05g3abl8la" path="res://models/Collision_shapes/Charms!_colisionshape.tres" id="8_udxuc"]
 [ext_resource type="PackedScene" uid="uid://d047m3l4eca0d" path="res://scenes/wheel_scene.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://qw6ocycqh2dj" path="res://scenes/table.tscn" id="10_wse8f"]
 [ext_resource type="Texture2D" uid="uid://bwruywpmjyq2m" path="res://Image textures/epic gamer assets/temptable.png" id="12_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://pxhkl3gpo886" path="res://Menus/pause_menu.tscn" id="13_2o6r5"]
-[ext_resource type="PackedScene" uid="uid://bnw5ul35snqlv" path="res://models/titble_table.glb" id="14_2u3nc"]
+[ext_resource type="PackedScene" uid="uid://bnw5ul35snqlv" path="res://models/Glb/titble_table.glb" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://o67k7plch6kb" path="res://scripts/wheel.gd" id="15_udxuc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
@@ -34,6 +35,7 @@ item_name = "The Cube"
 item_value = 67
 discription = "What? You feel very Square."
 item_mesh = ExtResource("8_2u3nc")
+custom_collision_shape = ExtResource("8_udxuc")
 surface_texture = ExtResource("4_pkg7o")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 

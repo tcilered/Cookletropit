@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://bynm17lpbwf5l"]
 
-[ext_resource type="PackedScene" uid="uid://s0aewgsgkn84" path="res://models/roulette_wheel.glb" id="1_88lwc"]
+[ext_resource type="PackedScene" uid="uid://s0aewgsgkn84" path="res://models/stuff/roulette_wheel.glb" id="1_88lwc"]
 
 [node name="Sketchfab_Scene" unique_id=767550942 instance=ExtResource("1_88lwc")]

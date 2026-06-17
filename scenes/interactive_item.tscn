@@ -7,16 +7,19 @@
 script = ExtResource("2_twgq8")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6li8q"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vpqm"]
+albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_cj57l"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_qamlw"]
+material = SubResource("StandardMaterial3D_4vpqm")
+size = Vector2(0.2, 0.2)
 
 [node name="Area3D" type="Area3D" unique_id=1931984631]
 script = ExtResource("1_ngc87")
 item_info = SubResource("Resource_6li8q")
 
 [node name="Collision" type="CollisionShape3D" parent="." unique_id=399961867]
-shape = SubResource("CapsuleShape3D_6li8q")
 
 [node name="Mesh" type="MeshInstance3D" parent="Collision" unique_id=339416613]
-mesh = SubResource("CapsuleMesh_cj57l")
+transform = Transform3D(0.24165493, 0, 0, 0, 0.21737184, 0, 0, 0, 0.29877973, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qamlw")

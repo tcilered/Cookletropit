@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy2tutgrjw4rb"
-path.s3tc="res://.godot/imported/roulette_wheel_9.png-92c5ffaf3a31abe474a72e7a09a0126f.s3tc.ctex"
+uid="uid://biqcpmyclttk6"
+path.s3tc="res://.godot/imported/roulette_wheel_6.png-d07476eb63d7472c12479d681f6a6fa6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "35423fd9eb86574d7a7694d4dc7e925f"
+"md5": "1133fafc4418c6a7623cc2b72f1f879f"
 }
 
 [deps]
 
-source_file="res://models/roulette_wheel_9.png"
-dest_files=["res://.godot/imported/roulette_wheel_9.png-92c5ffaf3a31abe474a72e7a09a0126f.s3tc.ctex"]
+source_file="res://models/Textures/roulette_wheel_6.png"
+dest_files=["res://.godot/imported/roulette_wheel_6.png-d07476eb63d7472c12479d681f6a6fa6.s3tc.ctex"]
 
 [params]
 

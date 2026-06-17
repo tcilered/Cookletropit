@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b36ld3njpe3il"
-path="res://.godot/imported/letitride.glb-c9c52ce47185ec5848258e586bf28230.scn"
+uid="uid://cpbngke47ldmh"
+path="res://.godot/imported/titble_wheel.glb-60c321068afbcfa1ba1a0af6eef115fe.scn"
 
 [deps]
 
-source_file="res://models/letitride.glb"
-dest_files=["res://.godot/imported/letitride.glb-c9c52ce47185ec5848258e586bf28230.scn"]
+source_file="res://models/Glb/titble_wheel.glb"
+dest_files=["res://.godot/imported/titble_wheel.glb-60c321068afbcfa1ba1a0af6eef115fe.scn"]
 
 [params]
 
@@ -17,7 +17,7 @@ nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
-nodes/root_scale=0.2
+nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true

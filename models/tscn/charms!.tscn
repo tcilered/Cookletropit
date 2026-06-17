@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://csm3df2c6cu1t"]
 
-[ext_resource type="PackedScene" uid="uid://be4xxvia1d5ac" path="res://models/charms!.glb" id="1_w4a46"]
+[ext_resource type="PackedScene" uid="uid://be4xxvia1d5ac" path="res://models/Glb/charms!.glb" id="1_w4a46"]
+[ext_resource type="Shape3D" uid="uid://b5r05g3abl8la" path="res://models/Collision_shapes/Charms!_colisionshape.tres" id="2_1tqj5"]
 
 [node name="charms!" unique_id=687050672 instance=ExtResource("1_w4a46")]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="1" unique_id=2139286497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4696978e-05, 0.26538095, 1.2160116e-05)
+shape = ExtResource("2_1tqj5")

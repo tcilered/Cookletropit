@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cphowi0htm6ql"
-path.s3tc="res://.godot/imported/roulette_wheel_5.jpg-41d1856938187bd4831902b6d73a198c.s3tc.ctex"
+uid="uid://dy2tutgrjw4rb"
+path.s3tc="res://.godot/imported/roulette_wheel_9.png-ccdde8bc9b8571cf8fef8476f447853c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "3c2c988bcfcbacf0cad11b43574c1d7e"
+"md5": "35423fd9eb86574d7a7694d4dc7e925f"
 }
 
 [deps]
 
-source_file="res://models/roulette_wheel_5.jpg"
-dest_files=["res://.godot/imported/roulette_wheel_5.jpg-41d1856938187bd4831902b6d73a198c.s3tc.ctex"]
+source_file="res://models/Textures/roulette_wheel_9.png"
+dest_files=["res://.godot/imported/roulette_wheel_9.png-ccdde8bc9b8571cf8fef8476f447853c.s3tc.ctex"]
 
 [params]
 
@@ -25,12 +25,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://models/roulette_wheel_5.jpg"
+roughness/mode=0
+roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

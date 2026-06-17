@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cpbngke47ldmh"
-path="res://.godot/imported/titble_wheel.glb-f2d33a7e1ad46948fead5f6044ac4154.scn"
+uid="uid://bnw5ul35snqlv"
+path="res://.godot/imported/titble_table.glb-c9cd423a5e2409b02eff4c71e44f3d00.scn"
 
 [deps]
 
-source_file="res://models/titble_wheel.glb"
-dest_files=["res://.godot/imported/titble_wheel.glb-f2d33a7e1ad46948fead5f6044ac4154.scn"]
+source_file="res://models/Glb/titble_table.glb"
+dest_files=["res://.godot/imported/titble_table.glb-c9cd423a5e2409b02eff4c71e44f3d00.scn"]
 
 [params]
 
