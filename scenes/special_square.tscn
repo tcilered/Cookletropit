@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c6bkosvy6d5vy"]
+
+[ext_resource type="Script" uid="uid://dtq5wmfjkujqm" path="res://scenes/special_squares.gd" id="1_g8nef"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_he10j"]
+size = Vector3(1, 0.022949219, 1.4976807)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jd0nb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fmomn"]
+material = SubResource("StandardMaterial3D_jd0nb")
+size = Vector3(1, 0.1, 1.5)
+
+[node name="Special square" type="Node3D" unique_id=2097114336]
+
+[node name="Row_1_" type="Area3D" parent="." unique_id=44709928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7496389, 0)
+script = ExtResource("1_g8nef")
+special_square_identity = null
+
+[node name="17_Collision" type="CollisionShape3D" parent="Row_1_" unique_id=831290555]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 8.34465e-07)
+shape = SubResource("BoxShape3D_he10j")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="Row_1_" unique_id=443257232]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 8.34465e-07)
+mesh = SubResource("BoxMesh_fmomn")

@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://pxhkl3gpo886" path="res://Menus/pause_menu.tscn" id="13_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://bnw5ul35snqlv" path="res://models/Glb/titble_table.glb" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://o67k7plch6kb" path="res://scripts/wheel.gd" id="15_udxuc"]
+[ext_resource type="PackedScene" uid="uid://c6bkosvy6d5vy" path="res://scenes/special_square.tscn" id="18_ikiii"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
 albedo_texture = ExtResource("4_pkg7o")
@@ -109,7 +110,7 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 14.22878
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 15.051096, 0.23735332, 5.550842)
 
 [node name="Table_Scene" parent="." unique_id=105314924 instance=ExtResource("10_wse8f")]
-transform = Transform3D(0.8777306, 0, 0, 0, 1.0004923, 0, 0, 0, 1.1677709, 7.1958666, 0.076058865, 0.21133947)
+transform = Transform3D(0.8777306, 0, 0, 0, 1.0004923, 0, 0, 0, 1.1677709, 7.1958666, 0.09673786, 0.21133947)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=724063881]
 transform = Transform3D(0.40588737, 0.68430024, -0.60579586, 0.12663788, 0.61434674, 0.7788074, 0.90510684, -0.39282474, 0.16269724, -37.33247, 94.64332, 0)
@@ -119,7 +120,7 @@ light_energy = 0.8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.465779, 3.9735737, -7.856224)
 item_info = SubResource("Resource_70uel")
 
-[node name="lucky" parent="." unique_id=2123669947 instance=ExtResource("2_fj7yv")]
+[node name="interactive item" parent="." unique_id=2123669947 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.905397, 2.6980267, -3.9313748)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=927881650]
@@ -131,9 +132,12 @@ visible = false
 [node name="titble_table" parent="." unique_id=411949206 instance=ExtResource("14_2u3nc")]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 11.575145, 0.4434762, 2.000254)
 
-[node name="Node3D" type="Node3D" parent="." unique_id=722914792]
+[node name="rotating node" type="Node3D" parent="." unique_id=722914792]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30563682, 0.3284468, 3.0092697)
 script = ExtResource("15_udxuc")
+
+[node name="Special square" parent="." unique_id=2097114336 instance=ExtResource("18_ikiii")]
+transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, 8.474846, 0.81849575, -4.549794)
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]
