@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4mgbtip5u6sl"
-path.s3tc="res://.godot/imported/radium_tv_4.png-ca0d3dfc541d5680bdb999dd095add73.s3tc.ctex"
+uid="uid://cajlkecbcygx6"
+path.s3tc="res://.godot/imported/radium_tv_0.png-9d9a502d83213c7ca2fc2400de98c55c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "cbcb1dc578abc9f1a2d781c3e30253f2"
+"md5": "e92d0883c7cef86e268413470fe47357"
 }
 
 [deps]
 
-source_file="res://radium_tv_4.png"
-dest_files=["res://.godot/imported/radium_tv_4.png-ca0d3dfc541d5680bdb999dd095add73.s3tc.ctex"]
+source_file="res://Image textures/radium_tv_0.png"
+dest_files=["res://.godot/imported/radium_tv_0.png-9d9a502d83213c7ca2fc2400de98c55c.s3tc.ctex"]
 
 [params]
 

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qi3r5p4yod5q"
-path.s3tc="res://.godot/imported/radium_tv_0.png-ec954dbc6e193ad17d780b80fd8d3f25.s3tc.ctex"
+uid="uid://dxk1d7kt5k7yf"
+path.s3tc="res://.godot/imported/vegetable_soup_T_Grandient_Food.png-ae3f6064f2ba81809730b23b0b1dd467.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "e92d0883c7cef86e268413470fe47357"
+"md5": "fbdc76a96f34f1ec92588c9f2e3096cb"
 }
 
 [deps]
 
-source_file="res://radium_tv_0.png"
-dest_files=["res://.godot/imported/radium_tv_0.png-ec954dbc6e193ad17d780b80fd8d3f25.s3tc.ctex"]
+source_file="res://models/Textures/vegetable_soup_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/vegetable_soup_T_Grandient_Food.png-ae3f6064f2ba81809730b23b0b1dd467.s3tc.ctex"]
 
 [params]
 

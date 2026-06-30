@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3nun8xjdci42"
-path.s3tc="res://.godot/imported/radium_tv_3.png-0e4e105fbc141c3007e11214ed4a9db3.s3tc.ctex"
+uid="uid://y4l7umga834l"
+path.s3tc="res://.godot/imported/depressing_cake_T_Grandient_Food.png-b11321cacedc066f7925f7f16901b484.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "62b8439f48576e8193ec52cf34b347d0"
+"md5": "fbdc76a96f34f1ec92588c9f2e3096cb"
 }
 
 [deps]
 
-source_file="res://radium_tv_3.png"
-dest_files=["res://.godot/imported/radium_tv_3.png-0e4e105fbc141c3007e11214ed4a9db3.s3tc.ctex"]
+source_file="res://models/Textures/depressing_cake_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/depressing_cake_T_Grandient_Food.png-b11321cacedc066f7925f7f16901b484.s3tc.ctex"]
 
 [params]
 

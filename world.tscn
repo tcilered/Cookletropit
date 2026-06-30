@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bnw5ul35snqlv" path="res://models/Glb/titble_table.glb" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://o67k7plch6kb" path="res://scripts/wheel.gd" id="15_udxuc"]
 [ext_resource type="PackedScene" uid="uid://c6bkosvy6d5vy" path="res://scenes/special_square.tscn" id="18_ikiii"]
-[ext_resource type="PackedScene" uid="uid://b8pyf2xj8ho34" path="res://radium_tv.glb" id="19_cbp6q"]
+[ext_resource type="PackedScene" uid="uid://b8pyf2xj8ho34" path="res://models/Glb/radium_tv.glb" id="19_cbp6q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
 albedo_texture = ExtResource("4_pkg7o")
