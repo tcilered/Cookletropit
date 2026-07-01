@@ -12,13 +12,15 @@ shader = ExtResource("3_xfsri")
 
 [node name="Node3D" type="Node3D" unique_id=1197816317]
 
-[node name="Sketchfab_Scene" parent="." unique_id=1468392063 instance=ExtResource("1_7f6ms")]
-visible = false
-
 [node name="SubViewport" type="SubViewport" parent="." unique_id=427082788]
 
-[node name="Label3D" type="Label3D" parent="SubViewport" unique_id=454941613]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8163094, 0.5375223)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport" unique_id=824462821]
+transform = Transform3D(1.0912824, 0, 0, 0, 0.9087358, 0, 0, 0, 0.15258911, 0, 0.7752986, 0.40162867)
+material_override = SubResource("ShaderMaterial_3gngh")
+mesh = SubResource("SphereMesh_57qmd")
+
+[node name="Label3D" type="Label3D" parent="SubViewport/MeshInstance3D" unique_id=454941613]
+transform = Transform3D(0.9163531, 0, 0, 0, 1.1004299, 0, 0, 0, 6.5535474, 0, 0.045129478, 0.8905854)
 ignore_occlusion_culling = true
 texture_filter = 0
 text = "67676767"
@@ -27,7 +29,8 @@ font_size = 15
 outline_size = 1
 autowrap_mode = 3
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=824462821]
-transform = Transform3D(1.0912824, 0, 0, 0, 0.9087358, 0, 0, 0, 0.15258911, 0, 0.7752986, 0.40162867)
-material_override = SubResource("ShaderMaterial_3gngh")
-mesh = SubResource("SphereMesh_57qmd")
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1408647486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78929436, 1.5100105)
+
+[node name="Sketchfab_Scene" parent="." unique_id=1468392063 instance=ExtResource("1_7f6ms")]
+visible = false

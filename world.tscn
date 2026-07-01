@@ -143,7 +143,7 @@ transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-
 [node name="Node3D" type="Node3D" parent="." unique_id=1695420153]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.2355623)
 
-[node name="Sketchfab_Scene" parent="." unique_id=1468392063 instance=ExtResource("19_cbp6q")]
+[node name="Telli" parent="." unique_id=1468392063 instance=ExtResource("19_cbp6q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253922, 0, 2.440141)
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
