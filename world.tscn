@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bnw5ul35snqlv" path="res://models/Glb/titble_table.glb" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://o67k7plch6kb" path="res://scripts/wheel.gd" id="15_udxuc"]
 [ext_resource type="PackedScene" uid="uid://c6bkosvy6d5vy" path="res://scenes/special_square.tscn" id="18_ikiii"]
+[ext_resource type="PackedScene" uid="uid://cqf3xndewm6rl" path="res://models/Glb/d20.glb" id="19_26xuy"]
 [ext_resource type="PackedScene" uid="uid://b8pyf2xj8ho34" path="res://models/Glb/radium_tv.glb" id="19_cbp6q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
@@ -34,7 +35,7 @@ albedo_color = Color(0.9590855, 0.9594515, 0.5266093, 0.76862746)
 [sub_resource type="Resource" id="Resource_pkg7o"]
 script = ExtResource("6_dwbse")
 item_name = "The Cube"
-item_value = 67
+item_value = 0
 discription = "What? You feel very Square."
 item_mesh = ExtResource("8_2u3nc")
 custom_collision_shape = ExtResource("8_udxuc")
@@ -49,8 +50,15 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [sub_resource type="Resource" id="Resource_70uel"]
 script = ExtResource("6_dwbse")
 item_name = "table"
-item_value = 670
+item_value = 0
 surface_texture = ExtResource("12_k3n1d")
+metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
+
+[sub_resource type="Resource" id="Resource_bc84e"]
+script = ExtResource("6_dwbse")
+item_name = "Die"
+item_value = 0
+item_mesh = ExtResource("19_26xuy")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
 [node name="Node3D" type="Node3D" unique_id=1769170537 node_paths=PackedStringArray("pause_menu")]
@@ -83,10 +91,11 @@ script = ExtResource("5_036b0")
 
 [node name="ground" type="MeshInstance3D" parent="." unique_id=1736814107]
 transform = Transform3D(586.2034, 0, 0, 0, 0.32275528, 0, 0, 0, 499.03543, 0.020322084, -2.8843927, 0.0043258667)
+visible = false
 mesh = SubResource("BoxMesh_036b0")
 surface_material_override/0 = SubResource("StandardMaterial3D_dwbse")
 
-[node name="Area3D" parent="." unique_id=1888708795 instance=ExtResource("2_fj7yv")]
+[node name="the cube" parent="." unique_id=1888708795 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.265446, 3.9363918, -7.848139)
 item_info = SubResource("Resource_pkg7o")
 
@@ -139,6 +148,10 @@ script = ExtResource("15_udxuc")
 
 [node name="Special square" parent="." unique_id=2097114336 instance=ExtResource("18_ikiii")]
 transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, 8.474846, 0.81849575, -4.549794)
+
+[node name="Area3D" parent="Special square" unique_id=634784261 instance=ExtResource("2_fj7yv")]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -10.213005, 7.0656986, 9.536743e-07)
+item_info = SubResource("Resource_bc84e")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1695420153]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.2355623)
