@@ -42,9 +42,15 @@ func _ready():
 # --- Receiver Functions ---
 
 func _on_object_hovered(node):
-	if node.item_info:
+	if node.item_info.has_bought == true:
 		print("This item is called ", node.item_info.item_name, " and is worth ", node.item_info.item_value)
-
+	elif node.item_info.has_bought == false:
+		#create popup of info and colour change and increase in scale
+		print("This item is called ", node.item_info.item_name, " and is worth ", node.item_info.item_value)
+		pass
+	else:
+		print("uh you own and don't own this at the same time, kms")
+		pass
 func _on_object_unhovered(node):
 	if node.item_info:
 		print("Main World: stopped hovering over: ", node.item_info.item_name)

@@ -8,3 +8,4 @@ class_name ItemData  # This makes 'ItemData' show up in Godot's menus!
 @export var item_mesh: PackedScene
 @export var custom_collision_shape: Shape3D
 @export var surface_texture: Texture2D
+@export var has_bought : bool

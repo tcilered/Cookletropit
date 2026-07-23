@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://f1g4bxoo2bj8"]
+
+[ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://scenes/interactive_item.tscn" id="1_rgcs7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(2.359497, 0.16320801, 1.2546387)
+
+[node name="Node3D" type="Node3D" unique_id=672630555]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=800926750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.041731, -0.17046201, -0.13549805)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=463370843]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.041731, 0.37907505, -0.83501506)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="Option_1" type="Node3D" parent="." unique_id=1188179541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8825197, 0.29380494, 0)
+
+[node name="Option_2" type="Node3D" parent="." unique_id=1350626558]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013100028, 0.2822252, 0)
+
+[node name="Option_3" type="Node3D" parent="." unique_id=124495639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7628745, 0.3192736, 0)
+
+[node name="Area3D" parent="Option_3" unique_id=1931984631 instance=ExtResource("1_rgcs7")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2045192156]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0.7573565, 1.6033093)

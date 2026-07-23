@@ -77,9 +77,43 @@ func add_charm(charm_name: String):
 				return w
 		}
 		print("Added The Cube: Added 3 sets of square numbers to the wheel!")
+	elif charm_name == "Hot Garbage":
+		new_charm = {
+			"name": charm_name,
+			#logic: gives a random hot charm
+		}
+		print("Added Lucky Clover: House 0s are now 7s!")
+	
+	elif charm_name == "Garbage":
+		new_charm = {
+			"name": charm_name,
+			#logic: gives a random charm
+		}
+		print("Added Lucky Clover: House 0s are now 7s!")
+	
+	elif charm_name == "Broken hilt":
+		new_charm = {
+			"name": charm_name,
+			#logic: protects you from a 0 three times with a reroll
+		}
+		print("Added Lucky Clover: House 0s are now 7s!")
 		
+	elif charm_name == "tan rook":
+		new_charm = {
+			"name": charm_name,
+			#logic: Place a rook on any spot on the table, where it can move has doubled returns, where it sits turns your reward negitive
+		}
+		print("Added Lucky Clover: House 0s are now 7s!")
+
+	elif charm_name == "Golden goblet":
+		new_charm = {
+			"name": charm_name,
+			#logic: makes you drunk, delays losses across then next three days
+			#discription/lore: The goblet of a funcional achoholic gambling king. His way of life seems to have reached the goblet? Just holding it you feel tipsy and you forget your debt.
+		}
+		print("Added Lucky Clover: House 0s are now 7s!")
 	else:
-		# If it doesn't match "Lucky Clover" or "The Cube", it falls back here
+		# If it doesn't match "Lucky Clover", "The Cube", ect, it falls back here
 		new_charm = {"name": charm_name}
 		print("Warning: No custom logic found for '", charm_name, "'. Adding as generic charm.")
 		

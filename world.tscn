@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c6bkosvy6d5vy" path="res://scenes/special_square.tscn" id="18_ikiii"]
 [ext_resource type="PackedScene" uid="uid://cqf3xndewm6rl" path="res://models/Glb/d20.glb" id="19_26xuy"]
 [ext_resource type="PackedScene" uid="uid://b8pyf2xj8ho34" path="res://models/Glb/radium_tv.glb" id="19_cbp6q"]
+[ext_resource type="PackedScene" uid="uid://f1g4bxoo2bj8" path="res://scenes/Shop.tscn" id="20_bc84e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
 albedo_texture = ExtResource("4_pkg7o")
@@ -130,6 +131,8 @@ light_energy = 0.8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.465779, 3.9735737, -7.856224)
 item_info = SubResource("Resource_70uel")
 
+[node name="Node3D" type="Node3D" parent="item_1" unique_id=526433381]
+
 [node name="interactive item" parent="." unique_id=2123669947 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.905397, 2.6980267, -3.9313748)
 
@@ -153,7 +156,7 @@ transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -10.213005, 7.0656986, 9.536743e-07)
 item_info = SubResource("Resource_bc84e")
 
-[node name="Node3D" type="Node3D" parent="." unique_id=1695420153]
+[node name="Node3D" parent="." unique_id=672630555 instance=ExtResource("20_bc84e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.2355623)
 
 [node name="Telli" parent="." unique_id=1468392063 instance=ExtResource("19_cbp6q")]
