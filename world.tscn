@@ -13,7 +13,6 @@
 [ext_resource type="Shape3D" uid="uid://b5r05g3abl8la" path="res://models/Collision_shapes/Charms!_colisionshape.tres" id="8_udxuc"]
 [ext_resource type="PackedScene" uid="uid://d047m3l4eca0d" path="res://scenes/wheel_scene.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://qw6ocycqh2dj" path="res://scenes/table.tscn" id="10_wse8f"]
-[ext_resource type="Texture2D" uid="uid://bwruywpmjyq2m" path="res://Image textures/epic gamer assets/temptable.png" id="12_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://pxhkl3gpo886" path="res://Menus/pause_menu.tscn" id="13_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://bnw5ul35snqlv" path="res://models/Glb/titble_table.glb" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://o67k7plch6kb" path="res://scripts/wheel.gd" id="15_udxuc"]
@@ -21,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cqf3xndewm6rl" path="res://models/Glb/d20.glb" id="19_26xuy"]
 [ext_resource type="PackedScene" uid="uid://b8pyf2xj8ho34" path="res://models/Glb/radium_tv.glb" id="19_cbp6q"]
 [ext_resource type="PackedScene" uid="uid://f1g4bxoo2bj8" path="res://scenes/Shop.tscn" id="20_bc84e"]
+[ext_resource type="Script" uid="uid://dxxco8wrlqvn0" path="res://Log.gd" id="21_bc84e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
 albedo_texture = ExtResource("4_pkg7o")
@@ -35,12 +35,10 @@ albedo_color = Color(0.9590855, 0.9594515, 0.5266093, 0.76862746)
 
 [sub_resource type="Resource" id="Resource_pkg7o"]
 script = ExtResource("6_dwbse")
-item_name = "The Cube"
-item_value = 0
-discription = "What? You feel very Square."
+item_name = "Crystalcharm"
+discription = "A standard crystal charm, it probably gives of negitive ions"
 item_mesh = ExtResource("8_2u3nc")
 custom_collision_shape = ExtResource("8_udxuc")
-surface_texture = ExtResource("4_pkg7o")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
 [sub_resource type="BoxMesh" id="BoxMesh_ioo17"]
@@ -48,18 +46,14 @@ metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wse8f"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="Resource" id="Resource_70uel"]
-script = ExtResource("6_dwbse")
-item_name = "table"
-item_value = 0
-surface_texture = ExtResource("12_k3n1d")
-metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
+[sub_resource type="SphereShape3D" id="SphereShape3D_bc84e"]
 
-[sub_resource type="Resource" id="Resource_bc84e"]
+[sub_resource type="Resource" id="Resource_26xuy"]
 script = ExtResource("6_dwbse")
 item_name = "Die"
-item_value = 0
+discription = "A 20 sided die"
 item_mesh = ExtResource("19_26xuy")
+custom_collision_shape = SubResource("SphereShape3D_bc84e")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
 [node name="Node3D" type="Node3D" unique_id=1769170537 node_paths=PackedStringArray("pause_menu")]
@@ -72,7 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 0.30235103, 0.25881904, 0, -0.081014715, 0.9
 script = ExtResource("1_f3sb7")
 
 [node name="Camera3D" type="Camera3D" parent="Cameranode" unique_id=176010044]
-transform = Transform3D(1, 0, 0, 0, 1.0540603, 3.0158203, 0, -0.9440025, 0.3299387, 0, 14.30516, 1.8913158)
+transform = Transform3D(0.99999994, 0, 0, 0, 1.2624698, 2.8276646, 0, -0.63902533, 1.0992479, 0, 14.30516, 1.891316)
 
 [node name="Mouse_detection_area3D" parent="." unique_id=1931984631 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7004786, 0, 1.7127172)
@@ -84,7 +78,6 @@ mesh = SubResource("BoxMesh_tlwt5")
 
 [node name="Label3D" type="Label3D" parent="text" unique_id=1938283990]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014690399, -0.16538239, 0.6577549)
-billboard = 1
 text = "67"
 font = ExtResource("4_aqk2v")
 font_size = 100
@@ -127,12 +120,6 @@ transform = Transform3D(0.8777306, 0, 0, 0, 1.0004923, 0, 0, 0, 1.1677709, 7.195
 transform = Transform3D(0.40588737, 0.68430024, -0.60579586, 0.12663788, 0.61434674, 0.7788074, 0.90510684, -0.39282474, 0.16269724, -37.33247, 94.64332, 0)
 light_energy = 0.8
 
-[node name="item_1" parent="." unique_id=1803237243 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.465779, 3.9735737, -7.856224)
-item_info = SubResource("Resource_70uel")
-
-[node name="Node3D" type="Node3D" parent="item_1" unique_id=526433381]
-
 [node name="interactive item" parent="." unique_id=2123669947 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.905397, 2.6980267, -3.9313748)
 
@@ -152,15 +139,30 @@ script = ExtResource("15_udxuc")
 [node name="Special square" parent="." unique_id=2097114336 instance=ExtResource("18_ikiii")]
 transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, 8.474846, 0.81849575, -4.549794)
 
-[node name="Area3D" parent="Special square" unique_id=634784261 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -10.213005, 7.0656986, 9.536743e-07)
-item_info = SubResource("Resource_bc84e")
-
 [node name="Node3D" parent="." unique_id=672630555 instance=ExtResource("20_bc84e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.2355623)
+visible = false
 
 [node name="Telli" parent="." unique_id=1468392063 instance=ExtResource("19_cbp6q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253922, 0, 2.440141)
+visible = false
+
+[node name="Die" parent="." unique_id=299173462 instance=ExtResource("2_fj7yv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.487408, 3.4861069, -8.385871)
+item_info = SubResource("Resource_26xuy")
+
+[node name="log" type="MeshInstance3D" parent="." unique_id=2113447530]
+transform = Transform3D(1, 0, 0, 0, 0.9531727, 0.3024263, 0, -0.3024263, 0.9531727, 15.542973, 2.634268, -8.342414)
+mesh = SubResource("BoxMesh_tlwt5")
+
+[node name="Label3D" type="Label3D" parent="log" unique_id=233947909]
+transform = Transform3D(0.7, 0, 0, 0, 0.6999999, -2.9802322e-08, 0, 2.9802322e-08, 0.6999999, -0.014690399, -0.16538286, 0.6577549)
+text = "67"
+font = ExtResource("4_aqk2v")
+font_size = 100
+width = 1000.0
+script = ExtResource("21_bc84e")
+max_lines = 5
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]

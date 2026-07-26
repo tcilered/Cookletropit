@@ -58,68 +58,109 @@ func spin_wheel():
 
 
 # --- Charm Management ---
-func add_charm(charm_name: String):
-	var new_charm = {}
-	
-	if charm_name == "Lucky Clover":
-		new_charm = {
-			"name": charm_name,
-			"apply_to_roll": func(r): return 7 if r == 0 else r 
-		}
-		print("Added Lucky Clover: House 0s are now 7s!")
-		
-	elif charm_name == "The Cube":
-		new_charm = {
-			"name": charm_name,
-			"apply_to_wheel": func(w): 
-				for i in range(3):
-					w.append_array(square_numbers)
-				return w
-		}
-		print("Added The Cube: Added 3 sets of square numbers to the wheel!")
-	elif charm_name == "Hot Garbage":
-		new_charm = {
-			"name": charm_name,
-			#logic: gives a random hot charm
-		}
-		print("Added Lucky Clover: House 0s are now 7s!")
-	
-	elif charm_name == "Garbage":
-		new_charm = {
-			"name": charm_name,
-			#logic: gives a random charm
-		}
-		print("Added Lucky Clover: House 0s are now 7s!")
-	
-	elif charm_name == "Broken hilt":
-		new_charm = {
-			"name": charm_name,
-			#logic: protects you from a 0 three times with a reroll
-		}
-		print("Added Lucky Clover: House 0s are now 7s!")
-		
-	elif charm_name == "tan rook":
-		new_charm = {
-			"name": charm_name,
-			#logic: Place a rook on any spot on the table, where it can move has doubled returns, where it sits turns your reward negitive
-		}
-		print("Added Lucky Clover: House 0s are now 7s!")
+# Pool of available charms for random generation
+const ALL_CHARMS: Array[String] = [
+	"Lucky Clover", "The Cube", "Crystal charm", "Broken hilt", "tan rook", "Golden goblet"
+]
+const HOT_CHARMS: Array[String] = [
+	"The Cube", "Crystal charm", "tan rook", "Golden goblet"
+]
 
-	elif charm_name == "Golden goblet":
-		new_charm = {
-			"name": charm_name,
-			#logic: makes you drunk, delays losses across then next three days
-			#discription/lore: The goblet of a funcional achoholic gambling king. His way of life seems to have reached the goblet? Just holding it you feel tipsy and you forget your debt.
-		}
-		print("Added Lucky Clover: House 0s are now 7s!")
-	else:
-		# If it doesn't match "Lucky Clover", "The Cube", ect, it falls back here
-		new_charm = {"name": charm_name}
-		print("Warning: No custom logic found for '", charm_name, "'. Adding as generic charm.")
-		
+func add_charm(charm_name: String) -> void:
+	var new_charm: Dictionary = {}
+	
+	match charm_name:
+		"Lucky Clover":
+			new_charm = {
+				"name": charm_name,
+				"apply_to_roll": func(r: int) -> int: return 7 if r == 0 else r
+			}
+			print("Added Lucky Clover: House 0s are now 7s!")
+
+		"The Cube":
+			new_charm = {
+				"name": charm_name,
+				"apply_to_wheel": func(w: Array) -> Array:
+					for i in range(3):
+						w.append_array(square_numbers)
+					return w
+			}
+			print("Added The Cube: Added 3 sets of square numbers to the wheel!")
+
+		"Crystalcharm":
+			new_charm = {
+				"name": charm_name,
+				"multiplier": 1.5,
+				"apply_to_reward": func(payout: float) -> float:
+					return payout * 1.5
+			}
+			print("Added Crystal Charm: Grants a 1.5x payout multiplier on all wins!")
+
+		"Hot Garbage":
+			new_charm = {
+				"name": charm_name
+			}
+			print("Added Hot Garbage: Spawning a random high-tier charm!")
+			# Immediately give a random hot charm
+			var random_hot = HOT_CHARMS[randi() % HOT_CHARMS.size()]
+			call_deferred("add_charm", random_hot)
+
+		"Garbage":
+			new_charm = {
+				"name": charm_name
+			}
+			print("Added Garbage: Spawning a random charm!")
+			# Immediately give a random charm from the pool
+			var random_charm = ALL_CHARMS[randi() % ALL_CHARMS.size()]
+			call_deferred("add_charm", random_charm)
+
+		"Broken hilt":
+			new_charm = {
+				"name": charm_name,
+				"charges": 3,
+				"on_zero_roll": func(charm_dict: Dictionary) -> bool:
+					if charm_dict.get("charges", 0) > 0:
+						charm_dict["charges"] -= 1
+						print("Broken Hilt protected you from 0! Remaining charges: ", charm_dict["charges"])
+						return true # Signals a reroll
+					return false
+			}
+			print("Added Broken Hilt: Protects against a 0-roll three times!")
+
+		"tan rook":
+			new_charm = {
+				"name": charm_name,
+				"rook_position": Vector2i(2, 2), # Default position on grid
+				"modify_spot_reward": func(spot_pos: Vector2i, reward: float, rook_pos: Vector2i) -> float:
+					if spot_pos == rook_pos:
+						return -abs(reward) # Sitting spot turns reward negative
+					elif spot_pos.x == rook_pos.x or spot_pos.y == rook_pos.y:
+						return reward * 2.0 # Horizontal/vertical rook moves double returns
+					return reward
+			}
+			print("Added Tan Rook: Moves horizontally/vertically double rewards; tile occupied flips negative!")
+
+		"Golden goblet":
+			new_charm = {
+				"name": charm_name,
+				"delay_days": 3,
+				"description": "The goblet of a functional alcoholic gambling king. Just holding it you feel tipsy and forget your debt.",
+				"process_loss": func(loss_amount: float, charm_dict: Dictionary) -> float:
+					if charm_dict.get("delay_days", 0) > 0:
+						charm_dict["delay_days"] -= 1
+						print("Golden Goblet delayed a loss of $", loss_amount, "! Days left: ", charm_dict["delay_days"])
+						return 0.0 # Loss is delayed
+					return loss_amount
+			}
+			print("Added Golden Goblet: Delays losses for the next 3 days!")
+
+		_:
+			new_charm = {"name": charm_name}
+			print("Warning: No custom logic found for '", charm_name, "'. Adding as generic charm.")
+
 	active_charms.append(new_charm)
 	GlobalData.active_charms_global = active_charms
-	# 3. Clean print out of your active inventory
+
 	var charm_names = active_charms.map(func(c): return c.get("name", "Unknown"))
 	print("Active charms list is now: ", charm_names)
 
