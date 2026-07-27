@@ -70,14 +70,14 @@ func add_charm(charm_name: String) -> void:
 	var new_charm: Dictionary = {}
 	
 	match charm_name:
-		"Lucky Clover":
+		"LuckyClover":
 			new_charm = {
 				"name": charm_name,
 				"apply_to_roll": func(r: int) -> int: return 7 if r == 0 else r
 			}
 			print("Added Lucky Clover: House 0s are now 7s!")
 
-		"The Cube":
+		"TheCube":
 			new_charm = {
 				"name": charm_name,
 				"apply_to_wheel": func(w: Array) -> Array:
@@ -96,7 +96,7 @@ func add_charm(charm_name: String) -> void:
 			}
 			print("Added Crystal Charm: Grants a 1.5x payout multiplier on all wins!")
 
-		"Hot Garbage":
+		"HotGarbage":
 			new_charm = {
 				"name": charm_name
 			}
@@ -114,7 +114,7 @@ func add_charm(charm_name: String) -> void:
 			var random_charm = ALL_CHARMS[randi() % ALL_CHARMS.size()]
 			call_deferred("add_charm", random_charm)
 
-		"Broken hilt":
+		"Brokenhilt":
 			new_charm = {
 				"name": charm_name,
 				"charges": 3,
@@ -127,7 +127,7 @@ func add_charm(charm_name: String) -> void:
 			}
 			print("Added Broken Hilt: Protects against a 0-roll three times!")
 
-		"tan rook":
+		"tanrook":
 			new_charm = {
 				"name": charm_name,
 				"rook_position": Vector2i(2, 2), # Default position on grid
@@ -140,7 +140,7 @@ func add_charm(charm_name: String) -> void:
 			}
 			print("Added Tan Rook: Moves horizontally/vertically double rewards; tile occupied flips negative!")
 
-		"Golden goblet":
+		"Goldengoblet":
 			new_charm = {
 				"name": charm_name,
 				"delay_days": 3,

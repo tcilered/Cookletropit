@@ -1,0 +1,48 @@
+[gd_scene format=4 uid="uid://m6b566en7teh"]
+
+[ext_resource type="PackedScene" uid="uid://cyo50760dey8h" path="res://models/Glb/The actual cube outline.glb" id="1_pf8v1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yoqc0"]
+resource_name = "outline.001"
+cull_mode = 2
+albedo_color = Color(0.8941178, 0.38431376, 0.117647074, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.8941178, 0.38431376, 0.11764706, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_k6u1g"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"name": "outline.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD//wAAAAAAAAAA//8AAAAAAAAAAAAAAAD/////AAD//wAA//8AAP////8AAAAA//8AAAAAAAD///////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_c36h3"]
+resource_name = "The actual cube outline_Cube_003"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("/5//v/9f////X/+//5/////f/z//n/9//5//P//f/3//n/8//1//f/9f/z//n/9//58AAP9f/z//XwAA/5//P/9f/z//H/9//x//P/9f/3//n/9//1//v/9f/3//n/+/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_yoqc0"),
+"name": "outline.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAD//wAAVNUAAAAA//9U1QAAAAAAAFTVAAD/////VNUAAP////////////8AAP////////////8AAP//AAD//////////1TV//8AAAAAVNX//wAA//9U1f////8AAFTVAAD//////7///wAA////vwAAAAD///+//////////7///wAA////vwAAAAAAAP+/AAAAAP///7///wAAAAD/v/////8AAP//AAAAAAAA/////wAAAAD//wAA//8AAP//VNVU1VTVVNVU1VTVVNVU1f9//7//f/+//3//v/9//7+qKqoqqiqqKqoqqiqqKqoq/////////////////////wAA/38AAP9/AAD/fwAA/3//v/+//7//v/+//7//v/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_k6u1g")
+
+[node name="The actual cube outline" unique_id=36991999 instance=ExtResource("1_pf8v1")]
+
+[node name="Cube_001" parent="." index="0" unique_id=2097043436]
+mesh = SubResource("ArrayMesh_c36h3")

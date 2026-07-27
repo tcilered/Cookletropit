@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b8pyf2xj8ho34" path="res://models/Glb/radium_tv.glb" id="19_cbp6q"]
 [ext_resource type="PackedScene" uid="uid://f1g4bxoo2bj8" path="res://scenes/Shop.tscn" id="20_bc84e"]
 [ext_resource type="Script" uid="uid://dxxco8wrlqvn0" path="res://Log.gd" id="21_bc84e"]
+[ext_resource type="PackedScene" uid="uid://bguhhluehdby2" path="res://models/Glb/The actual cube.glb" id="22_wukud"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
 albedo_texture = ExtResource("4_pkg7o")
@@ -56,6 +57,16 @@ item_mesh = ExtResource("19_26xuy")
 custom_collision_shape = SubResource("SphereShape3D_bc84e")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_wjb0r"]
+
+[sub_resource type="Resource" id="Resource_il2jm"]
+script = ExtResource("6_dwbse")
+item_name = "TheCube"
+item_value = 25
+item_mesh = ExtResource("22_wukud")
+custom_collision_shape = SubResource("SphereShape3D_wjb0r")
+metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
+
 [node name="Node3D" type="Node3D" unique_id=1769170537 node_paths=PackedStringArray("pause_menu")]
 script = ExtResource("1_tlwt5")
 pause_menu = NodePath("CanvasLayer/Pause_Menu")
@@ -66,7 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 0.30235103, 0.25881904, 0, -0.081014715, 0.9
 script = ExtResource("1_f3sb7")
 
 [node name="Camera3D" type="Camera3D" parent="Cameranode" unique_id=176010044]
-transform = Transform3D(0.99999994, 0, 0, 0, 1.2624698, 2.8276646, 0, -0.63902533, 1.0992479, 0, 14.30516, 1.891316)
+transform = Transform3D(1, 0, 0, 0, 2.6538804, 1.7785201, 0, -0.55670667, 0.8307092, 0, 3.9864063, 1.0258558)
 
 [node name="Mouse_detection_area3D" parent="." unique_id=1931984631 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7004786, 0, 1.7127172)
@@ -89,7 +100,7 @@ visible = false
 mesh = SubResource("BoxMesh_036b0")
 surface_material_override/0 = SubResource("StandardMaterial3D_dwbse")
 
-[node name="the cube" parent="." unique_id=1888708795 instance=ExtResource("2_fj7yv")]
+[node name="Crystal charm" parent="." unique_id=1888708795 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.265446, 3.9363918, -7.848139)
 item_info = SubResource("Resource_pkg7o")
 
@@ -148,7 +159,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253922, 0, 2.440141)
 visible = false
 
 [node name="Die" parent="." unique_id=299173462 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.487408, 3.4861069, -8.385871)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 11.487408, 3.4861069, -8.385871)
 item_info = SubResource("Resource_26xuy")
 
 [node name="log" type="MeshInstance3D" parent="." unique_id=2113447530]
@@ -157,12 +168,16 @@ mesh = SubResource("BoxMesh_tlwt5")
 
 [node name="Label3D" type="Label3D" parent="log" unique_id=233947909]
 transform = Transform3D(0.7, 0, 0, 0, 0.6999999, -2.9802322e-08, 0, 2.9802322e-08, 0.6999999, -0.014690399, -0.16538286, 0.6577549)
-text = "67"
+text = "67 The log 67"
 font = ExtResource("4_aqk2v")
 font_size = 100
 width = 1000.0
 script = ExtResource("21_bc84e")
 max_lines = 5
+
+[node name="The cube" parent="." unique_id=1188717236 instance=ExtResource("2_fj7yv")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 14.116806, 3.2829742, -8.765087)
+item_info = SubResource("Resource_il2jm")
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]

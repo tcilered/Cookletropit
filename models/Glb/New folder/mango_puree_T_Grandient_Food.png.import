@@ -2,24 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df5dmt4griryo"
-path.s3tc="res://.godot/imported/fish_soup_T_Grandient_Food.png-7ea0912a71e2d548b39988d7f1f4d601.s3tc.ctex"
+uid="uid://c2a646wm0ojys"
+path="res://.godot/imported/mango_puree_T_Grandient_Food.png-50d35bba062e36b2e2781a94ada9bed5.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "fbdc76a96f34f1ec92588c9f2e3096cb"
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/Glb/fish_soup_T_Grandient_Food.png"
-dest_files=["res://.godot/imported/fish_soup_T_Grandient_Food.png-7ea0912a71e2d548b39988d7f1f4d601.s3tc.ctex"]
+source_file="res://models/Glb/New folder/mango_puree_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/mango_puree_T_Grandient_Food.png-50d35bba062e36b2e2781a94ada9bed5.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -27,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -41,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
