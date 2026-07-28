@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4asgfwnrcg0g"
-path="res://.godot/imported/peppironi_T_Grandient_Food.png-a2e1e1e340bc22b858da97fd452a653f.ctex"
+uid="uid://c2a646wm0ojys"
+path="res://.godot/imported/mango_puree_T_Grandient_Food.png-df2324ab285fbdd3050ec6edd473629c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/Glb/New folder/peppironi_T_Grandient_Food.png"
-dest_files=["res://.godot/imported/peppironi_T_Grandient_Food.png-a2e1e1e340bc22b858da97fd452a653f.ctex"]
+source_file="res://models/Glb/mango_puree_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/mango_puree_T_Grandient_Food.png-df2324ab285fbdd3050ec6edd473629c.ctex"]
 
 [params]
 

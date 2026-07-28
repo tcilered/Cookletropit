@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5vb0gywy67aw"
-path="res://.godot/imported/radium_tv_2.png-bea71ce3ea4d2b8782bd555e3bb4c28e.ctex"
+uid="uid://dgvnxoufrptpo"
+path="res://.godot/imported/orange_plate_T_Grandient_Food.png-f18af072ab0100c6452eb6d0d118afea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/Glb/New folder/radium_tv_2.png"
-dest_files=["res://.godot/imported/radium_tv_2.png-bea71ce3ea4d2b8782bd555e3bb4c28e.ctex"]
+source_file="res://models/Glb/orange_plate_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/orange_plate_T_Grandient_Food.png-f18af072ab0100c6452eb6d0d118afea.ctex"]
 
 [params]
 

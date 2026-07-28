@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgvnxoufrptpo"
-path="res://.godot/imported/orange_plate_T_Grandient_Food.png-8d1c9fb1cf7dd184953909437a344120.ctex"
+uid="uid://b4asgfwnrcg0g"
+path="res://.godot/imported/peppironi_T_Grandient_Food.png-29ab858afc427d204862c9c983c7ce54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/Glb/New folder/orange_plate_T_Grandient_Food.png"
-dest_files=["res://.godot/imported/orange_plate_T_Grandient_Food.png-8d1c9fb1cf7dd184953909437a344120.ctex"]
+source_file="res://models/Glb/peppironi_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/peppironi_T_Grandient_Food.png-29ab858afc427d204862c9c983c7ce54.ctex"]
 
 [params]
 

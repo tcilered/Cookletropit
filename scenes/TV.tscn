@@ -1,47 +1,55 @@
 [gd_scene format=3 uid="uid://b37hhawwl2mtp"]
 
-[ext_resource type="PackedScene" uid="uid://b4r770ni4m4c" path="res://models/tscn/TV_table.tscn" id="1_7f6ms"]
-[ext_resource type="FontFile" uid="uid://bstjikfqpgc8h" path="res://text/BridgeParapet.ttf" id="2_7c4a5"]
-[ext_resource type="Shader" uid="uid://d36ejg6m6rm3r" path="res://scenes/TV.gdshader" id="3_xfsri"]
+[ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://scenes/interactive_item.tscn" id="1_lnbu4"]
+[ext_resource type="PackedScene" uid="uid://xfv1oswwnl4t" path="res://models/Glb/teeeveeetiiiime.glb" id="2_ovwuf"]
+[ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://data&data.gd/item_data.gd" id="3_ie1qu"]
+[ext_resource type="VideoStream" uid="uid://dggers2c11eud" path="res://Videos/barbequechicken.ogv" id="4_ovwuf"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fl7kf"]
+[sub_resource type="Resource" id="Resource_co5w5"]
+script = ExtResource("3_ie1qu")
+item_name = "TV"
+item_value = 676767
+discription = "A rent out tv"
+item_mesh = ExtResource("2_ovwuf")
+metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fcnqv"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3gngh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
 resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("3_xfsri")
-shader_parameter/viewport_tex = SubResource("ViewportTexture_fl7kf")
-shader_parameter/wobble_speed = 5.0
-shader_parameter/wobble_strength = 0.005
-shader_parameter/r_g_shift = 0.002
-shader_parameter/b_g_shift = -0.003
-shader_parameter/ghost_strength = 0.4
+albedo_texture = SubResource("ViewportTexture_fcnqv")
 
-[sub_resource type="SphereMesh" id="SphereMesh_57qmd"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 
-[node name="Node3D" type="Node3D" unique_id=1197816317]
+[node name="TV" type="Node3D" unique_id=1459355896]
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=427082788]
+[node name="Area3D" parent="." unique_id=1931984631 instance=ExtResource("1_lnbu4")]
+transform = Transform3D(-0.99999994, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, -0.99999994, 0, 0, 0)
+item_info = SubResource("Resource_co5w5")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=597266876]
+transform = Transform3D(1, 0, -4.371139e-08, 0, 1, 0, 4.371139e-08, 0, 1, -0.0022165775, 0, 1.9516567)
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=77259469]
 transparent_bg = true
+size = Vector2i(1000, 750)
 
-[node name="Label3D" type="Label3D" parent="SubViewport" unique_id=454941613]
-transform = Transform3D(0.7888239, 0, 0, 0, 0.7022529, 0, 0, 0, 0.94858044, -0.00624118, 0.8051497, 0.5444605)
-ignore_occlusion_culling = true
-texture_filter = 0
-text = "67676767"
-font = ExtResource("2_7c4a5")
-font_size = 15
-outline_size = 1
-autowrap_mode = 3
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="SubViewport" unique_id=752016565]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+stream = ExtResource("4_ovwuf")
+volume_db = 5.65
+autoplay = true
+expand = true
+buffering_msec = 400
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1408647486]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78929436, 1.5100105)
-
-[node name="Sketchfab_Scene" parent="." unique_id=1468392063 instance=ExtResource("1_7f6ms")]
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=824462821]
-transform = Transform3D(0.86082965, 0, 0, 0, 0.6381624, 0, 0, 0, 0.14474306, -0.00624118, 0.7763498, 0.40738475)
-material_override = SubResource("ShaderMaterial_3gngh")
-mesh = SubResource("SphereMesh_57qmd")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1991494002]
+transform = Transform3D(0.894338, -4.374769e-30, 8.705321e-16, 0, -3.0301162e-08, -0.48208368, 0, 0.6932098, -2.1072545e-08, -0.0017541647, 0, 0.27414942)
+material_override = SubResource("StandardMaterial3D_57qmd")
+mesh = SubResource("PlaneMesh_g4v7s")

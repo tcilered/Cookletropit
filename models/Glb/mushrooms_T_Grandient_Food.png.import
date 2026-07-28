@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by82akw8o6s1r"
-path="res://.godot/imported/kebab_T_Grandient_Food.png-c6624c78186ef73800f03ffbc4f3bf8b.ctex"
+uid="uid://ct63nsweue6la"
+path="res://.godot/imported/mushrooms_T_Grandient_Food.png-f813d25ec4d8c47df59c1ba6eed9d4c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/Glb/New folder/kebab_T_Grandient_Food.png"
-dest_files=["res://.godot/imported/kebab_T_Grandient_Food.png-c6624c78186ef73800f03ffbc4f3bf8b.ctex"]
+source_file="res://models/Glb/mushrooms_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/mushrooms_T_Grandient_Food.png-f813d25ec4d8c47df59c1ba6eed9d4c5.ctex"]
 
 [params]
 

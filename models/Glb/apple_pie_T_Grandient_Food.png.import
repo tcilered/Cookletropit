@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2a646wm0ojys"
-path="res://.godot/imported/mango_puree_T_Grandient_Food.png-50d35bba062e36b2e2781a94ada9bed5.ctex"
+uid="uid://c7r2vdsugmnxw"
+path="res://.godot/imported/apple_pie_T_Grandient_Food.png-a576899ac087e623a442da7420c47353.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/Glb/New folder/mango_puree_T_Grandient_Food.png"
-dest_files=["res://.godot/imported/mango_puree_T_Grandient_Food.png-50d35bba062e36b2e2781a94ada9bed5.ctex"]
+source_file="res://models/Glb/apple_pie_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/apple_pie_T_Grandient_Food.png-a576899ac087e623a442da7420c47353.ctex"]
 
 [params]
 

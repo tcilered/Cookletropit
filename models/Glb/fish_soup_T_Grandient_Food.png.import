@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxu0tkafw1kfv"
-path="res://.godot/imported/radium_tv_0.png-b28b01028b92538e645e712c770d1881.ctex"
+uid="uid://ccj3yfs1o5d6v"
+path="res://.godot/imported/fish_soup_T_Grandient_Food.png-7ea0912a71e2d548b39988d7f1f4d601.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/Glb/New folder/radium_tv_0.png"
-dest_files=["res://.godot/imported/radium_tv_0.png-b28b01028b92538e645e712c770d1881.ctex"]
+source_file="res://models/Glb/fish_soup_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/fish_soup_T_Grandient_Food.png-7ea0912a71e2d548b39988d7f1f4d601.ctex"]
 
 [params]
 

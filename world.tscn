@@ -14,13 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://d047m3l4eca0d" path="res://scenes/wheel_scene.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://qw6ocycqh2dj" path="res://scenes/table.tscn" id="10_wse8f"]
 [ext_resource type="PackedScene" uid="uid://pxhkl3gpo886" path="res://Menus/pause_menu.tscn" id="13_2o6r5"]
-[ext_resource type="PackedScene" uid="uid://bnw5ul35snqlv" path="res://models/Glb/titble_table.glb" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://o67k7plch6kb" path="res://scripts/wheel.gd" id="15_udxuc"]
 [ext_resource type="PackedScene" uid="uid://c6bkosvy6d5vy" path="res://scenes/special_square.tscn" id="18_ikiii"]
 [ext_resource type="PackedScene" uid="uid://cqf3xndewm6rl" path="res://models/Glb/d20.glb" id="19_26xuy"]
-[ext_resource type="PackedScene" uid="uid://b8pyf2xj8ho34" path="res://models/Glb/radium_tv.glb" id="19_cbp6q"]
 [ext_resource type="PackedScene" uid="uid://f1g4bxoo2bj8" path="res://scenes/Shop.tscn" id="20_bc84e"]
-[ext_resource type="Script" uid="uid://dxxco8wrlqvn0" path="res://Log.gd" id="21_bc84e"]
+[ext_resource type="Script" uid="uid://dxxco8wrlqvn0" path="res://scripts/Log.gd" id="21_bc84e"]
+[ext_resource type="PackedScene" uid="uid://b37hhawwl2mtp" path="res://scenes/tv.tscn" id="21_wukud"]
 [ext_resource type="PackedScene" uid="uid://bguhhluehdby2" path="res://models/Glb/The actual cube.glb" id="22_wukud"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
@@ -140,9 +139,6 @@ visible = false
 [node name="Pause_Menu" parent="CanvasLayer" unique_id=590563932 instance=ExtResource("13_2o6r5")]
 visible = false
 
-[node name="titble_table" parent="." unique_id=411949206 instance=ExtResource("14_2u3nc")]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 11.575145, 0.4434762, 2.000254)
-
 [node name="rotating node" type="Node3D" parent="." unique_id=722914792]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30563682, 0.3284468, 3.0092697)
 script = ExtResource("15_udxuc")
@@ -152,10 +148,6 @@ transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-
 
 [node name="Node3D" parent="." unique_id=672630555 instance=ExtResource("20_bc84e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.2355623)
-visible = false
-
-[node name="Telli" parent="." unique_id=1468392063 instance=ExtResource("19_cbp6q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253922, 0, 2.440141)
 visible = false
 
 [node name="Die" parent="." unique_id=299173462 instance=ExtResource("2_fj7yv")]
@@ -178,6 +170,8 @@ max_lines = 5
 [node name="The cube" parent="." unique_id=1188717236 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 14.116806, 3.2829742, -8.765087)
 item_info = SubResource("Resource_il2jm")
+
+[node name="TV" parent="." unique_id=1459355896 instance=ExtResource("21_wukud")]
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]

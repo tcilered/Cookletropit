@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bs87eytocgfyq"
-path="res://.godot/imported/comical_meat_T_Grandient_Food.png-d1d82fa6ee22dc6815180a884d0d85dc.ctex"
+path="res://.godot/imported/comical_meat_T_Grandient_Food.png-96aaa10b04864d215190ee06c7a14154.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/Glb/New folder/comical_meat_T_Grandient_Food.png"
-dest_files=["res://.godot/imported/comical_meat_T_Grandient_Food.png-d1d82fa6ee22dc6815180a884d0d85dc.ctex"]
+source_file="res://models/Glb/comical_meat_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/comical_meat_T_Grandient_Food.png-96aaa10b04864d215190ee06c7a14154.ctex"]
 
 [params]
 

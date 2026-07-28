@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3irtetv705gp"
-path="res://.godot/imported/liver_T_Grandient_Food.png-9c104f72f022024407e4b95611a10dff.ctex"
+uid="uid://c73o1vvwpvdc7"
+path="res://.godot/imported/hearty_leftovers_T_Grandient_Food.png-add2736bedde56a8c7b983aec82ae1dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/Glb/New folder/liver_T_Grandient_Food.png"
-dest_files=["res://.godot/imported/liver_T_Grandient_Food.png-9c104f72f022024407e4b95611a10dff.ctex"]
+source_file="res://models/Glb/hearty_leftovers_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/hearty_leftovers_T_Grandient_Food.png-add2736bedde56a8c7b983aec82ae1dc.ctex"]
 
 [params]
 

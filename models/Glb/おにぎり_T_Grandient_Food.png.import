@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7r2vdsugmnxw"
-path="res://.godot/imported/apple_pie_T_Grandient_Food.png-d4368ba18a5e89eadcb7c01aed5b7bba.ctex"
+uid="uid://5yqsf8n0n7b4"
+path.s3tc="res://.godot/imported/おにぎり_T_Grandient_Food.png-8ea38f1c28decc5fa6d11c518aa3059d.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://models/Glb/New folder/apple_pie_T_Grandient_Food.png"
-dest_files=["res://.godot/imported/apple_pie_T_Grandient_Food.png-d4368ba18a5e89eadcb7c01aed5b7bba.ctex"]
+source_file="res://models/Glb/おにぎり_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/おにぎり_T_Grandient_Food.png-8ea38f1c28decc5fa6d11c518aa3059d.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

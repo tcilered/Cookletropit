@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccj3yfs1o5d6v"
-path="res://.godot/imported/fish_soup_T_Grandient_Food.png-25e260c7fe5dfd4f80240f8ef8bac12c.ctex"
+uid="uid://bclpgjf5fj61x"
+path="res://.godot/imported/black_bowl_T_Grandient_Food.png-5816bf78bde880c639e23f4c1f63eada.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/Glb/New folder/fish_soup_T_Grandient_Food.png"
-dest_files=["res://.godot/imported/fish_soup_T_Grandient_Food.png-25e260c7fe5dfd4f80240f8ef8bac12c.ctex"]
+source_file="res://models/Glb/black_bowl_T_Grandient_Food.png"
+dest_files=["res://.godot/imported/black_bowl_T_Grandient_Food.png-5816bf78bde880c639e23f4c1f63eada.ctex"]
 
 [params]
 
