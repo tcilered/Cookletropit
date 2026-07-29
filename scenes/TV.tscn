@@ -45,7 +45,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 3
 stream = ExtResource("4_ovwuf")
 volume_db = 5.65
-autoplay = true
 expand = true
 buffering_msec = 400
 

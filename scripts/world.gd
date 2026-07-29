@@ -2,7 +2,10 @@ extends Node3D
 @export var pause_menu: Control
 @export var table_square_scene: PackedScene 
 # Track bets using a Dictionary. Key: unique_bet_string, Value: Dictionary of bet data
+@onready var tv: Node3D = $TV/Area3D # Adjust path if TV is nested under another node
+@onready var video_player: VideoStreamPlayer = $TV/SubViewport/VideoStreamPlayer
 var active_bets: Dictionary = {}
+var tv_is_playing: bool = false
 const BET_AMOUNT: int = 67 # Fixed bet amount per placement
 
 var roll_recived = int()
@@ -17,6 +20,13 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _ready():
+	
+	###
+	#connecting signals
+	###
+	video_player.finished.connect(_on_video_finished)
+	tv.object_clicked.connect(_on_tv_clicked)
+	
 	if pause_menu:
 		print("hiding pause menu")
 		pause_menu.hide()
@@ -119,6 +129,21 @@ func _on_square_hover_exited(square_id: int) -> void:
 
 func _on_square_hover_moved(play_type: String, origin_square_id: int, global_pos: Vector3) -> void:
 	pass
+	
+	
+
+func _on_tv_clicked(clicked_node):
+	print("World scene received click from: ", clicked_node.name)
+	# Stop the video if it's already running, then play from the start
+	if tv_is_playing:
+		return
+		
+	tv_is_playing = true
+	video_player.play()
+		
+func _on_video_finished() -> void:
+	# Unlock input when the video ends so it can be clicked again
+	tv_is_playing = false
 
 
 # --- WHEEL SPIN & ROULETTE PAYOUT LOGIC ---

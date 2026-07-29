@@ -114,7 +114,7 @@ func add_charm(charm_name: String) -> void:
 			var random_charm = ALL_CHARMS[randi() % ALL_CHARMS.size()]
 			call_deferred("add_charm", random_charm)
 
-		"Brokenhilt":
+		"BrokenHilt":
 			new_charm = {
 				"name": charm_name,
 				"charges": 3,
@@ -127,7 +127,7 @@ func add_charm(charm_name: String) -> void:
 			}
 			print("Added Broken Hilt: Protects against a 0-roll three times!")
 
-		"tanrook":
+		"TanRook":
 			new_charm = {
 				"name": charm_name,
 				"rook_position": Vector2i(2, 2), # Default position on grid
@@ -140,7 +140,7 @@ func add_charm(charm_name: String) -> void:
 			}
 			print("Added Tan Rook: Moves horizontally/vertically double rewards; tile occupied flips negative!")
 
-		"Goldengoblet":
+		"GoldenGoblet":
 			new_charm = {
 				"name": charm_name,
 				"delay_days": 3,
@@ -153,6 +153,13 @@ func add_charm(charm_name: String) -> void:
 					return loss_amount
 			}
 			print("Added Golden Goblet: Delays losses for the next 3 days!")
+
+		"MirrorShard":
+			new_charm = {
+				"name": charm_name,
+				"description": "The shard of a shattered mirror"
+			}
+			print("Added MirrorShard: ")
 
 		_:
 			new_charm = {"name": charm_name}

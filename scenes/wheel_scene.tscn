@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bc4wla2imjsox" path="res://scripts/wheel_scene.gd" id="1_7ae7t"]
 [ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://scenes/interactive_item.tscn" id="1_rxs0v"]
 [ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://data&data.gd/item_data.gd" id="2_64hgq"]
-[ext_resource type="PackedScene" uid="uid://bynm17lpbwf5l" path="res://models/tscn/Wheel_model.tscn" id="3_gbvo1"]
+[ext_resource type="PackedScene" uid="uid://nr01l6e876mp" path="res://models/Glb/wheel.glb" id="3_e2f4f"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e2f4f"]
 radius = 2.3
@@ -12,7 +12,7 @@ radius = 2.3
 script = ExtResource("2_64hgq")
 item_name = "bowl"
 item_value = 67
-item_mesh = ExtResource("3_gbvo1")
+item_mesh = ExtResource("3_e2f4f")
 custom_collision_shape = SubResource("SphereShape3D_e2f4f")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
@@ -20,6 +20,7 @@ metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 script = ExtResource("1_7ae7t")
 
 [node name="bowl" parent="." unique_id=1931984631 instance=ExtResource("1_rxs0v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 item_info = SubResource("Resource_bqloa")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=760963947]
