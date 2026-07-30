@@ -1,6 +1,7 @@
 extends Area3D
 @export_group("Identification")
-@export_enum("red", "black", "green","even","odd") var special_square_identity: String = "none"
+@export_enum("red", "black", "green","even","odd") 
+var special_square_identity: String = "none"
 
 signal object_clicked(interacted_node)
 
@@ -14,6 +15,8 @@ func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 		# 2. Check if the resource is there
 		if special_square_identity != null:
 			print(" -> Attached Resource: ", special_square_identity)
+			
+			
 		else:
 			print(" -> WARNING: special square ID not found")
 			

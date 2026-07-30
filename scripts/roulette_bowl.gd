@@ -4,7 +4,7 @@ extends StaticBody3D
 signal move_requested(pos: Vector3, radius: float)
 
 @export var target: Marker3D
-@export var radius_for_this_spot: float = 2.0
+@export var radius_for_this_spot: float = 5
 
 func _input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:

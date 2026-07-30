@@ -95,6 +95,14 @@ func add_charm(charm_name: String) -> void:
 					return payout * 1.5
 			}
 			print("Added Crystal Charm: Grants a 1.5x payout multiplier on all wins!")
+			
+
+		"Die":
+			new_charm = {
+				"name": charm_name,
+				#randomly sets a multiplier bwetween 0.1X to 2X, weighted at a sandard distribution of prob mean centred on 1.25X
+			}
+			print("Added Die: Randomly sets a multiplier bwetween 0.1X to 2X, weighted at a sandard distribution of prob mean centred on 1.25X")
 
 		"HotGarbage":
 			new_charm = {
@@ -174,8 +182,8 @@ func add_charm(charm_name: String) -> void:
 
 # --- Signal Handling ---
 func _on_object_hovered(node):
-	node.scale = Vector3(1.01, 1.01, 1.01) # Slight pop effect when hovered
-	
+	node.scale = Vector3(1.21, 1.21, 1.21) # Slight pop effect when hovered
+	print("hovering over Wheel!")
 	# Find the spawned scene instance inside your Area3D
 	# Assuming you used `add_child(spawned_wheel)` in your _ready script:
 	var wheel_instance = node.get_node_or_null("Sketchfab_Scene")
@@ -194,8 +202,7 @@ func _on_object_hovered(node):
 
 
 func _on_object_unhovered(node):
-	node.scale = Vector3(1, 1, 1) # Reset scale back to normal
-	
+	node.scale = Vector3(1.2, 1.2, 1.2) # Reset scale back to normal
 	var wheel_instance = node.get_node_or_null("Sketchfab_Scene")
 	if wheel_instance:
 		var object_9 = wheel_instance.get_node("Sketchfab_model/root/GLTF_SceneRootNode/Circle_0/Object_9")
@@ -225,6 +232,7 @@ func _on_object_clicked(node):
 			tween.tween_property(wheel_instance, "rotation:y", wheel_instance.rotation.y + target_radians, spin_duration)\
 				.set_trans(Tween.TRANS_QUAD)\
 				.set_ease(Tween.EASE_OUT)
+				
 		var result = spin_wheel()
 		numrolled.emit(result)
 		print("Result: ", result)

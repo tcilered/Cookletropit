@@ -10,8 +10,8 @@ var anchor_position: Vector3 = Vector3.ZERO
 @export var tilt_in_speed: float = 6.7 # How fast it leans when you START moving
 @export var tilt_return_speed: float = 1.5 # How slowly it flattens back out when you STOP moving
 
-@export_group("Map Limits")
-@export var limit_radius: float = 67.0 - 16 - 17 # The maximum distance the camera can travel from the center (0, 0, 0)
+@export_group("Camera movement Limits")
+@export var limit_radius: float = 5.0 # The maximum distance the camera can travel from the center (0, 0, 0)
 
 
 @export_group("Stretch Settings")

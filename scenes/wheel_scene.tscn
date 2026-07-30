@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bc4wla2imjsox" path="res://scripts/wheel_scene.gd" id="1_7ae7t"]
 [ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://scenes/interactive_item.tscn" id="1_rxs0v"]
 [ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://data&data.gd/item_data.gd" id="2_64hgq"]
-[ext_resource type="PackedScene" uid="uid://nr01l6e876mp" path="res://models/Glb/wheel.glb" id="3_e2f4f"]
+[ext_resource type="PackedScene" uid="uid://s0aewgsgkn84" path="res://models/stuff/roulette_wheel.glb" id="3_e2f4f"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e2f4f"]
 radius = 2.3
@@ -18,10 +18,11 @@ metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
 [node name="Node3D" type="Node3D" unique_id=1393983754]
 script = ExtResource("1_7ae7t")
+spin_angle_degrees = 360.0
 
 [node name="bowl" parent="." unique_id=1931984631 instance=ExtResource("1_rxs0v")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 item_info = SubResource("Resource_bqloa")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=760963947]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.8660254, 0, -0.8660254, 0.49999997, 0, 3.1979983, 1.5701864)
+transform = Transform3D(1, 0, 0, 0, -2.9802322e-08, 1, 0, -1, -2.9802322e-08, 0, 1.7385798, 1.500682)

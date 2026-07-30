@@ -24,6 +24,10 @@ GlobalData="*uid://cex2ds1t28tvk"
 file_logging/enable_file_logging=true
 file_logging/max_log_files=10
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 pause={

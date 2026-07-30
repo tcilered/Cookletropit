@@ -15,11 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://qw6ocycqh2dj" path="res://scenes/table.tscn" id="10_wse8f"]
 [ext_resource type="PackedScene" uid="uid://pxhkl3gpo886" path="res://Menus/pause_menu.tscn" id="13_2o6r5"]
 [ext_resource type="Script" uid="uid://o67k7plch6kb" path="res://scripts/wheel.gd" id="15_udxuc"]
-[ext_resource type="PackedScene" uid="uid://c6bkosvy6d5vy" path="res://scenes/special_square.tscn" id="18_ikiii"]
+[ext_resource type="PackedScene" uid="uid://c6bkosvy6d5vy" path="res://scenes/square_0.tscn" id="18_ikiii"]
 [ext_resource type="PackedScene" uid="uid://cqf3xndewm6rl" path="res://models/Glb/d20.glb" id="19_26xuy"]
 [ext_resource type="PackedScene" uid="uid://f1g4bxoo2bj8" path="res://scenes/Shop.tscn" id="20_bc84e"]
 [ext_resource type="Script" uid="uid://dxxco8wrlqvn0" path="res://scripts/Log.gd" id="21_bc84e"]
-[ext_resource type="PackedScene" uid="uid://b37hhawwl2mtp" path="res://scenes/tv.tscn" id="21_wukud"]
+[ext_resource type="PackedScene" uid="uid://b37hhawwl2mtp" path="res://scenes/TV.tscn" id="21_wukud"]
+[ext_resource type="PackedScene" uid="uid://v55axw5ett6g" path="res://models/Glb/tiltable (1).glb" id="22_il2jm"]
 [ext_resource type="PackedScene" uid="uid://bguhhluehdby2" path="res://models/Glb/The actual cube.glb" id="22_wukud"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
@@ -121,10 +122,11 @@ shape = SubResource("ConcavePolygonShape3D_wse8f")
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 14.228788, 3.6902983, 8.629713)
 
 [node name="Wheel_Scene" parent="." unique_id=1393983754 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 15.051096, 0.23735332, 5.550842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.754, -0.5, 6.29)
+spin_angle_degrees = 450.0
 
 [node name="Table_Scene" parent="." unique_id=105314924 instance=ExtResource("10_wse8f")]
-transform = Transform3D(0.8777306, 0, 0, 0, 1.0004923, 0, 0, 0, 1.1677709, 7.1958666, 0.09673786, 0.21133947)
+transform = Transform3D(0.74593836, 0, 0, 0, 0.911, 0, 0, 0, 0.6758623, 7.007774, -0.8738769, -0.08806294)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=724063881]
 transform = Transform3D(0.40588737, 0.68430024, -0.60579586, 0.12663788, 0.61434674, 0.7788074, 0.90510684, -0.39282474, 0.16269724, -37.33247, 94.64332, 0)
@@ -144,7 +146,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30563682, 0.3284468, 3.009
 script = ExtResource("15_udxuc")
 
 [node name="Special square" parent="." unique_id=2097114336 instance=ExtResource("18_ikiii")]
-transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, 8.474846, 0.81849575, -4.549794)
+transform = Transform3D(-0.7220572, 0, 5.8492176e-08, 0, 0.59999996, 0, -6.312425e-08, 0, -0.6690725, 6.0830245, -0.1928575, -1.01468)
 
 [node name="Node3D" parent="." unique_id=672630555 instance=ExtResource("20_bc84e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.2355623)
@@ -172,6 +174,10 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 14.116806, 3.2829742, -
 item_info = SubResource("Resource_il2jm")
 
 [node name="TV" parent="." unique_id=1459355896 instance=ExtResource("21_wukud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.540288, 0, -6.6082563)
+
+[node name="tiltable (1)" parent="." unique_id=828788086 instance=ExtResource("22_il2jm")]
+transform = Transform3D(3.67, 0, 0, 0, 3.67, 0, 0, 0, 3.67, 12.140069, -0.33789873, 2.6559372)
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]
