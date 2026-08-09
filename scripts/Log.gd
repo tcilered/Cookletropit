@@ -1,7 +1,8 @@
 extends Label3D
 
 ## Max lines allowed on screen
-@export var max_lines: int = 15
+@export var max_lines: int = 20
+
 
 var _log_history: Array[String] = []
 var _file: FileAccess

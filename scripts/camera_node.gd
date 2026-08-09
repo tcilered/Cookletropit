@@ -1,22 +1,22 @@
 extends Node3D
 var anchor_position: Vector3 = Vector3.ZERO
 @export_group("Movement Settings")
-@export var pan_speed: float = 6.0
+@export var pan_speed: float = 6.7
 @export var edge_margin: float = 16.7+6+7
 
 @export_group("Tilt Settings")
-@export var max_tilt_degrees: float = 16.7 # Max degrees to lean from moving
+@export var max_tilt_degrees: float = 13 # Max degrees to lean from moving
 @export var stretch_tilt_degrees: float = 8.67 # Extra degrees to lean when hitting the rubber-band stretch
-@export var tilt_in_speed: float = 6.7 # How fast it leans when you START moving
-@export var tilt_return_speed: float = 1.5 # How slowly it flattens back out when you STOP moving
+@export var tilt_in_speed: float = 2.67 # How fast it leans when you START moving
+@export var tilt_return_speed: float = 6.7 # How slowly it flattens back out when you STOP moving
 
 @export_group("Camera movement Limits")
 @export var limit_radius: float = 5.0 # The maximum distance the camera can travel from the center (0, 0, 0)
 
 
 @export_group("Stretch Settings")
-@export var max_stretch: float = 1.67 
-@export var snap_back_speed: float = 6.7 # Resistance speed while actively pushing against the boundary
+@export var max_stretch: float = 25 
+@export var snap_back_speed: float = 1 # Resistance speed while actively pushing against the boundary
 @export var idle_snap_back_speed: float = 2 # How slowly the position returns when you let go at the edge
 
 # Track if the window is currently active
@@ -36,7 +36,7 @@ func _on_object_clicked_move_requested(new_center: Vector3, new_radius: float):
 		
 	# Re-enable snapback once the camera arrives
 	tween.finished.connect(func(): is_panning = false)
-	
+	print("new radius:", new_radius)
 	print("moved to new position")
 		
 func _ready():
