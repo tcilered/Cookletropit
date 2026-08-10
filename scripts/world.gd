@@ -66,15 +66,24 @@ func _on_object_unhovered(node):
 		print("Main World: stopped hovering over: ", node.item_info.item_name)
 
 func _on_object_clicked(node):
+	if not node or not "item_info" in node or not node.item_info:
+		return
+		
+	var item_name = node.item_info.item_name
+
+	# IGNORE THE BOWL/WHEEL HERE so world.gd doesn't treat it as a charm buy purchase!
+	if item_name == "bowl":
+		return
+
 	var active_names = GlobalData.active_charms_global.map(func(charm): return charm.get("name", ""))
-	if node.item_info.item_name in active_names:
+	if item_name in active_names:
 		print("you already have this mr Jeff Bezos")
 	elif GlobalData.player_stats.gold >= int(node.item_info.item_value):
 		emit_signal("main_world_item_toggeled", node)
 		GlobalData.player_stats.gold -= int(node.item_info.item_value)
 	else:
 		if GlobalData.player_stats.gold <= 0:
-			print("Litteraly out of money!!!!!! L skill issue")
+			print("Litttteraly out of money!!!!!! L skill issue")
 		else:
 			print("Too poor, speed please i need this my mom is kinda homeless")
 
@@ -148,11 +157,13 @@ func _on_video_finished() -> void:
 
 # --- WHEEL SPIN & ROULETTE PAYOUT LOGIC ---
 
+# --- WHEEL SPIN & ROULETTE PAYOUT LOGIC ---
+
 func _on_wheel_scene_numrolled(roll: Variant) -> void:
 	roll_recived = int(roll)
 	print("--- WHEEL RESULT: ", roll_recived, " ---")
 	
-	var round_winnings = 0
+	var round_winnings = 0.0
 	
 	# Evaluate every bet tracking key currently active on the board
 	for bet_key in active_bets.keys():
@@ -164,9 +175,13 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 		if evaluate_roulette_win(roll_recived, play_type, square_id):
 			var multiplier = get_roulette_multiplier(play_type)
 			# Payout formula: (Bet * Multiplier) + Original Bet returned
-			var payout = (amount * multiplier) + amount
+			var base_payout = (amount * multiplier) + amount
+			
+			# APPLY CHARM MULTIPLIERS HERE
+			var payout = apply_charm_multipliers(base_payout)
+			
 			round_winnings += payout
-			print("Bet ", bet_key, " WON! Paid: ", payout)
+			print("Bet ", bet_key, " WON! Base: $", base_payout, " | Paid with Charms: $", payout)
 		else:
 			print("Bet ", bet_key, " LOST.")
 		
@@ -175,12 +190,21 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 			bet_data["chip_node"].queue_free()
 			
 	if round_winnings > 0:
-		GlobalData.player_stats.gold += round_winnings
-		print("Total Payout Added to Wallet: ", round_winnings)
+		GlobalData.player_stats.gold += int(round_winnings)
+		print("Total Payout Added to Wallet: $", round_winnings)
 	
 	# Clear out active bets registry for the next spin round
 	active_bets.clear()
-
+	
+# Helper function to apply active charm rewards to any base payout
+func apply_charm_multipliers(base_payout: float) -> float:
+	var final_payout = base_payout
+	
+	for charm in GlobalData.active_charms_global:
+		if typeof(charm) == TYPE_DICTIONARY and charm.has("apply_to_reward"):
+			final_payout = charm.apply_to_reward.call(final_payout)
+			
+	return final_payout
 
 # --- HELPER FUNCTIONS FOR ROULETTE RULES ---
 

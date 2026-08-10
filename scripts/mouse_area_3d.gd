@@ -8,42 +8,12 @@ signal object_hovered(interacted_node)
 signal object_unhovered(interacted_node)
 signal object_clicked(interacted_node)
 
-func _apply_texture_to_all_meshes(current_node: Node, texture: Texture2D):
-	if current_node is MeshInstance3D:
-		var mat = StandardMaterial3D.new()
-		mat.albedo_texture = texture
-		current_node.material_override = mat
-		
-	for child in current_node.get_children():
-		_apply_texture_to_all_meshes(child, texture)
+# --- Spin Settings ---
+@export var spin_angle_degrees: float = 720.0
+@export var spin_duration: float = 2.0
 
-# Helper function to find meshes and build collision shapes
-func _generate_collision_from_scene(current_node: Node):
-	if current_node is MeshInstance3D:
-		if current_node.mesh != null:
-			# --- FIX 1: Ignore accidental cone/placeholder meshes if named or structured weirdly ---
-			# If a specific mesh causes problems (like the TV), you can filter it out by name:
-			if "Cone" in current_node.name or "Placeholder" in current_node.name:
-				print("Skipping unintended mesh for collision: ", current_node.name)
-				# Continue the loop for other children instead of returning early
-				for child in current_node.get_children():
-					_generate_collision_from_scene(child)
-				return
-
-			var collision_shape_data = current_node.mesh.create_convex_shape()
-			
-			var col_shape_node = CollisionShape3D.new()
-			col_shape_node.shape = collision_shape_data
-			
-			# --- FIX 2: Apply the mesh's local transform so nested/offset meshes align correctly ---
-			# This fixes the model that was off by half its height because its MeshInstance3D 
-			# had a local offset/translation relative to the root node of the scene.
-			col_shape_node.transform = current_node.transform
-			
-			add_child(col_shape_node)
-			
-	for child in current_node.get_children():
-		_generate_collision_from_scene(child)
+# Track the instantiated mesh scene so we can easily animate/rotate it
+var _spawned_model_instance: Node3D = null
 
 func _ready():
 	mouse_entered.connect(_on_mouse_entered)
@@ -54,10 +24,14 @@ func _ready():
 		var spawned_wheel = item_info.item_mesh.instantiate()
 		add_child(spawned_wheel)
 		
+		# Save reference to the instantiated 3D model node for easy access later
+		if spawned_wheel is Node3D:
+			_spawned_model_instance = spawned_wheel
+		
 		if item_info.surface_texture != null:
 			_apply_texture_to_all_meshes(spawned_wheel, item_info.surface_texture)
 
-		# 3. Handle Collision Setup
+		# Handle Collision Setup
 		if item_info.custom_collision_shape != null:
 			var col_shape_node = CollisionShape3D.new()
 			col_shape_node.shape = item_info.custom_collision_shape
@@ -79,6 +53,54 @@ func _ready():
 			_generate_collision_from_scene(spawned_wheel)
 			print("Auto-generating shape from mesh for: ", item_info.item_name)
 
+
+# --- Helper Functions ---
+
+func spin_model() -> void:
+	# Rotates the spawned 3D mesh model dynamically regardless of its name
+	var target_to_rotate: Node3D = _spawned_model_instance
+	if not target_to_rotate:
+		target_to_rotate = self # Fallback to rotating self if no mesh instance exists
+		
+	var target_radians = deg_to_rad(spin_angle_degrees)
+	var tween = create_tween()
+	
+	tween.tween_property(target_to_rotate, "rotation:y", target_to_rotate.rotation.y + target_radians, spin_duration)\
+		.set_trans(Tween.TRANS_QUAD)\
+		.set_ease(Tween.EASE_OUT)
+
+
+func _apply_texture_to_all_meshes(current_node: Node, texture: Texture2D):
+	if current_node is MeshInstance3D:
+		var mat = StandardMaterial3D.new()
+		mat.albedo_texture = texture
+		current_node.material_override = mat
+		
+	for child in current_node.get_children():
+		_apply_texture_to_all_meshes(child, texture)
+
+
+func _generate_collision_from_scene(current_node: Node):
+	if current_node is MeshInstance3D:
+		if current_node.mesh != null:
+			if "Cone" in current_node.name or "Placeholder" in current_node.name:
+				print("Skipping unintended mesh for collision: ", current_node.name)
+				for child in current_node.get_children():
+					_generate_collision_from_scene(child)
+				return
+
+			var collision_shape_data = current_node.mesh.create_convex_shape()
+			var col_shape_node = CollisionShape3D.new()
+			col_shape_node.shape = collision_shape_data
+			col_shape_node.transform = current_node.transform
+			add_child(col_shape_node)
+			
+	for child in current_node.get_children():
+		_generate_collision_from_scene(child)
+
+
+# --- Signals ---
+
 func _on_mouse_entered():
 	object_hovered.emit(self)
 
@@ -90,6 +112,11 @@ func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 		print("Area3D was clicked!") 
 		if item_info != null:
 			print(" -> Attached Resource: ", item_info.item_name)
+			
+			# IF THIS ITEM IS THE BOWL/WHEEL, TRIGGER SPIN AUTOMATICALLY!
+			if item_info.item_name.to_lower() == "bowl" or item_info.item_name.to_lower() == "wheel":
+				spin_model()
 		else:
 			print(" -> WARNING: item_info is empty! Drag a .tres file into the Inspector.")
+			
 		object_clicked.emit(self)

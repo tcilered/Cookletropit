@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cqf3xndewm6rl" path="res://models/Glb/d20.glb" id="19_26xuy"]
 [ext_resource type="PackedScene" uid="uid://f1g4bxoo2bj8" path="res://scenes/Shop.tscn" id="20_bc84e"]
 [ext_resource type="Script" uid="uid://dxxco8wrlqvn0" path="res://scripts/Log.gd" id="21_bc84e"]
-[ext_resource type="PackedScene" uid="uid://b37hhawwl2mtp" path="res://scenes/TV.tscn" id="21_wukud"]
+[ext_resource type="PackedScene" uid="uid://b37hhawwl2mtp" path="res://scenes/tv.tscn" id="21_wukud"]
 [ext_resource type="PackedScene" uid="uid://v55axw5ett6g" path="res://models/Glb/tiltable (1).glb" id="22_il2jm"]
 [ext_resource type="PackedScene" uid="uid://bguhhluehdby2" path="res://models/Glb/The actual cube.glb" id="22_wukud"]
 
@@ -113,7 +113,7 @@ shape = SubResource("ConcavePolygonShape3D_wse8f")
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 14.228788, 3.6902983, 8.629713)
 
 [node name="Wheel_Scene" parent="." unique_id=1393983754 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 15.754, -0.66597986, 6.29)
+transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, 15.754, 0.3288803, 6.29)
 spin_angle_degrees = 450.0
 
 [node name="Table_Scene" parent="." unique_id=105314924 instance=ExtResource("10_wse8f")]
@@ -156,9 +156,10 @@ transform = Transform3D(0.7, 0, 0, 0, 0.6999999, -2.9802322e-08, 0, 2.9802322e-0
 text = "67_The log_67"
 font = ExtResource("4_aqk2v")
 font_size = 100
+outline_size = 16
 width = 2000.0
 script = ExtResource("21_bc84e")
-max_lines = 5
+max_lines = 6
 
 [node name="The cube" parent="." unique_id=1188717236 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 16.135017, 3.2829742, -8.35242)

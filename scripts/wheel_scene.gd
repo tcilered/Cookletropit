@@ -1,4 +1,9 @@
 extends Node3D
+
+# --- Configuration & Defaults ---
+# Default mesh node name inside spawned scenes if no specific path is given in item_info
+@export var default_mesh_node_name: String = "Object_9"
+
 # Customizable variables for the spin
 @export var spin_angle_degrees: float = randi_range(520, 900) # How far to spin (can change this in Inspector)
 @export var spin_duration: float = 2.0        # How long the spin takes in seconds
@@ -7,6 +12,7 @@ var spin_angle_rand_change =  randi_range(300, 360)
 
 signal numrolled(roll)
 var active_charms: Array = []
+
 # --- Roulette Data ---
 var wheel_numbers = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26]
 var blacks = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
@@ -23,10 +29,6 @@ var second_column = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35]
 var third_column = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36]
 var square_numbers = [0, 1, 4, 9, 16, 25, 36]
 
-# --- Game State ---
-# This list stores any active charm resources you've picked up
-
-
 func _ready():
 	for child in get_children():
 		if child.has_signal("object_clicked"):
@@ -37,28 +39,68 @@ func _ready():
 
 # --- Core Logic ---
 func spin_wheel():
-	# 1. Create a temporary copy of the wheel so we don't permanently break the game
 	var modified_wheel = wheel_numbers.duplicate()
 	
-	# 2. Apply "Pool Modifiers" (e.g., adding extra numbers)
 	for charm in active_charms:
 		if typeof(charm) == TYPE_DICTIONARY and charm.has("apply_to_wheel"):
-			# In Godot 4, you use .call() to execute a Callable stored in a Dictionary
 			modified_wheel = charm.apply_to_wheel.call(modified_wheel)
 	
-	# 3. Pick the initial result
 	var roll = modified_wheel.pick_random()
 	
-	# 4. Apply "Result Overrides" (e.g., turning 0s into 7s)
 	for charm in active_charms:
 		if typeof(charm) == TYPE_DICTIONARY and charm.has("apply_to_roll"):
 			roll = charm.apply_to_roll.call(roll)
 			
 	return int(roll)
+	
+func calculate_payout(base_payout: float) -> float:
+	var final_payout = base_payout
+	
+	for charm in active_charms:
+		if typeof(charm) == TYPE_DICTIONARY and charm.has("apply_to_reward"):
+			final_payout = charm.apply_to_reward.call(final_payout)
+			
+	return final_payout
+
+# --- Helper Methods ---
+# Dynamically resolves the target MeshInstance3D inside the object node
+func _get_target_mesh(node: Node) -> MeshInstance3D:
+	if not node:
+		return null
+
+	# If the clicked node itself is a MeshInstance3D
+	if node is MeshInstance3D:
+		return node
+
+	# 1. Try resolving using item_info / custom resource fields (if set on the item)
+	if "item_info" in node and node.item_info:
+		var info = node.item_info
+		
+		# If you defined a specific mesh node path/name on your Item Resource
+		if "item_mesh_node_path" in info and info.item_mesh_node_path != "":
+			var found = node.get_node_or_null(info.item_mesh_node_path)
+			if found is MeshInstance3D:
+				return found
+
+	# 2. Try looking inside the spawned sub-scene (e.g. Sketchfab_Scene)
+	var sub_scene = node.get_node_or_null("Sketchfab_Scene")
+	if sub_scene:
+		if sub_scene is MeshInstance3D:
+			return sub_scene
+		# Fallback search inside the sub-scene for the configurable mesh name
+		var sub_mesh = sub_scene.find_child(default_mesh_node_name, true, false)
+		if sub_mesh is MeshInstance3D:
+			return sub_mesh
+
+	# 3. Fallback: Search the entire subtree for any MeshInstance3D automatically
+	var recursive_mesh = node.find_child("*", true, false)
+	if recursive_mesh is MeshInstance3D:
+		return recursive_mesh
+
+	return null
 
 
 # --- Charm Management ---
-# Pool of available charms for random generation
 const ALL_CHARMS: Array[String] = [
 	"Lucky Clover", "The Cube", "Crystal charm", "Broken hilt", "tan rook", "Golden goblet"
 ]
@@ -95,12 +137,10 @@ func add_charm(charm_name: String) -> void:
 					return payout * 1.5
 			}
 			print("Added Crystal Charm: Grants a 1.5x payout multiplier on all wins!")
-			
 
 		"Die":
 			new_charm = {
 				"name": charm_name,
-				#randomly sets a multiplier bwetween 0.1X to 2X, weighted at a sandard distribution of prob mean centred on 1.25X
 			}
 			print("Added Die: Randomly sets a multiplier bwetween 0.1X to 2X, weighted at a sandard distribution of prob mean centred on 1.25X")
 
@@ -109,7 +149,6 @@ func add_charm(charm_name: String) -> void:
 				"name": charm_name
 			}
 			print("Added Hot Garbage: Spawning a random high-tier charm!")
-			# Immediately give a random hot charm
 			var random_hot = HOT_CHARMS[randi() % HOT_CHARMS.size()]
 			call_deferred("add_charm", random_hot)
 
@@ -118,7 +157,6 @@ func add_charm(charm_name: String) -> void:
 				"name": charm_name
 			}
 			print("Added Garbage: Spawning a random charm!")
-			# Immediately give a random charm from the pool
 			var random_charm = ALL_CHARMS[randi() % ALL_CHARMS.size()]
 			call_deferred("add_charm", random_charm)
 
@@ -130,7 +168,7 @@ func add_charm(charm_name: String) -> void:
 					if charm_dict.get("charges", 0) > 0:
 						charm_dict["charges"] -= 1
 						print("Broken Hilt protected you from 0! Remaining charges: ", charm_dict["charges"])
-						return true # Signals a reroll
+						return true
 					return false
 			}
 			print("Added Broken Hilt: Protects against a 0-roll three times!")
@@ -138,12 +176,12 @@ func add_charm(charm_name: String) -> void:
 		"TanRook":
 			new_charm = {
 				"name": charm_name,
-				"rook_position": Vector2i(2, 2), # Default position on grid
+				"rook_position": Vector2i(2, 2),
 				"modify_spot_reward": func(spot_pos: Vector2i, reward: float, rook_pos: Vector2i) -> float:
 					if spot_pos == rook_pos:
-						return -abs(reward) # Sitting spot turns reward negative
+						return -abs(reward)
 					elif spot_pos.x == rook_pos.x or spot_pos.y == rook_pos.y:
-						return reward * 2.0 # Horizontal/vertical rook moves double returns
+						return reward * 2.0
 					return reward
 			}
 			print("Added Tan Rook: Moves horizontally/vertically double rewards; tile occupied flips negative!")
@@ -157,7 +195,7 @@ func add_charm(charm_name: String) -> void:
 					if charm_dict.get("delay_days", 0) > 0:
 						charm_dict["delay_days"] -= 1
 						print("Golden Goblet delayed a loss of $", loss_amount, "! Days left: ", charm_dict["delay_days"])
-						return 0.0 # Loss is delayed
+						return 0.0
 					return loss_amount
 			}
 			print("Added Golden Goblet: Delays losses for the next 3 days!")
@@ -184,32 +222,44 @@ func add_charm(charm_name: String) -> void:
 func _on_object_hovered(node):
 	node.scale = Vector3(1.21, 1.21, 1.21) # Slight pop effect when hovered
 	print("hovering over Wheel!")
-	# Find the spawned scene instance inside your Area3D
-	# Assuming you used `add_child(spawned_wheel)` in your _ready script:
-	var wheel_instance = node.get_node_or_null("Sketchfab_Scene")
 	
-	if wheel_instance:
-		# Use the exact node path from your first image to find Object_9
-		var object_9 = wheel_instance.get_node("Sketchfab_model/root/GLTF_SceneRootNode/Circle_0/Object_9")
-		
-		if object_9 is MeshInstance3D:
-			# Create a clean red material
-			var red_material = StandardMaterial3D.new()
-			red_material.albedo_color = Color(1, 0, 0) # Solid Red
-			
-			# Apply it as an override so it changes color immediately
-			object_9.material_override = red_material
+	var mesh_instance = _get_target_mesh(node)
+	if mesh_instance:
+		var red_material = StandardMaterial3D.new()
+		red_material.albedo_color = Color(1, 0, 0)
+		mesh_instance.material_override = red_material
 
 
 func _on_object_unhovered(node):
-	node.scale = Vector3(1.2, 1.2, 1.2) # Reset scale back to normal
-	var wheel_instance = node.get_node_or_null("Sketchfab_Scene")
-	if wheel_instance:
-		var object_9 = wheel_instance.get_node("Sketchfab_model/root/GLTF_SceneRootNode/Circle_0/Object_9")
+	node.scale = Vector3(1.2, 1.2, 1.2)
+	
+	var mesh_instance = _get_target_mesh(node)
+	if mesh_instance:
+		mesh_instance.material_override = null
+
+
+func _get_spin_target(node: Node) -> Node3D:
+	if not node:
+		return null
+	
+	# First, find the actual MeshInstance3D inside this node (using our helper from earlier)
+	var mesh = _get_target_mesh(node)
+	
+	if mesh:
+		# If the mesh's immediate parent isn't the root interactive Area3D/Node,
+		# rotate the parent container (this handles GLTF/FBX import root nodes nicely)
+		if mesh.get_parent() != node and mesh.get_parent() is Node3D:
+			return mesh.get_parent() as Node3D
+		# Otherwise rotate the mesh directly
+		return mesh
 		
-		if object_9 is MeshInstance3D:
-			# Clear the override material to return it to its original look
-			object_9.material_override = null
+	# Fallback: if no mesh found, rotate the first Node3D child
+	for child in node.get_children():
+		if child is Node3D:
+			return child
+			
+	return node if node is Node3D else null
+
 
 func _on_object_clicked(node):
 	if not node.item_info:
@@ -220,16 +270,15 @@ func _on_object_clicked(node):
 	# Logic for clicking the bowl (the "Play" button)
 	if item_name == "bowl":
 		print("--- SPINNING ---")
-		var wheel_instance = node.get_node_or_null("Sketchfab_Scene")
-		if wheel_instance:
+		
+		# Dynamically resolve whatever model is attached
+		var spin_target = _get_spin_target(node)
+		
+		if spin_target:
 			var target_radians = deg_to_rad(spin_angle_degrees)
 			var tween = create_tween()
 
-			
-			
-			# Animate the 'rotation:y' property from its current position to its current position + target_radians
-			# Using .set_trans() and .set_ease() makes it start fast and slow down smoothly at the end
-			tween.tween_property(wheel_instance, "rotation:y", wheel_instance.rotation.y + target_radians, spin_duration)\
+			tween.tween_property(spin_target, "rotation:y", spin_target.rotation.y + target_radians, spin_duration)\
 				.set_trans(Tween.TRANS_QUAD)\
 				.set_ease(Tween.EASE_OUT)
 				
@@ -240,6 +289,7 @@ func _on_object_clicked(node):
 	# Logic for picking up a charm
 	else:
 		add_charm(item_name)
+
 
 func _on_node_3d_main_world_item_toggeled(item: Variant) -> void:
 	if item and item.item_info:

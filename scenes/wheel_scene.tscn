@@ -3,17 +3,13 @@
 [ext_resource type="Script" uid="uid://bc4wla2imjsox" path="res://scripts/wheel_scene.gd" id="1_7ae7t"]
 [ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://scenes/interactive_item.tscn" id="1_rxs0v"]
 [ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://data&data.gd/item_data.gd" id="2_64hgq"]
-[ext_resource type="PackedScene" uid="uid://s0aewgsgkn84" path="res://models/stuff/roulette_wheel.glb" id="3_e2f4f"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_e2f4f"]
-radius = 2.3
+[ext_resource type="PackedScene" uid="uid://nr01l6e876mp" path="res://models/Glb/wheel.glb" id="3_e2f4f"]
 
 [sub_resource type="Resource" id="Resource_bqloa"]
 script = ExtResource("2_64hgq")
 item_name = "bowl"
 item_value = 67
 item_mesh = ExtResource("3_e2f4f")
-custom_collision_shape = SubResource("SphereShape3D_e2f4f")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
 [node name="Node3D" type="Node3D" unique_id=1393983754]
