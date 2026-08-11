@@ -18,6 +18,7 @@ config/icon="res://Image textures/icon.svg"
 [autoload]
 
 GlobalData="*uid://cex2ds1t28tvk"
+RouletteData="*uid://ctojjia3heba3"
 
 [debug]
 

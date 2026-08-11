@@ -1,13 +1,14 @@
 extends Node3D
 @export var pause_menu: Control
 @export var table_square_scene: PackedScene 
+@export var bet_placed: int 
+
 # Track bets using a Dictionary. Key: unique_bet_string, Value: Dictionary of bet data
 @onready var tv: Node3D = $TV/Area3D # Adjust path if TV is nested under another node
 @onready var video_player: VideoStreamPlayer = $TV/SubViewport/VideoStreamPlayer
 var active_bets: Dictionary = {}
 var tv_is_playing: bool = false
 const BET_AMOUNT: int = 67 # Fixed bet amount per placement
-
 var roll_recived = int()
 var time_passed: float = 0.0
 signal main_world_item_toggeled(item)
@@ -61,6 +62,7 @@ func _on_object_hovered(node):
 	else:
 		print("uh you own and don't own this at the same time, kms")
 		pass
+
 func _on_object_unhovered(node):
 	if node.item_info:
 		print("Main World: stopped hovering over: ", node.item_info.item_name)
@@ -139,7 +141,6 @@ func _on_square_hover_exited(square_id: int) -> void:
 func _on_square_hover_moved(play_type: String, origin_square_id: int, global_pos: Vector3) -> void:
 	pass
 	
-	
 
 func _on_tv_clicked(clicked_node):
 	print("World scene received click from: ", clicked_node.name)
@@ -153,9 +154,6 @@ func _on_tv_clicked(clicked_node):
 func _on_video_finished() -> void:
 	# Unlock input when the video ends so it can be clicked again
 	tv_is_playing = false
-
-
-# --- WHEEL SPIN & ROULETTE PAYOUT LOGIC ---
 
 # --- WHEEL SPIN & ROULETTE PAYOUT LOGIC ---
 
@@ -206,6 +204,7 @@ func apply_charm_multipliers(base_payout: float) -> float:
 			
 	return final_payout
 
+
 # --- HELPER FUNCTIONS FOR ROULETTE RULES ---
 
 func evaluate_roulette_win(roll: int, play_type: String, square_id: int) -> bool:
@@ -220,9 +219,7 @@ func evaluate_roulette_win(roll: int, play_type: String, square_id: int) -> bool
 				# Found the rolled number inside the custom name identifier!
 				return true
 				
-	var red_numbers = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
-	
-	# Context evaluation checking using partial starts to handle string additions smoothly
+	# Context evaluation checking using the RouletteData Autoload
 	if normalized_type.begins_with("straight"):
 		return roll == square_id
 	elif normalized_type.begins_with("corner"):
@@ -231,23 +228,23 @@ func evaluate_roulette_win(roll: int, play_type: String, square_id: int) -> bool
 	elif normalized_type.begins_with("split"):
 		return roll == square_id or roll == (square_id + 1) or roll == (square_id + 3)
 	elif normalized_type.begins_with("red"):
-		return roll in red_numbers
+		return roll in RouletteData.reds
 	elif normalized_type.begins_with("black"):
-		return roll != 0 and not (roll in red_numbers)
+		return roll in RouletteData.blacks
 	elif normalized_type.begins_with("even"):
-		return roll != 0 and roll % 2 == 0
+		return roll in RouletteData.evens
 	elif normalized_type.begins_with("odd"):
-		return roll % 2 != 0
+		return roll in RouletteData.odds
 	elif normalized_type.begins_with("low"):
-		return roll >= 1 and roll <= 18
+		return roll in RouletteData.lows
 	elif normalized_type.begins_with("high"):
-		return roll >= 19 and roll <= 36
+		return roll in RouletteData.highs
 	elif normalized_type.begins_with("dozen1"):
-		return roll >= 1 and roll <= 12
+		return roll in RouletteData.first_dozen
 	elif normalized_type.begins_with("dozen2"):
-		return roll >= 13 and roll <= 24
+		return roll in RouletteData.second_dozen
 	elif normalized_type.begins_with("dozen3"):
-		return roll >= 25 and roll <= 36
+		return roll in RouletteData.third_dozen
 		
 	return roll == square_id
 
