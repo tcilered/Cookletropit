@@ -1,6 +1,7 @@
 extends Area3D
 
-signal placing_requested(play_type, square_id, global_spawn_pos)
+# FIX 1: Added 'button_index' to the signal declaration
+signal placing_requested(play_type, square_id, global_spawn_pos, button_index)
 signal hover_entered(square_id)
 signal hover_exited(square_id)
 signal hover_moved(play_type, square_id, global_pos)
@@ -71,7 +72,7 @@ func get_corner_string(a: int, b: int, c: int, d: int) -> String:
 	return "corner_%d_%d_%d_%d" % [nums[0], nums[1], nums[2], nums[3]]
 
 func _ready():
-	var mesh_node = get_node("17_Mesh") # Note: You might want to make this dynamic later (e.g. get_node(str(square_id) + "_Mesh"))
+	var mesh_node = get_node("17_Mesh") # Note: You might want to make this dynamic later
 	var mat = mesh_node.get_active_material(0)
 	
 	if mat:
@@ -121,8 +122,15 @@ func _input_event(_camera, event, click_position, _click_normal, _shape_idx):
 			print("Hovering Zone: ", unified_zone, " on Square: ", square_id)
 			hover_moved.emit(unified_zone, square_id, click_position)
 
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		# Convert the raw edge into the unified string before emitting
-		var unified_zone = get_shared_border_dynamic(detected_zone)
-		print("PLACED PLAY: '", unified_zone, "' at global position: ", click_position)
-		placing_requested.emit(unified_zone, square_id, click_position)
+	# FIX 2: Check for ANY mouse button press, then filter for Left or Right
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
+			# Convert the raw edge into the unified string before emitting
+			var unified_zone = get_shared_border_dynamic(detected_zone)
+			
+			# Just for debugging: Print different messages based on the click
+			var action_str = "STACK/PLACE" if event.button_index == MOUSE_BUTTON_LEFT else "CANCEL/REFUND"
+			print(action_str, " requested for: '", unified_zone, "' at global position: ", click_position)
+			
+			# Emit the signal with all 4 expected arguments!
+			placing_requested.emit(unified_zone, square_id, click_position, event.button_index)

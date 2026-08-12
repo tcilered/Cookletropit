@@ -8,14 +8,31 @@ extends Node3D
 @onready var video_player: VideoStreamPlayer = $TV/SubViewport/VideoStreamPlayer
 var active_bets: Dictionary = {}
 var tv_is_playing: bool = false
-const BET_AMOUNT: int = 67 # Fixed bet amount per placement
 var roll_recived = int()
 var time_passed: float = 0.0
+# Array of dictionaries holding the value and the specific 3D scene for each chip size
+var chip_tiers: Array = [
+	{"amount": 5, "scene": preload("res://models/Glb/orange_plate.glb")},
+	{"amount": 25, "scene": preload("res://models/Glb/canhe_.glb")},
+	{"amount": 100, "scene": preload("res://models/Glb/goblle.glb")}
+]
+
+# Tracks which chip tier is currently selected by the scroll wheel
+var current_chip_index: int = 0
 signal main_world_item_toggeled(item)
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	pass
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			# Scroll up: Increase chip size, clamp to max array size
+			current_chip_index = min(current_chip_index + 1, chip_tiers.size() - 1)
+			print("Selected Chip Amount: ", chip_tiers[current_chip_index]["amount"])
+			
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			# Scroll down: Decrease chip size, clamp to 0
+			current_chip_index = max(current_chip_index - 1, 0)
+			print("Selected Chip Amount: ", chip_tiers[current_chip_index]["amount"])
 
 func _physics_process(delta: float) -> void:
 	pass
@@ -93,44 +110,63 @@ func _on_object_clicked(node):
 # --- SIGNAL RECEIVERS ---
 
 # Triggered when a player left-clicks a zone/square
-func _on_square_placing_requested(play_type: String, origin_square_id: int, global_spawn_pos: Vector3) -> void:
-	# FIX 1: Generate a unique registration key combining play_type and ID
-	# Example output: "corner_7_8_10_11_7" or "straight_7"
+# Added 'button_index' parameter to determine left vs. right click
+func _on_square_placing_requested(play_type: String, origin_square_id: int, global_spawn_pos: Vector3, button_index: int) -> void:
 	var bet_key = play_type + "_" + str(origin_square_id)
 	
-	print("World received PLACE/TOGGLE BET Key: ", bet_key)
-	
-	# IF THIS EXACT BET ALREADY EXISTS -> REMOVE AND REFUND IT
-	if active_bets.has(bet_key):
-		var old_chip = active_bets[bet_key]["chip_node"]
-		if is_instance_valid(old_chip):
-			old_chip.queue_free() # Despawn the chip visual
-			
-		# Refund the gold spent on this specific placement
-		GlobalData.player_stats.gold += active_bets[bet_key]["amount"]
-		active_bets.erase(bet_key)
-		print("Bet removed: ", bet_key, ". Gold refunded.")
-		
-	# ELSE -> PLACE A NEW UNIQUE BET
-	else:
-		if GlobalData.player_stats.gold >= BET_AMOUNT:
-			GlobalData.player_stats.gold -= BET_AMOUNT
-			
-			# Instantiate and place the chip visual
-			var new_chip = table_square_scene.instantiate()
-			add_child(new_chip)
-			new_chip.global_position = global_spawn_pos
-			
-			# Store complete bet data inside our tracking dictionary using the unique key
-			active_bets[bet_key] = {
-				"chip_node": new_chip,
-				"play_type": play_type,
-				"amount": BET_AMOUNT,
-				"origin_square_id": origin_square_id
-			}
-			print("Bet placed successfully! Remaining Gold: ", GlobalData.player_stats.gold)
+	# Grab the currently selected chip data based on the scroll wheel
+	var selected_chip_data = chip_tiers[current_chip_index]
+	var current_bet_amount = selected_chip_data["amount"]
+
+	# ==========================================
+	# RIGHT CLICK: CANCEL/REFUND BET
+	# ==========================================
+	if button_index == MOUSE_BUTTON_RIGHT:
+		if active_bets.has(bet_key):
+			var old_chip = active_bets[bet_key]["chip_node"]
+			if is_instance_valid(old_chip):
+				old_chip.queue_free() # Despawn the chip visual
+				
+			# Refund the ENTIRE stacked amount stored in the dictionary
+			GlobalData.player_stats.gold += active_bets[bet_key]["amount"]
+			active_bets.erase(bet_key)
+			print("Bet removed: ", bet_key, ". Gold refunded.")
 		else:
-			print("Not enough gold to place a bet!")
+			print("No bet to cancel here.")
+
+	# ==========================================
+	# LEFT CLICK: PLACE NEW OR STACK BET
+	# ==========================================
+	elif button_index == MOUSE_BUTTON_LEFT:
+		if GlobalData.player_stats.gold >= current_bet_amount:
+			
+			# IF BET ALREADY EXISTS -> STACK IT
+			if active_bets.has(bet_key):
+				GlobalData.player_stats.gold -= current_bet_amount
+				active_bets[bet_key]["amount"] += current_bet_amount
+				print("Bet stacked! Total on this spot: ", active_bets[bet_key]["amount"])
+				# Note: Since you mentioned the model doesn't change when stacking, 
+				# we just update the math above and do nothing visually.
+				
+			# ELSE -> PLACE A NEW UNIQUE BET
+			else:
+				GlobalData.player_stats.gold -= current_bet_amount
+				
+				# Instantiate the SPECIFIC chip visual chosen by the scroll wheel
+				var new_chip = selected_chip_data["scene"].instantiate()
+				add_child(new_chip)
+				new_chip.global_position = global_spawn_pos
+				
+				# Store complete bet data
+				active_bets[bet_key] = {
+					"chip_node": new_chip,
+					"play_type": play_type,
+					"amount": current_bet_amount,
+					"origin_square_id": origin_square_id
+				}
+				print("New bet placed! Remaining Gold: ", GlobalData.player_stats.gold)
+		else:
+			print("Not enough gold to place a bet of ", current_bet_amount, "!")
 
 func _on_square_hover_entered(square_id: int) -> void:
 	pass
