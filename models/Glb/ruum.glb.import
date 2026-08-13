@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmncpffau8uuf"
-path="res://.godot/imported/letitride.glb-44ae5ced8c7b9bf2e0dd6412b48e4c1a.scn"
+uid="uid://bti3ujocvqp6r"
+path="res://.godot/imported/ruum.glb-6cc88b5742f1f5cab86f0c30802ea94a.scn"
 
 [deps]
 
-source_file="res://models/Glb/letitride.glb"
-dest_files=["res://.godot/imported/letitride.glb-44ae5ced8c7b9bf2e0dd6412b48e4c1a.scn"]
+source_file="res://models/Glb/ruum.glb"
+dest_files=["res://.godot/imported/ruum.glb-6cc88b5742f1f5cab86f0c30802ea94a.scn"]
 
 [params]
 

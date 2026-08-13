@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2sbcncnx8uds"]
+
+[ext_resource type="PackedScene" uid="uid://ryw0ebjmjjkp" path="res://models/Glb/letitride1.glb" id="1_qhycy"]
+
+[node name="letitride1" unique_id=544023999 instance=ExtResource("1_qhycy")]
+transform = Transform3D(0.167, 0, 0, 0, 0.167, 0, 0, 0, 0.167, 0, 0, 0)

@@ -12,9 +12,13 @@ var roll_recived = int()
 var time_passed: float = 0.0
 # Array of dictionaries holding the value and the specific 3D scene for each chip size
 var chip_tiers: Array = [
-	{"amount": 5, "scene": preload("res://models/Glb/orange_plate.glb")},
-	{"amount": 25, "scene": preload("res://models/Glb/canhe_.glb")},
-	{"amount": 100, "scene": preload("res://models/Glb/goblle.glb")}
+	{"amount": 10, "scene": preload("res://models/Glb/letitride.glb")},
+	{"amount": 50, "scene": preload("res://models/Glb/letitride1.glb")},
+	{"amount": 100, "scene": preload("res://models/Glb/letitride2.glb")},
+	{"amount": 250, "scene": preload("res://models/Glb/letitride6.glb")},
+	{"amount": 500, "scene": preload("res://models/Glb/letitride5.glb")},
+	{"amount": 1000, "scene": preload("res://models/Glb/letitride3.glb")},
+	{"amount": 2500, "scene": preload("res://models/Glb/letitride4.glb")},
 ]
 
 # Tracks which chip tier is currently selected by the scroll wheel
@@ -53,7 +57,7 @@ func _ready():
 
 
 	for child in get_children():
-		if child.has_signal("object_clicked"):
+		if child.has_signal("object_clicked") or child.has_signal("_on_object_unhovered") or child.has_signal("_on_object_clicked"):
 			child.object_hovered.connect(_on_object_hovered)
 			child.object_unhovered.connect(_on_object_unhovered)
 			child.object_clicked.connect(_on_object_clicked)
@@ -156,6 +160,9 @@ func _on_square_placing_requested(play_type: String, origin_square_id: int, glob
 				var new_chip = selected_chip_data["scene"].instantiate()
 				add_child(new_chip)
 				new_chip.global_position = global_spawn_pos
+
+				# Force uniform scale across all loaded GLB models
+				new_chip.scale = Vector3(0.167, 0.167, 0.167)
 				
 				# Store complete bet data
 				active_bets[bet_key] = {
