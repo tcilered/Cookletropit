@@ -305,3 +305,10 @@ func get_roulette_multiplier(play_type: String) -> int:
 	if normalized_type.begins_with("red") or normalized_type.begins_with("black") or normalized_type.begins_with("even") or normalized_type.begins_with("odd") or normalized_type.begins_with("low") or normalized_type.begins_with("high"): return 1
 	
 	return 35
+
+
+###
+#credits:
+#thanks to Maleficentcharacturmayhapsmourn
+#thanks to Comestibles disssschaaaarger tycoooon
+###

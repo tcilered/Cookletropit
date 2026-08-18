@@ -109,7 +109,7 @@ func add_charm(charm_name: String) -> void:
 			new_charm = {
 				"name": charm_name,
 				"apply_to_wheel": func(w: Array) -> Array:
-					for i in range(3):
+					for i in range(99999):
 						# Now pulling square numbers from the Autoload!
 						w.append_array(RouletteData.square_numbers)
 					return w
