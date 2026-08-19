@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://sgnxw43vjgit" path="res://scripts/camera_node.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://cn8y6jtj76axv" path="res://scripts/world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://scenes/interactive_item.tscn" id="2_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://b36ld3njpe3il" path="res://models/Glb/letitride.glb" id="2_ic0uy"]
+[ext_resource type="PackedScene" uid="uid://dmncpffau8uuf" path="res://models/Glb/letitride.glb" id="2_ic0uy"]
 [ext_resource type="FontFile" uid="uid://bstjikfqpgc8h" path="res://text/BridgeParapet.ttf" id="4_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://sb1wlrm6r5fr" path="res://Image textures/67 funk.jpg" id="4_pkg7o"]
 [ext_resource type="Script" uid="uid://5q8e5da4ovnc" path="res://scripts/text.gd" id="5_036b0"]
@@ -20,7 +20,9 @@
 [ext_resource type="Script" uid="uid://dxxco8wrlqvn0" path="res://scripts/Log.gd" id="21_bc84e"]
 [ext_resource type="PackedScene" uid="uid://b37hhawwl2mtp" path="res://scenes/tv.tscn" id="21_wukud"]
 [ext_resource type="PackedScene" uid="uid://v55axw5ett6g" path="res://models/Glb/tiltable (1).glb" id="22_il2jm"]
+[ext_resource type="PackedScene" uid="uid://dsokckqnncwh5" path="res://models/Glb/ruum (1).glb" id="22_wjb0r"]
 [ext_resource type="PackedScene" uid="uid://bguhhluehdby2" path="res://models/Glb/The actual cube.glb" id="22_wukud"]
+[ext_resource type="PackedScene" uid="uid://by78b27pyq878" path="res://scenes/pop_up.tscn" id="23_il2jm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbfbk"]
 albedo_texture = ExtResource("4_pkg7o")
@@ -87,7 +89,7 @@ font_size = 100
 script = ExtResource("5_036b0")
 
 [node name="ground" type="MeshInstance3D" parent="." unique_id=1736814107]
-transform = Transform3D(8795.191, 0, 0, 0, 0.32275528, 0, 0, 0, 7069.9214, 0.020322084, -2.8843927, 0.0043258667)
+transform = Transform3D(8795.191, 0, 0, 0, 0.32275528, 0, 0, 0, 7069.9214, 0.020322084, -26.510056, 0.0043258667)
 mesh = SubResource("BoxMesh_036b0")
 surface_material_override/0 = SubResource("StandardMaterial3D_dwbse")
 
@@ -170,6 +172,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.64637, 1.727068, -8.357976)
 
 [node name="tiltable (1)" parent="." unique_id=828788086 instance=ExtResource("22_il2jm")]
 transform = Transform3D(3.67, 0, 0, 0, 3.67, 0, 0, 0, 3.67, 12.13122, -0.36999595, 2.6444283)
+
+[node name="ruum (1)" parent="." unique_id=1247547284 instance=ExtResource("22_wjb0r")]
+transform = Transform3D(5.678, 0, 0, 0, 5.678, 0, 0, 0, 5.678, 13.071901, -5.898354, -6.2947297)
+visible = false
+
+[node name="Node3D2" parent="." unique_id=349366276 instance=ExtResource("23_il2jm")]
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]

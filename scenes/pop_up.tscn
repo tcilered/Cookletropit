@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://by78b27pyq878"]
+
+[ext_resource type="Script" uid="uid://7gxjmhouvtps" path="res://scenes/pop_up.gd" id="1_ui8ff"]
+
+[node name="Node3D2" type="Node3D" unique_id=349366276]
+script = ExtResource("1_ui8ff")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1702178790]
+
+[node name="Label3D" type="Label3D" parent="SubViewport" unique_id=598367515]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=523630248]
