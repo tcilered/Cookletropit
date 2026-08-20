@@ -24,7 +24,15 @@ var chip_tiers: Array = [
 # Tracks which chip tier is currently selected by the scroll wheel
 var current_chip_index: int = 0
 signal main_world_item_toggeled(item)
+const FLOATING_TEXT_SCENE = preload("res://scenes/pop_up.tscn")
 
+func spawn_text(spawn_position: Vector3, text: String) -> void:
+	var popup = FLOATING_TEXT_SCENE.instantiate()
+	# 1. Add to scene first (this triggers _ready() and assigns label/sprite/viewport)
+	get_tree().current_scene.add_child(popup)
+	# 2. Set position and display text AFTER it is added to the scene
+	popup.global_position = spawn_position
+	popup.display_text(text, 4.0)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
@@ -42,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _ready():
-	
+	spawn_text(Vector3(0, 0, 0), "sixseven")
 	###
 	#connecting signals
 	###

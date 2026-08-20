@@ -1,25 +1,25 @@
 class_name FloatingText
 extends Node3D
 
-## Assign these in the Inspector for maximum flexibility
 @export var label: Label
 @export var sprite: Sprite3D
 @export var viewport: SubViewport
 
 func _ready() -> void:
-	# Fallback checks in case they weren't set in the Inspector
-	if not label:
-		label = $SubViewport/Label
-	if not sprite:
-		sprite = $Sprite3D
 	if not viewport:
 		viewport = $SubViewport
-		
-	# Ensure the SubViewport texture is dynamically linked on instantiation
-	if sprite and viewport:
-		sprite.texture = viewport.get_texture()
+	if not sprite:
+		sprite = $Sprite3D
+	if not label:
+		label = $SubViewport/PanelContainer/Label
 
-## Set custom text and optional shader parameters upon spawning
+	if sprite and viewport:
+		viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+		sprite.texture = viewport.get_texture()
+		
+		# Always face the active camera
+		sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+
 func display_text(new_text: String, wave_speed: float = 3.0) -> void:
 	if label:
 		label.text = new_text
@@ -28,20 +28,19 @@ func display_text(new_text: String, wave_speed: float = 3.0) -> void:
 		var shader_mat = sprite.material_override as ShaderMaterial
 		if shader_mat:
 			shader_mat.set_shader_parameter("wave_speed", wave_speed)
-		
-	_animate()
 
-func _animate() -> void:
+## Animate closing and remove from scene tree
+func dismiss() -> void:
 	var tween = create_tween().set_parallel(true)
-	
-	# Float upward
-	tween.tween_property(self, "position:y", position.y + 1.0, 1.0)\
-		.set_trans(Tween.TRANS_CUBIC)\
-		.set_ease(Tween.EASE_OUT)
-		
-	# Fade out sprite alpha
+	tween.tween_property(self, "scale", Vector3.ZERO, 0.15)
 	if sprite:
-		tween.tween_property(sprite, "modulate:a", 0.0, 1.0)
-	
-	# Free memory after animation finishes
+		tween.tween_property(sprite, "modulate:a", 0.0, 0.15)
 	tween.chain().tween_callback(queue_free)
+	
+func _on_area_3d_input_event(_camera: Node, event: InputEvent, _pos: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		dismiss()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		dismiss()

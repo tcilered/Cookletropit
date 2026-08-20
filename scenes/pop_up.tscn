@@ -1,12 +1,50 @@
 [gd_scene format=3 uid="uid://by78b27pyq878"]
 
 [ext_resource type="Script" uid="uid://7gxjmhouvtps" path="res://scenes/pop_up.gd" id="1_ui8ff"]
+[ext_resource type="FontFile" uid="uid://bstjikfqpgc8h" path="res://text/BridgeParapet.ttf" id="2_vln5t"]
 
-[node name="Node3D2" type="Node3D" unique_id=349366276]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bbd1"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.1254902, 0.09019608, 0, 0.9019608)
+corner_detail = 15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0bbd1"]
+
+[node name="FloatingText" type="Node3D" unique_id=349366276]
 script = ExtResource("1_ui8ff")
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=1702178790]
-
-[node name="Label3D" type="Label3D" parent="SubViewport" unique_id=598367515]
-
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=523630248]
+transform = Transform3D(0.67, 0, 0, 0, 0.67, 0, 0, 0, 0.67, 0, 0, 0)
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1702178790]
+transparent_bg = true
+size = Vector2i(520, 240)
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewport" unique_id=1222432798]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -487.0
+offset_bottom = -182.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_0bbd1")
+
+[node name="Label" type="Label" parent="SubViewport/PanelContainer" unique_id=364804090]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vln5t")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1559266411]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=650974620]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("BoxShape3D_0bbd1")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]

@@ -177,7 +177,7 @@ transform = Transform3D(3.67, 0, 0, 0, 3.67, 0, 0, 0, 3.67, 12.13122, -0.3699959
 transform = Transform3D(5.678, 0, 0, 0, 5.678, 0, 0, 0, 5.678, 13.071901, -5.898354, -6.2947297)
 visible = false
 
-[node name="Node3D2" parent="." unique_id=349366276 instance=ExtResource("23_il2jm")]
+[node name="pop_up" parent="." unique_id=349366276 instance=ExtResource("23_il2jm")]
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]
