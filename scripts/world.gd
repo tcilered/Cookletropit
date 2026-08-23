@@ -26,13 +26,16 @@ var current_chip_index: int = 0
 signal main_world_item_toggeled(item)
 const FLOATING_TEXT_SCENE = preload("res://scenes/pop_up.tscn")
 
-func spawn_text(spawn_position: Vector3, text: String) -> void:
+func spawn_text(spawn_position: Vector3, text: String) -> Node3D:
 	var popup = FLOATING_TEXT_SCENE.instantiate()
-	# 1. Add to scene first (this triggers _ready() and assigns label/sprite/viewport)
+	# 1. Add to scene first
 	get_tree().current_scene.add_child(popup)
-	# 2. Set position and display text AFTER it is added to the scene
+	# 2. Set position and display text
 	popup.global_position = spawn_position
 	popup.display_text(text, 4.0)
+	
+	# Return the popup so we can wait for it to close
+	return popup
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
@@ -49,8 +52,34 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	pass
 
+func run_intro_sequence() -> void:
+	# --- STEP 1 ---
+	# Spawn the first popup and wait for the player to click it
+	var popup1 = spawn_text(Vector3(0, 2, 0), "Welcome to the table!")
+	await popup1.tree_exited 
+	
+	# --- STEP 2 ---
+	# Move the camera (Assuming you have a Camera3D node, adjust the path)
+	var camera = get_viewport().get_camera_3d()
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(camera, "global_position", Vector3(2, 3, 2), 1.5)
+	
+	# Wait for the camera movement to finish
+	await tween.finished
+	
+	# --- STEP 3 ---
+	# Spawn the second popup
+	var popup2 = spawn_text(Vector3(2, 2, 0), "Use the scroll wheel to change chips.")
+	await popup2.tree_exited
+	
+	# --- STEP 4 ---
+	# Move camera again or continue the game
+	print("Tutorial sequence finished!")
+
 func _ready():
-	spawn_text(Vector3(0, 0, 0), "sixseven")
+	spawn_text(Vector3(0, 0, 0), "sixsevensixsevensixsevensixsevensixsevensixsevensixsevensixseven")
+	# Start the sequence
+	#run_intro_sequence()
 	###
 	#connecting signals
 	###
