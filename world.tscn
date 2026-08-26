@@ -99,7 +99,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.480203, 0.9639716, -13.9158
 item_info = SubResource("Resource_pkg7o")
 
 [node name="move_camera_on_click" type="MeshInstance3D" parent="." unique_id=1511647192]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.612595, 0.6823206, -13.884075)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.63488483, 0.6823206, -4.0814314)
 mesh = SubResource("BoxMesh_ioo17")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="move_camera_on_click" unique_id=361163961 node_paths=PackedStringArray("target")]
@@ -113,7 +113,7 @@ radius_for_this_spot = 6.0
 shape = SubResource("ConcavePolygonShape3D_wse8f")
 
 [node name="camera_node" type="Marker3D" parent="move_camera_on_click" unique_id=310226256]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.17661381, 1.455267, 5.978348)
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 8.959358, 4.327858, 9.749182)
 
 [node name="Wheel_Scene" parent="." unique_id=1393983754 instance=ExtResource("9_ioo17")]
 transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, 15.754, 0.3288803, 6.29)
@@ -178,7 +178,6 @@ transform = Transform3D(3.67, 0, 0, 0, 3.67, 0, 0, 0, 3.67, 12.13122, -0.3699959
 
 [node name="ruum (1)" parent="." unique_id=1247547284 instance=ExtResource("22_wjb0r")]
 transform = Transform3D(5.678, 0, 0, 0, 5.678, 0, 0, 0, 5.678, 13.071901, -5.898354, -4.990725)
-visible = false
 
 [node name="pop_up" parent="." unique_id=349366276 instance=ExtResource("23_il2jm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5008271, 0)

@@ -77,7 +77,7 @@ func run_intro_sequence() -> void:
 	print("Tutorial sequence finished!")
 
 func _ready():
-	spawn_text(Vector3(0, 0, 0), "Welcome to the table! Use the scroll wheel...")
+	spawn_text(Vector3(0, 0, 0), "Welcome to the table! Use the scroll wheel to change bet size and buy charms to change the odds. Click on the cube to move the camera. Click the wheel to spin and test your luck.")
 	# Start the sequence
 	#run_intro_sequence()
 	###

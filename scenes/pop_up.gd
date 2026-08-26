@@ -58,6 +58,7 @@ func display_text(new_text: String, wave_speed: float = 3.0) -> void:
 			shader_mat.set_shader_parameter("wave_speed", wave_speed)
 		sprite.visible = true
 
+
 func dismiss() -> void:
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "scale", Vector3.ZERO, 0.15)
