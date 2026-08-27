@@ -5,6 +5,15 @@ var save_path = "user://Cookletropitsavegame.save"
 
 var active_charms_global = []
 
+# Food buff system
+var active_foods: Array = []
+
+# Round tracking (4 spins per round, must earn threshold to continue)
+const SPINS_PER_ROUND: int = 4
+var SPIN_MONEY_THRESHOLD: int = 500
+var spin_count: int = 0
+var money_earned_this_round: int = 0
+
 var player_stats = {
 	"health": 100,
 	"gold": 400,
@@ -50,3 +59,8 @@ func reset_data():
 		"current_level": 1,
 		"last_position": Vector2.ZERO
 	}
+	active_foods = []
+	active_charms_global = []
+	SPIN_MONEY_THRESHOLD = 500
+	spin_count = 0
+	money_earned_this_round = 0

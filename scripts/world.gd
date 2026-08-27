@@ -23,6 +23,10 @@ var chip_tiers: Array = [
 
 # Tracks which chip tier is currently selected by the scroll wheel
 var current_chip_index: int = 0
+
+# Food card popup
+const FOOD_CARD_POPUP_SCENE = preload("res://scenes/food_card_popup.tscn")
+var food_card_popup: CanvasLayer = null
 signal main_world_item_toggeled(item)
 const FLOATING_TEXT_SCENE = preload("res://scenes/pop_up.tscn")
 
@@ -90,6 +94,11 @@ func _ready():
 	spawn_text(Vector3(0, 0, 0), "Welcome to the table! Use the scroll wheel to change bet size and buy charms to change the odds. Click on the cube to move the camera. Click the wheel to spin and test your luck.")
 	# Start the sequence
 	#run_intro_sequence()
+
+	# Spawn the food card popup (hidden until needed)
+	food_card_popup = FOOD_CARD_POPUP_SCENE.instantiate()
+	add_child(food_card_popup)
+
 	###
 	#connecting signals
 	###
@@ -252,6 +261,7 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 	print("--- WHEEL RESULT: ", roll_recived, " ---")
 	
 	var round_winnings = 0.0
+	var had_any_win = false
 	
 	# Evaluate every bet tracking key currently active on the board
 	for bet_key in active_bets.keys():
@@ -261,6 +271,7 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 		var square_id = bet_data["origin_square_id"]
 		
 		if evaluate_roulette_win(roll_recived, play_type, square_id):
+			had_any_win = true
 			var multiplier = get_roulette_multiplier(play_type)
 			# Payout formula: (Bet * Multiplier) + Original Bet returned
 			var base_payout = (amount * multiplier) + amount
@@ -268,21 +279,70 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 			# APPLY CHARM MULTIPLIERS HERE
 			var payout = apply_charm_multipliers(base_payout)
 			
+			# Apply food: power_soup win_bonus
+			for food in GlobalData.active_foods:
+				if food.get("buff_key") == "power_soup":
+					payout += food.get("win_bonus", 0)
+			
+			# Apply food: mystic_mushroom — double one spin per round
+			for food in GlobalData.active_foods:
+				if food.get("buff_key") == "mystic_mushroom" and not food.get("double_used", true):
+					payout *= 2.0
+					food["double_used"] = true
+					print("Food Buff: Mystic Mushroom doubled this spin!")
+					break
+			
 			round_winnings += payout
-			print("Bet ", bet_key, " WON! Base: $", base_payout, " | Paid with Charms: $", payout)
+			print("Bet ", bet_key, " WON! Base: $", base_payout, " | Paid with Buffs: $", payout)
 		else:
 			print("Bet ", bet_key, " LOST.")
 		
 		# Clean up the chip visual now that the spin is finished
 		if is_instance_valid(bet_data["chip_node"]):
 			bet_data["chip_node"].queue_free()
-			
+	
+	# Apply food: spicy_pepper — if no winnings this spin, give guaranteed payout
+	if round_winnings == 0:
+		for food in GlobalData.active_foods:
+			if food.get("buff_key") == "spicy_pepper":
+				round_winnings += food.get("zero_spin_payout", 0)
+				if round_winnings > 0:
+					print("Food Buff: Spicy Pepper gives $", food.get("zero_spin_payout", 0), " consolation!")
+				break
+
 	if round_winnings > 0:
 		GlobalData.player_stats.gold += int(round_winnings)
 		print("Total Payout Added to Wallet: $", round_winnings)
 	
+	# Track round money and spin count
+	GlobalData.money_earned_this_round += int(round_winnings)
+	GlobalData.spin_count += 1
+	
+	print("Round progress: ", GlobalData.spin_count, "/", GlobalData.SPINS_PER_ROUND,
+		" | Earned this round: $", GlobalData.money_earned_this_round,
+		" / $", GlobalData.SPIN_MONEY_THRESHOLD)
+	
 	# Clear out active bets registry for the next spin round
 	active_bets.clear()
+	
+	# Check round end condition
+	if GlobalData.spin_count >= GlobalData.SPINS_PER_ROUND:
+		if GlobalData.money_earned_this_round >= GlobalData.SPIN_MONEY_THRESHOLD:
+			print("Round passed! Showing food card popup.")
+			# Reset mystic_mushroom double flag for next round
+			for food in GlobalData.active_foods:
+				if food.get("buff_key") == "mystic_mushroom":
+					food["double_used"] = false
+			# Reset round counters then show food selection
+			GlobalData.spin_count = 0
+			GlobalData.money_earned_this_round = 0
+			food_card_popup.show_popup()
+		else:
+			print("Round FAILED — not enough money earned. Game over.")
+			spawn_text(Vector3(0, 1, 0), "GAME OVER! You didn't earn $" + str(GlobalData.SPIN_MONEY_THRESHOLD) + " in 4 spins!")
+			await get_tree().create_timer(3.0).timeout
+			GlobalData.reset_data()
+			get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 	
 # Helper function to apply active charm rewards to any base payout
 func apply_charm_multipliers(base_payout: float) -> float:

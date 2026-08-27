@@ -19,6 +19,7 @@ config/icon="res://Image textures/icon.svg"
 
 GlobalData="*uid://cex2ds1t28tvk"
 RouletteData="*uid://ctojjia3heba3"
+FoodData="*res://scripts/food_data.gd"
 
 [debug]
 
