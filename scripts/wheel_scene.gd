@@ -88,10 +88,10 @@ func _get_target_mesh(node: Node) -> MeshInstance3D:
 
 # --- Charm Management ---
 const ALL_CHARMS: Array[String] = [
-	"Lucky Clover", "The Cube", "Crystal charm", "Broken hilt", "tan rook", "Golden goblet"
+	"LuckyClover", "TheCube", "Crystalcharm", "BrokenHilt", "TanRook", "GoldenGoblet", "MirrorShard"
 ]
 const HOT_CHARMS: Array[String] = [
-	"The Cube", "Crystal charm", "tan rook", "Golden goblet"
+	"TheCube", "Crystalcharm", "TanRook", "GoldenGoblet"
 ]
 
 func add_charm(charm_name: String) -> void:
@@ -193,6 +193,14 @@ func add_charm(charm_name: String) -> void:
 				"description": "The shard of a shattered mirror"
 			}
 			print("Added MirrorShard: ")
+
+		"RerollResetCharm":
+			new_charm = {
+				"name": charm_name,
+				"description": "Resets reroll price to 100."
+			}
+			GlobalData.shop_reroll_price = 100
+			print("Added RerollResetCharm: reroll price reset to 100!")
 
 		_:
 			new_charm = {"name": charm_name}

@@ -24,7 +24,26 @@ func _ready():
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	input_event.connect(_on_input_event)
-	
+	_rebuild_from_item_info()
+
+func set_item_info_data(new_item_info: ItemData) -> void:
+	item_info = new_item_info
+	_rebuild_from_item_info()
+
+func clear_item_info_data() -> void:
+	item_info = null
+	_rebuild_from_item_info()
+
+func _rebuild_from_item_info() -> void:
+	_spawned_model_instance = null
+	_rest_model_position = Vector3.ZERO
+	_rest_model_rotation = Vector3.ZERO
+	input_ray_pickable = false
+
+	for child in get_children():
+		remove_child(child)
+		child.queue_free()
+
 	if item_info != null and item_info.item_mesh != null:
 		var spawned_wheel = item_info.item_mesh.instantiate()
 		add_child(spawned_wheel)
@@ -59,6 +78,8 @@ func _ready():
 		else:
 			_generate_collision_from_scene(spawned_wheel)
 			print("Auto-generating shape from mesh for: ", item_info.item_name)
+
+		input_ray_pickable = true
 
 
 # --- Helper Functions ---
@@ -108,13 +129,15 @@ func _generate_collision_from_scene(current_node: Node):
 
 # --- Signals ---
 
-func _on_mouse_entered():
+func _on_mouse_entered() -> void:
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector3(1.15, 1.15, 1.15), 0.15)
 	object_hovered.emit(self)
-	_play_hover_animation(true)
 
-func _on_mouse_exited():
+func _on_mouse_exited() -> void:
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector3.ONE, 0.15)
 	object_unhovered.emit(self)
-	_play_hover_animation(false)
 
 # Plays a subtle "pick up" animation on hover: lifts and tilts the model
 func _play_hover_animation(is_hovering: bool) -> void:

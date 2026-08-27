@@ -123,7 +123,9 @@ func _ready():
 	# gold-check / charm-activation flow as the main world items.
 	var shop_node = get_node_or_null("Node3D")
 	if shop_node and shop_node.has_signal("charm_purchase_requested"):
-		shop_node.charm_purchase_requested.connect(_on_object_clicked)
+		shop_node.charm_purchase_requested.connect(_on_shop_charm_purchase_requested)
+		shop_node.reroll_requested.connect(_on_shop_reroll_requested)
+		shop_node.start_new_round()
 			
 	var board_container = $Table_Scene
 	
@@ -152,26 +154,48 @@ func _on_object_unhovered(node):
 		print("Main World: stopped hovering over: ", node.item_info.item_name)
 
 func _on_object_clicked(node):
+	_try_purchase_charm(node)
+
+func _try_purchase_charm(node) -> bool:
 	if not node or not "item_info" in node or not node.item_info:
-		return
+		return false
 		
 	var item_name = node.item_info.item_name
 
 	# IGNORE THE BOWL/WHEEL HERE so world.gd doesn't treat it as a charm buy purchase!
-	if item_name == "bowl":
-		return
+	if item_name == "bowl" or item_name == "ShopReroll":
+		return false
 
 	var active_names = GlobalData.active_charms_global.map(func(charm): return charm.get("name", ""))
 	if item_name in active_names:
 		print("you already have this mr Jeff Bezos")
+		return false
 	elif GlobalData.player_stats.gold >= int(node.item_info.item_value):
 		emit_signal("main_world_item_toggeled", node)
 		GlobalData.player_stats.gold -= int(node.item_info.item_value)
+		return true
 	else:
 		if GlobalData.player_stats.gold <= 0:
 			print("Litttteraly out of money!!!!!! L skill issue")
 		else:
 			print("Too poor, speed please i need this my mom is kinda homeless")
+	return false
+
+func _on_shop_charm_purchase_requested(node) -> void:
+	var shop_node = get_node_or_null("Node3D")
+	if _try_purchase_charm(node) and shop_node and shop_node.has_method("handle_successful_purchase"):
+		shop_node.handle_successful_purchase(node)
+
+func _on_shop_reroll_requested() -> void:
+	var shop_node = get_node_or_null("Node3D")
+	if not shop_node:
+		return
+	if GlobalData.player_stats.gold < GlobalData.shop_reroll_price:
+		print("Not enough gold to reroll the shop.")
+		return
+	GlobalData.player_stats.gold -= GlobalData.shop_reroll_price
+	GlobalData.shop_reroll_price *= 3
+	shop_node.reroll_shop_stock()
 
 
 # --- SIGNAL RECEIVERS ---
@@ -343,6 +367,9 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 			# Reset round counters then show food selection
 			GlobalData.spin_count = 0
 			GlobalData.money_earned_this_round = 0
+			var shop_node = get_node_or_null("Node3D")
+			if shop_node and shop_node.has_method("start_new_round"):
+				shop_node.start_new_round()
 			food_card_popup.show_popup()
 		else:
 			print("Round FAILED — not enough money earned. Game over.")
