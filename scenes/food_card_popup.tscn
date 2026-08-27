@@ -100,9 +100,6 @@ size_flags_horizontal = 4
 alignment = 1
 custom_minimum_size = Vector2(960, 400)
 
-# ============================================================
-# Card 0
-# ============================================================
 [node name="Card0" type="PanelContainer" parent="Panel/VBox/CardsContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 380)
@@ -161,9 +158,6 @@ theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Pick"
 
-# ============================================================
-# Card 1
-# ============================================================
 [node name="Card1" type="PanelContainer" parent="Panel/VBox/CardsContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 380)
@@ -222,9 +216,6 @@ theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Pick"
 
-# ============================================================
-# Card 2
-# ============================================================
 [node name="Card2" type="PanelContainer" parent="Panel/VBox/CardsContainer"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 380)
