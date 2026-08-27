@@ -444,20 +444,26 @@ func _on_food_selected(buff_key: String, model_path: String) -> void:
 	# 2 — Spawn the food model at the spawn marker
 	var food_node: Node3D = null
 	if model_path != "":
-		var packed = load(model_path)
+		var packed: PackedScene = load(model_path) as PackedScene
 		if packed:
 			food_node = packed.instantiate()
-			add_child(food_node)
-			food_node.global_position = food_spawn.global_position
+			food_spawn.add_child(food_node)
+			food_node.position = Vector3.ZERO
+			print("Food model spawned: ", model_path)
+		else:
+			push_warning("_on_food_selected: could not load model: " + model_path)
 
-	# 3 — Wait 3 seconds
-	await get_tree().create_timer(3.0).timeout
+	# 3 — Show food for 2.5 seconds
+	await get_tree().create_timer(2.5).timeout
 
 	# 4 — Despawn the model
 	if is_instance_valid(food_node):
 		food_node.queue_free()
 
-	# 5 — Return camera to original position and rotation
+	# 5 — Sit at chute for 4 more seconds
+	await get_tree().create_timer(4.0).timeout
+
+	# 6 — Return camera to original position and rotation
 	var tween_back = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	tween_back.tween_property(camera_node, "global_position", original_position, 1.2)
 	tween_back.tween_property(camera_node, "rotation", original_rotation, 1.2)
