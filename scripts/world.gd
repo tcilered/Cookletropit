@@ -121,7 +121,7 @@ func _ready():
 
 	for child in get_children():
 		if child.has_signal("charm_purchase_requested"):
-			child.charm_purchase_requested.connect(_on_shop_charm_purchased)
+			child.charm_purchase_requested.connect(_on_shop_charm_purchase_requested)
 			
 	var board_container = $Table_Scene
 	
@@ -152,39 +152,57 @@ func _on_object_unhovered(node):
 		print("Main World: stopped hovering over: ", node.item_info.item_name)
 
 func _on_object_clicked(node):
+	_try_purchase_charm(node)
+
+func _try_purchase_charm(node) -> bool:
 	if not node or node.get("item_info") == null:
-		return
+		return false
 		
 	var item_name = node.item_info.item_name
 
-	# IGNORE THE BOWL/WHEEL HERE so world.gd doesn't treat it as a charm buy purchase!
-	if item_name == "bowl":
-		return
+	if item_name == "bowl" or item_name == "ShopReroll":
+		return false
 
 	var owned_names: Array[String] = GlobalData.owned_charms_global.duplicate()
 	for charm in GlobalData.active_charms_global:
 		var charm_name := str(charm.get("name", ""))
 		if charm_name != "" and charm_name not in owned_names:
 			owned_names.append(charm_name)
+
 	if item_name in owned_names:
 		print("you already have this mr Jeff Bezos")
+		return false
 	elif GlobalData.player_stats.gold >= int(node.item_info.item_value):
 		node.item_info.has_bought = true
 		if item_name not in GlobalData.owned_charms_global:
 			GlobalData.owned_charms_global.append(item_name)
 		emit_signal("main_world_item_toggeled", node)
 		GlobalData.player_stats.gold -= int(node.item_info.item_value)
+		return true
 	else:
 		if GlobalData.player_stats.gold <= 0:
 			print("Litttteraly out of money!!!!!! L skill issue")
 		else:
 			print("Too poor, speed please i need this my mom is kinda homeless")
-
-func _on_shop_charm_purchased(node: Node) -> void:
+		return false
+		
+		
+func _on_shop_charm_purchase_requested(node: Node) -> void:
 	if not node or node.get("item_info") == null:
 		return
+		
+	var item_name: String = node.item_info.item_name
+	
+	# 1. Forward to WheelScene so it generates and attaches functional closures
+	var wheel = get_node_or_null("WheelScene") # Ensure node path matches your scene tree
+	if wheel and wheel.has_method("add_charm"):
+		wheel.add_charm(item_name)
+	else:
+		push_warning("WheelScene not found or missing add_charm method!")
 
-	emit_signal("main_world_item_toggeled", node)
+	# 2. Handle special Coupon / Reroll Reset charm
+	if item_name == "CouponCharm" or item_name == "RerollResetCharm":
+		GlobalData.shop_reroll_price = 100
 
 
 # --- SIGNAL RECEIVERS ---

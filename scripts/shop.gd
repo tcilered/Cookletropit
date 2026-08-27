@@ -54,6 +54,7 @@ func _ready() -> void:
 	_ensure_global_shop_state()
 	_connect_item_signals(self)
 	_sync_with_global_state()
+	
 
 func _ensure_global_shop_state() -> void:
 	if GlobalData.shop_reroll_price <= 0:
@@ -112,6 +113,8 @@ func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 	charm_purchase_requested.emit(node)
 	_sync_all_shops()
 
+
+
 func _try_reroll_shop() -> void:
 	var reroll_price := int(GlobalData.shop_reroll_price)
 	if GlobalData.player_stats.gold < reroll_price:
@@ -166,7 +169,7 @@ func _refresh_stock_slots() -> void:
 			continue
 
 		for child in slot.get_children():
-			child.free()
+			child.queue_free() # <-- Safely queues deletion
 
 		if slot_index >= GlobalData.shop_stock_names.size():
 			continue
@@ -178,7 +181,9 @@ func _refresh_stock_slots() -> void:
 		slot.add_child(item_node)
 
 	_connect_item_signals(self)
-
+	
+	
+	
 func _create_item_data(charm_name: String) -> ItemData:
 	var item_data := ItemData.new()
 	var definition: Dictionary = SHOP_ITEMS.get(charm_name, {})
