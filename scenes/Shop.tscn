@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c7t5k0ic8sco0" path="res://models/Glb/goblle.glb" id="3_goblet"]
 [ext_resource type="PackedScene" uid="uid://cppmaqni0mqv6" path="res://models/Glb/sowrd.glb" id="4_sword"]
 [ext_resource type="PackedScene" uid="uid://cp7oe44v3bn3x" path="res://models/Glb/mirror.glb" id="5_mirror"]
-
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(2.359497, 0.16320801, 1.2546387)
 
@@ -65,3 +64,9 @@ item_info = SubResource("Resource_mirror")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2045192156]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0.7573565, 1.6033093)
+
+[node name="Reroll_Button" type="Node3D" parent="." unique_id=1931984600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25000003, -0.862)
+
+[node name="Area3D" parent="Reroll_Button" unique_id=1931984601 instance=ExtResource("1_rgcs7")]
+item_info = SubResource("Resource_mirror")

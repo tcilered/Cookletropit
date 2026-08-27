@@ -24,6 +24,25 @@ func _ready():
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	input_event.connect(_on_input_event)
+	_rebuild_from_item_info()
+	
+func set_item_info_data(new_item_info: ItemData) -> void:
+	item_info = new_item_info
+	_rebuild_from_item_info()
+
+func clear_item_info_data() -> void:
+	item_info = null
+	_rebuild_from_item_info()
+
+func _rebuild_from_item_info() -> void:
+	_spawned_model_instance = null
+	_rest_model_position = Vector3.ZERO
+	_rest_model_rotation = Vector3.ZERO
+	input_ray_pickable = false
+	
+	for child in get_children():
+		remove_child(child)
+		child.queue_free()
 	
 	if item_info != null and item_info.item_mesh != null:
 		var spawned_wheel = item_info.item_mesh.instantiate()
@@ -59,6 +78,8 @@ func _ready():
 		else:
 			_generate_collision_from_scene(spawned_wheel)
 			print("Auto-generating shape from mesh for: ", item_info.item_name)
+		
+		input_ray_pickable = true
 
 
 # --- Helper Functions ---
