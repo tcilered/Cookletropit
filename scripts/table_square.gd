@@ -8,6 +8,11 @@ signal hover_moved(play_type, square_id, global_pos)
 
 @export var square_id: int = 17
 
+# --- NEW: EXPORT GROUP FOR SPECIAL BETS ---
+@export_group("Special Outside Bet")
+@export_enum("none", "even", "odd", "red", "black", "dozen1", "dozen2", "dozen3", "column1", "column2", "column3", "low", "high") var special_bet_type: String = "none"
+# ------------------------------------------
+
 @export_group("Identification")
 @export_enum("red", "black", "green") var square_colour: String = "red"
 @export_group("Roulette Logic")
@@ -19,6 +24,12 @@ signal hover_moved(play_type, square_id, global_pos)
 var current_hover_zone: String = "none"
 
 func get_shared_border_dynamic(zone: String) -> String:
+	# --- NEW: OVERRIDE FOR OUTSIDE BETS ---
+	# If this is a special bet, skip ALL edge/corner math and just return the bet name.
+	if special_bet_type != "none":
+		return special_bet_type
+	# --------------------------------------
+
 	if zone == "center":
 		return "straight_" + str(square_id)
 		
