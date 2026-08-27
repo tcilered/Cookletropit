@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cxjxlmwuwp3q5"]
+
+[ext_resource type="PackedScene" uid="uid://bjmfll8w5h818" path="res://models/Glb/Chute_Door.glb" id="1_j8673"]
+
+[node name="Chute_Door" unique_id=1837431200 instance=ExtResource("1_j8673")]
