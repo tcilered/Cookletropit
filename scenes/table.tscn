@@ -20,8 +20,185 @@ material = SubResource("StandardMaterial3D_kl0hw")
 
 [node name="Node3D" type="Node3D" unique_id=105314924]
 
+[node name="Label3D42" type="Label3D" parent="." unique_id=2038083663]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 12.493592, 0.80893105, -1.4064708)
+text = "32
+"
+
+[node name="Label3D41" type="Label3D" parent="." unique_id=1169996121]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 12.493592, 0.80148864, 0.37417614)
+text = "31"
+
+[node name="Label3D16" type="Label3D" parent="." unique_id=1410980972]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 9.970121, 0.81573915, 0.41669643)
+text = "25
+"
+
+[node name="Label3D40" type="Label3D" parent="." unique_id=1005263825]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 2.4821649, 0.81945, -1.431363)
+text = "8"
+
+[node name="Label3D39" type="Label3D" parent="." unique_id=426394960]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 2.4821649, 0.8082823, -3.2370443)
+text = "9"
+
+[node name="Label3D" type="Label3D" parent="." unique_id=78143626]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 2.4821649, 0.7859742, 0.37431824)
+text = "7"
+
+[node name="Label3D38" type="Label3D" parent="." unique_id=1887421687]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 8.749842, 0.83376265, -1.3421813)
+text = "23
+
+"
+
+[node name="Label3D37" type="Label3D" parent="." unique_id=586652433]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 7.4811378, 0.83105475, -1.3708148)
+text = "20
+
+
+"
+
+[node name="Label3D36" type="Label3D" parent="." unique_id=64399699]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 7.4811378, 0.80500615, 0.37116814)
+text = "19
+"
+
+[node name="Label3D35" type="Label3D" parent="." unique_id=1654126781]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 7.4811378, 0.83105266, -3.176496)
+text = "21"
+
+[node name="Label3D34" type="Label3D" parent="." unique_id=124709820]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 6.2270203, 0.8098966, 0.3515886)
+text = "16"
+
+[node name="Label3D33" type="Label3D" parent="." unique_id=71597431]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 6.2270203, 0.8152842, -1.4540926)
+text = "17
+"
+
+[node name="Label3D32" type="Label3D" parent="." unique_id=117694451]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 6.2270203, 0.8152821, -3.259774)
+text = "18
+"
+
+[node name="Label3D31" type="Label3D" parent="." unique_id=613903521]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 8.749842, 0.8151565, 0.3870619)
+text = "22
+"
+
+[node name="Label3D30" type="Label3D" parent="." unique_id=1929766875]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 8.720079, 0.81143504, -3.1478624)
+text = "24
+"
+
+[node name="Label3D2" type="Label3D" parent="." unique_id=311389180]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, -0.018345356, 0.767368, 0.37759948)
+text = "1"
+
+[node name="Label3D24" type="Label3D" parent="." unique_id=553337682]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 11.229871, 0.79900753, -3.1899178)
+text = "30
+"
+
+[node name="Label3D23" type="Label3D" parent="." unique_id=2026238906]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 13.737602, 0.81354266, -1.4144626)
+text = "35"
+
+[node name="Label3D20" type="Label3D" parent="." unique_id=185940427]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 13.737601, 0.8135427, 0.40728492)
+text = "34"
+
+[node name="Label3D22" type="Label3D" parent="." unique_id=988806052]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 13.70547, 0.8135425, -3.1317804)
+text = "36
+"
+
+[node name="Label3D21" type="Label3D" parent="." unique_id=576295958]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 11.229871, 0.7990078, 0.4214446)
+text = "28
+"
+
+[node name="Label3D19" type="Label3D" parent="." unique_id=945922345]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 9.9625, 0.8157391, -1.3829345)
+text = "26
+"
+
+[node name="Label3D18" type="Label3D" parent="." unique_id=2016182469]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 11.229871, 0.7990077, -1.3842366)
+text = "29
+"
+
+[node name="Label3D17" type="Label3D" parent="." unique_id=2061133838]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 12.493592, 0.80892897, -3.212152)
+text = "33"
+
+[node name="Label3D14" type="Label3D" parent="." unique_id=124081025]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 9.9625, 0.8157389, -3.1886158)
+text = "27"
+
+[node name="Label3D13" type="Label3D" parent="." unique_id=1666471746]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 4.983365, 0.82794887, -1.4590397)
+text = "14
+"
+
+[node name="Label3D12" type="Label3D" parent="." unique_id=1925216676]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 4.983365, 0.8093406, -3.264721)
+text = "15"
+
+[node name="Label3D11" type="Label3D" parent="." unique_id=1401060327]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 4.983365, 0.8125068, 0.34664148)
+text = "13"
+
+[node name="Label3D10" type="Label3D" parent="." unique_id=1840580895]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 3.7152562, 0.8162279, -3.2567291)
+text = "12
+"
+
+[node name="Label3D9" type="Label3D" parent="." unique_id=1963936782]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 3.7152562, 0.8241939, -1.4510479)
+text = "11
+"
+
+[node name="Label3D8" type="Label3D" parent="." unique_id=1425392978]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 3.7152562, 0.80186653, 0.35463333)
+text = "10"
+
+[node name="Label3D7" type="Label3D" parent="." unique_id=169825758]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 1.2497636, 0.7785144, -1.4360735)
+text = "5"
+
+[node name="Label3D6" type="Label3D" parent="." unique_id=487065016]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 1.2497636, 0.7785142, -3.2417548)
+text = "6"
+
+[node name="Label3D5" type="Label3D" parent="." unique_id=1087001924]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 1.2497636, 0.7859741, 0.36960763)
+text = "4"
+
+[node name="Label3D4" type="Label3D" parent="." unique_id=188839043]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, -0.018345356, 0.7785143, -3.233763)
+text = "3"
+
+[node name="Label3D3" type="Label3D" parent="." unique_id=1330262902]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, -0.018345356, 0.78223383, -1.4280818)
+text = "2"
+
+[node name="Label3D43" type="Label3D" parent="." unique_id=488937768]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 14.958385, 0.8135424, -1.4144626)
+text = "M12"
+
+[node name="Label3D44" type="Label3D" parent="." unique_id=1796166506]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 14.9583845, 0.8135425, 0.40728492)
+text = "F12"
+
+[node name="Label3D45" type="Label3D" parent="." unique_id=2021085277]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 14.926253, 0.81354225, -3.1317804)
+text = "L12
+"
+
 [node name="Row_1_" type="Area3D" parent="." unique_id=207384824]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3927369)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018345356, 0, 0.37759948)
 script = ExtResource("1_jd0nb")
 square_id = 1
 is_even = true
@@ -34,184 +211,8 @@ shape = SubResource("BoxShape3D_v5i0k")
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, -0.007806182)
 mesh = SubResource("BoxMesh_kl0hw")
 
-[node name="Label3D" type="Label3D" parent="Row_1_" unique_id=311389180]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.80568117, 0)
-text = "1"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D" unique_id=1330262902]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "2"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D" unique_id=188839043]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "3"
-
-[node name="Label3D2" type="Label3D" parent="Row_1_/Label3D" unique_id=1087001924]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.268109, 0.00799185, -1.1920929e-07)
-text = "4"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D2" unique_id=169825758]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "5"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D2/Label3D" unique_id=487065016]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "6"
-
-[node name="Label3D3" type="Label3D" parent="Row_1_/Label3D" unique_id=1425392978]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7336016, 0.022966146, -0.04364556)
-text = "10"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3" unique_id=1963936782]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "11
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D" unique_id=1840580895]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "12
-"
-
-[node name="Label3D2" type="Label3D" parent="Row_1_/Label3D/Label3D3" unique_id=1401060327]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.268109, 0.00799185, -1.1920929e-07)
-text = "13"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D2" unique_id=1666471746]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "14
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D2/Label3D" unique_id=1925216676]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "15"
-
-[node name="Label3D3" type="Label3D" parent="Row_1_/Label3D/Label3D3" unique_id=1366929656]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.795662, -0.13579729, -0.028058529)
-text = "1"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3" unique_id=1433438873]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "2"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D" unique_id=2135194327]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "3"
-
-[node name="Label3D2" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3" unique_id=94377554]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.268109, 0.00799185, -1.1920929e-07)
-text = "1"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D2" unique_id=315900996]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "2"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D2/Label3D" unique_id=1639773740]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "3"
-
-[node name="Label3D3" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3" unique_id=1410980972]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4209843, 0.060994178, 0.037685156)
-text = "25
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3" unique_id=945922345]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0.030597687, 1.8123709, 0)
-text = "26
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3/Label3D" unique_id=124081025]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "27"
-
-[node name="Label3D2" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3" unique_id=576295958]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2979689, 0.00799185, -1.1920929e-07)
-text = "28
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3/Label3D2" unique_id=2016182469]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "29
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3/Label3D2/Label3D" unique_id=553337682]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "30
-"
-
-[node name="Label3D3" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3" unique_id=1169996121]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5054588, -0.058137476, 0.055866957)
-text = "31"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3/Label3D3" unique_id=2038083663]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "32
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3/Label3D3/Label3D" unique_id=2061133838]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "33"
-
-[node name="Label3D2" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3/Label3D3" unique_id=185940427]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.268109, 0.00799185, -1.1920929e-07)
-text = "34"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3/Label3D3/Label3D2" unique_id=2026238906]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "35"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D3/Label3D3/Label3D3/Label3D3/Label3D2/Label3D" unique_id=988806052]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "36
-"
-
-[node name="Label3D4" type="Label3D" parent="Row_1_/Label3D" unique_id=124709820]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2125793, -0.028633475, -0.04364556)
-text = "16"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D4" unique_id=71597431]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "17
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D4/Label3D" unique_id=117694451]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "18
-"
-
-[node name="Label3D4" type="Label3D" parent="Row_1_/Label3D/Label3D4" unique_id=64399699]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2949367, -0.028633475, 0.015770555)
-text = "19
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D4/Label3D4" unique_id=586652433]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "20
-
-
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D4/Label3D4/Label3D" unique_id=1654126781]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "21"
-
-[node name="Label3D4" type="Label3D" parent="Row_1_/Label3D/Label3D4/Label3D4" unique_id=613903521]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2606707, -0.028633475, -0.0058434606)
-text = "22
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D4/Label3D4/Label3D4" unique_id=1887421687]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "23
-
-"
-
-[node name="Label3D" type="Label3D" parent="Row_1_/Label3D/Label3D4/Label3D4/Label3D4/Label3D" unique_id=1929766875]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "24
-"
-
 [node name="Row_1_2" type="Area3D" parent="." unique_id=1954574673]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2410645, 0, 0.38379145)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2227192, 0, 0.368654)
 script = ExtResource("1_jd0nb")
 square_id = 4
 square_colour = "black"
@@ -225,7 +226,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_1_3" type="Area3D" parent="." unique_id=487230297]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4909997, 0, 0.38460216)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4726543, 0, 0.36946473)
 script = ExtResource("1_jd0nb")
 square_id = 7
 
@@ -238,7 +239,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_1_4" type="Area3D" parent="." unique_id=380349034]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7407384, 0, 0.38460225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722393, 0, 0.3694648)
 script = ExtResource("1_jd0nb")
 square_id = 10
 square_colour = "black"
@@ -252,7 +253,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_1_5" type="Area3D" parent="." unique_id=1480860463]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9906964, 0, 0.3833577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.972351, 0, 0.36822027)
 script = ExtResource("1_jd0nb")
 square_id = 13
 square_colour = "black"
@@ -266,7 +267,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_1_6" type="Area3D" parent="." unique_id=705586695]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2383246, 0, 0.3833577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2199793, 0, 0.36822027)
 script = ExtResource("1_jd0nb")
 square_id = 16
 
@@ -279,7 +280,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_1_7" type="Area3D" parent="." unique_id=156105906]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.482885, 0, 0.3833577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4645395, 0, 0.36822027)
 script = ExtResource("1_jd0nb")
 square_id = 19
 
@@ -292,7 +293,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_1_8" type="Area3D" parent="." unique_id=940237238]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.735249, 0, 0.3833577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.716904, 0, 0.36822027)
 script = ExtResource("1_jd0nb")
 square_id = 22
 square_colour = "black"
@@ -306,7 +307,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_1_9" type="Area3D" parent="." unique_id=620080693]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.982471, 0, 0.3833577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.964127, 0, 0.36822027)
 script = ExtResource("1_jd0nb")
 square_id = 25
 
@@ -319,7 +320,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_1_10" type="Area3D" parent="." unique_id=34951468]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.232077, 0, 0.3833577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.213732, 0, 0.36822027)
 script = ExtResource("1_jd0nb")
 square_id = 28
 square_colour = "black"
@@ -329,11 +330,11 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 shape = SubResource("BoxShape3D_v5i0k")
 
 [node name="17_Mesh" type="MeshInstance3D" parent="Row_1_10" unique_id=1342019954]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, -7.599592e-07)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0.008030891, 0.70984155, -7.613639e-07)
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_1_11" type="Area3D" parent="." unique_id=2016145649]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4823475, 0, 0.3833577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.464003, 0, 0.36822027)
 script = ExtResource("1_jd0nb")
 square_id = 31
 square_colour = "black"
@@ -343,11 +344,11 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 shape = SubResource("BoxShape3D_v5i0k")
 
 [node name="17_Mesh" type="MeshInstance3D" parent="Row_1_11" unique_id=775397837]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, -9.0897083e-07)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0.008029938, 0.70984155, -9.103753e-07)
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_1_12" type="Area3D" parent="." unique_id=1681996382]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.730218, 0, 0.3833577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.711874, 0, 0.36822027)
 script = ExtResource("1_jd0nb")
 square_id = 34
 
@@ -356,11 +357,11 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 shape = SubResource("BoxShape3D_v5i0k")
 
 [node name="17_Mesh" type="MeshInstance3D" parent="Row_1_12" unique_id=1152923669]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, -1.0728836e-06)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0.008028984, 0.70984155, -1.074288e-06)
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_13" type="Area3D" parent="." unique_id=768282350]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3680801)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018345356, 0, -1.3832176)
 script = ExtResource("1_jd0nb")
 square_id = 2
 square_colour = "black"
@@ -375,7 +376,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_14" type="Area3D" parent="." unique_id=1361140924]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2410645, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2227192, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_id = 5
 is_even = true
@@ -389,7 +390,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_15" type="Area3D" parent="." unique_id=367895289]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4909997, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4726543, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_id = 8
 square_colour = "black"
@@ -404,7 +405,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_16" type="Area3D" parent="." unique_id=2102719473]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7407384, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722393, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_id = 11
 square_colour = "black"
@@ -419,7 +420,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_17" type="Area3D" parent="." unique_id=359783465]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9906964, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.972351, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_id = 14
 is_even = true
@@ -433,7 +434,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_18" type="Area3D" parent="." unique_id=2045990372]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2383246, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2199793, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_colour = "black"
 is_even = true
@@ -447,7 +448,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_19" type="Area3D" parent="." unique_id=1720357516]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.482885, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4645395, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_id = 20
 square_colour = "black"
@@ -462,7 +463,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_20" type="Area3D" parent="." unique_id=162340035]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.735249, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.716904, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_id = 23
 is_even = true
@@ -476,7 +477,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_21" type="Area3D" parent="." unique_id=297612396]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.982471, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.964127, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_id = 26
 square_colour = "black"
@@ -491,7 +492,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_22" type="Area3D" parent="." unique_id=1962854732]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.232077, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.213732, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_id = 29
 square_colour = "black"
@@ -502,11 +503,11 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 shape = SubResource("BoxShape3D_v5i0k")
 
 [node name="17_Mesh" type="MeshInstance3D" parent="Row_2_22" unique_id=460419692]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 5.9604645e-07)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0.008030891, 0.70984155, 5.946418e-07)
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_23" type="Area3D" parent="." unique_id=34727746]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4823475, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.464003, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_id = 32
 is_even = true
@@ -516,11 +517,11 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 shape = SubResource("BoxShape3D_v5i0k")
 
 [node name="17_Mesh" type="MeshInstance3D" parent="Row_2_23" unique_id=1935042247]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 5.9604645e-07)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0.008029938, 0.70984155, 5.9464196e-07)
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_2_24" type="Area3D" parent="." unique_id=1273677957]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.730218, 0, -1.3679593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.711874, 0, -1.3830967)
 script = ExtResource("1_jd0nb")
 square_id = 35
 square_colour = "black"
@@ -531,14 +532,14 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 shape = SubResource("BoxShape3D_v5i0k")
 
 [node name="17_Mesh" type="MeshInstance3D" parent="Row_2_24" unique_id=722885155]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 5.9604645e-07)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0.008028984, 0.70984155, 5.9464213e-07)
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1486514924]
-transform = Transform3D(-4.5512568e-08, -0.9945602, 0.10416388, -0.015498015, 0.10415137, 0.99444073, -0.9998799, -0.0016142881, -0.015413714, 8.393944, 9.378908, -0.1364752)
+transform = Transform3D(-4.5512568e-08, -0.9945602, 0.10416388, -0.015498015, 0.10415137, 0.99444073, -0.9998799, -0.0016142881, -0.015413714, 8.375599, 9.378908, -0.15161264)
 
 [node name="Row_3_25" type="Area3D" parent="." unique_id=2002049850]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.1243825)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018345356, 0, -3.13952)
 script = ExtResource("1_jd0nb")
 square_id = 3
 is_even = true
@@ -552,7 +553,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_26" type="Area3D" parent="." unique_id=117981273]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2410645, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2227192, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 6
 square_colour = "black"
@@ -567,7 +568,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_27" type="Area3D" parent="." unique_id=1948893095]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4909997, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4726543, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 9
 is_even = true
@@ -581,7 +582,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_28" type="Area3D" parent="." unique_id=1408113600]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7407384, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.722393, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 12
 is_even = true
@@ -595,7 +596,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_29" type="Area3D" parent="." unique_id=1731385362]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9906964, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.972351, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 15
 square_colour = "black"
@@ -610,7 +611,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_30" type="Area3D" parent="." unique_id=2053090303]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2383246, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2199793, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 18
 is_even = true
@@ -624,7 +625,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_31" type="Area3D" parent="." unique_id=1829409125]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.482885, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4645395, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 21
 is_even = true
@@ -638,7 +639,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_32" type="Area3D" parent="." unique_id=902234576]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.735249, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.716904, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 24
 square_colour = "black"
@@ -653,7 +654,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_33" type="Area3D" parent="." unique_id=303559779]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.982471, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.964127, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 27
 is_even = true
@@ -667,7 +668,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_34" type="Area3D" parent="." unique_id=872933710]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.232077, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.213732, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 30
 is_even = true
@@ -677,11 +678,11 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 shape = SubResource("BoxShape3D_v5i0k")
 
 [node name="17_Mesh" type="MeshInstance3D" parent="Row_3_34" unique_id=1227842537]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 9.536743e-07)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0.008030891, 0.70984155, 9.5226966e-07)
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_35" type="Area3D" parent="." unique_id=1867460217]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4823475, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.464003, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 33
 square_colour = "black"
@@ -692,11 +693,11 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 shape = SubResource("BoxShape3D_v5i0k")
 
 [node name="17_Mesh" type="MeshInstance3D" parent="Row_3_35" unique_id=844899378]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 9.536743e-07)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0.008029938, 0.70984155, 9.5226983e-07)
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="Row_3_36" type="Area3D" parent="." unique_id=721455265]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.730218, 0, -3.1263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.711874, 0, -3.1414375)
 script = ExtResource("1_jd0nb")
 square_id = 36
 is_even = true
@@ -706,22 +707,263 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8
 shape = SubResource("BoxShape3D_v5i0k")
 
 [node name="17_Mesh" type="MeshInstance3D" parent="Row_3_36" unique_id=1379241648]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 9.536743e-07)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0.008028984, 0.70984155, 9.5227e-07)
 mesh = SubResource("BoxMesh_kl0hw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=605709655]
-transform = Transform3D(1.649637, 0, 0, 0, -5.9422106e-08, -0.57908, 0, 1.3594193, -2.531239e-08, 5.843144, 0.53483343, 2.0660286)
+transform = Transform3D(1.649637, 0, 0, 0, -5.9422106e-08, -0.57908, 0, 1.3594193, -2.531239e-08, 5.8247986, 0.53483343, 2.0508912)
 visible = false
 mesh = SubResource("SphereMesh_vjl2i")
 
-[node name="Label3D" type="Label3D" parent="." unique_id=78143626]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.5005102, 0.80568117, 0.38945568)
-text = "7"
+[node name="Special_0" type="Area3D" parent="." unique_id=1109789622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.260395, 0, -1.3890693)
+script = ExtResource("1_jd0nb")
+square_id = 0
+square_colour = "black"
 
-[node name="Label3D" type="Label3D" parent="Label3D" unique_id=1005263825]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "8"
+[node name="Label3D2" type="Label3D" parent="Special_0" unique_id=630781347]
+transform = Transform3D(1.67, 0, 0, 0, -7.299802e-08, 1.67, 0, -1.67, -7.299802e-08, 0.014098406, 0.7796128, 0.0029240847)
+text = "0
+"
 
-[node name="Label3D" type="Label3D" parent="Label3D/Label3D" unique_id=426394960]
-transform = Transform3D(1, 0, 0, 0, 1, 5.563627e-08, 0, -5.563627e-08, 1, 0, 1.8056812, 0)
-text = "9"
+[node name="17_Collision" type="CollisionShape3D" parent="Special_0" unique_id=953426944]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 6.556511e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="Special_0" unique_id=1087786688]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 6.556511e-07)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="Red" type="Area3D" parent="." unique_id=454535819]
+transform = Transform3D(-6.29444e-08, 0, 1.5, 0, 1.44, 0, -1.44, 0, -6.556708e-08, 5.6155725, -0.35345244, 2.1033509)
+script = ExtResource("1_jd0nb")
+square_id = 0
+special_bet_type = "red"
+square_colour = "black"
+
+[node name="Label3D2" type="Label3D" parent="Red" unique_id=1086924149]
+transform = Transform3D(-4.3711392e-08, 0.99999994, 0, 5.960464e-08, -7.1054274e-15, 1, 1, 4.371139e-08, -5.9604638e-08, 0.014098406, 0.7796127, 0.0029239655)
+text = "Red
+"
+
+[node name="17_Collision" type="CollisionShape3D" parent="Red" unique_id=1213294536]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 6.556511e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="Red" unique_id=1983763450]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484552e-07, 0, 0.99999994, -2.861023e-06, 0.70984155, -0.0033740997)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="Black" type="Area3D" parent="." unique_id=1940527728]
+transform = Transform3D(-6.29444e-08, 0, 1.5, 0, 1.44, 0, -1.44, 0, -6.556708e-08, 8.101446, -0.35345244, 2.1033509)
+script = ExtResource("1_jd0nb")
+square_id = 0
+special_bet_type = "black"
+square_colour = "black"
+
+[node name="Label3D2" type="Label3D" parent="Black" unique_id=1608917228]
+transform = Transform3D(-4.371139e-08, 1, 0, 5.9604645e-08, 0, 1, 1, 4.371139e-08, -5.960464e-08, 0.014098406, 0.7796128, 0.0029240847)
+text = "Black
+
+"
+
+[node name="17_Collision" type="CollisionShape3D" parent="Black" unique_id=603534298]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 6.556511e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="Black" unique_id=517584399]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 6.556511e-07)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="Odd" type="Area3D" parent="." unique_id=409077980]
+transform = Transform3D(-6.29444e-08, 0, 1.5, 0, 1.44, 0, -1.44, 0, -6.556708e-08, 10.585478, -0.35345244, 2.1033509)
+script = ExtResource("1_jd0nb")
+square_id = 0
+special_bet_type = "odd"
+square_colour = "black"
+
+[node name="Label3D2" type="Label3D" parent="Odd" unique_id=510229989]
+transform = Transform3D(-4.371139e-08, 1, 0, 5.9604645e-08, 0, 1, 1, 4.371139e-08, -5.960464e-08, 0.014098406, 0.7796128, 0.0029240847)
+text = "Odd
+
+"
+
+[node name="17_Collision" type="CollisionShape3D" parent="Odd" unique_id=1012666294]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 6.556511e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="Odd" unique_id=795110282]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 6.556511e-07)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="High(2nd half)" type="Area3D" parent="." unique_id=780084950]
+transform = Transform3D(-6.29444e-08, 0, 1.5, 0, 1.44, 0, -1.44, 0, -6.556708e-08, 13.071351, -0.35345244, 2.1033509)
+script = ExtResource("1_jd0nb")
+square_id = 0
+special_bet_type = "high"
+square_colour = "black"
+
+[node name="Label3D2" type="Label3D" parent="High(2nd half)" unique_id=1935972481]
+transform = Transform3D(-4.371139e-08, 1, 0, 5.9604645e-08, 0, 1, 1, 4.371139e-08, -5.960464e-08, 0.014098406, 0.7796128, 0.0029240847)
+text = "2nd Half
+"
+
+[node name="17_Collision" type="CollisionShape3D" parent="High(2nd half)" unique_id=1048113672]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 6.556511e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="High(2nd half)" unique_id=624003124]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.8600866e-06, 0.70984155, 0.0053558545)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="Low(1st half)" type="Area3D" parent="." unique_id=1867015399]
+transform = Transform3D(-6.29444e-08, 0, 1.5, 0, 1.44, 0, -1.44, 0, -6.556708e-08, 0.61034894, -0.35345244, 2.1033509)
+script = ExtResource("1_jd0nb")
+square_id = 0
+special_bet_type = "low"
+square_colour = "black"
+
+[node name="Label3D2" type="Label3D" parent="Low(1st half)" unique_id=946083590]
+transform = Transform3D(-4.3711392e-08, 0.99999994, 0, 5.960464e-08, -7.1054274e-15, 1, 1, 4.371139e-08, -5.9604638e-08, 0.014098406, 0.7796127, 0.0029241145)
+text = "1st Half
+
+"
+
+[node name="17_Collision" type="CollisionShape3D" parent="Low(1st half)" unique_id=146349835]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 6.556511e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="Low(1st half)" unique_id=1972609482]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 6.556511e-07)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="Even" type="Area3D" parent="." unique_id=945778265]
+transform = Transform3D(-6.29444e-08, 0, 1.5, 0, 1.44, 0, -1.44, 0, -6.556708e-08, 3.0962226, -0.35345244, 2.1033509)
+script = ExtResource("1_jd0nb")
+square_id = 0
+special_bet_type = "even"
+square_colour = "black"
+
+[node name="Label3D2" type="Label3D" parent="Even" unique_id=1857503559]
+transform = Transform3D(-4.3711392e-08, 0.99999994, 0, 5.960464e-08, -7.1054274e-15, 1, 1, 4.371139e-08, -5.9604638e-08, 0.014098406, 0.7796127, 0.0029242039)
+text = "Even
+"
+
+[node name="17_Collision" type="CollisionShape3D" parent="Even" unique_id=816221100]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 6.556511e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="Even" unique_id=204016887]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.70984155, 6.556511e-07)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="2nd 12" type="Area3D" parent="." unique_id=1568225271]
+transform = Transform3D(-6.29444e-08, 0, 3.17521, 0, 1.44, 0, -1.44, 0, -1.3879284e-07, 6.8373976, -0.35345244, -4.912514)
+script = ExtResource("1_jd0nb")
+square_id = 0
+special_bet_type = "dozen2"
+square_colour = "black"
+
+[node name="Label3D2" type="Label3D" parent="2nd 12" unique_id=2049258238]
+transform = Transform3D(-3.278354e-08, 1.5, 6.556708e-08, 0, -6.556708e-08, 1.5, 0.75, 6.556708e-08, 2.8660283e-15, 0.014098406, 0.7796128, 0.0029240847)
+text = "2nd 12
+
+
+"
+
+[node name="17_Collision" type="CollisionShape3D" parent="2nd 12" unique_id=1576776661]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 6.556511e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="2nd 12" unique_id=1830911146]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.012303935, 0.70984155, 6.578019e-07)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="1st 12" type="Area3D" parent="." unique_id=2128712077]
+transform = Transform3D(-6.29444e-08, 0, 3.17521, 0, 1.44, 0, -1.44, 0, -1.3879284e-07, 1.8505962, -0.35345244, -4.912514)
+script = ExtResource("1_jd0nb")
+square_id = 0
+special_bet_type = "dozen1"
+square_colour = "black"
+
+[node name="Label3D2" type="Label3D" parent="1st 12" unique_id=1173474258]
+transform = Transform3D(-3.278354e-08, 1.5, 6.556708e-08, 0, -6.556708e-08, 1.5, 0.75, 6.556708e-08, 2.8660283e-15, 0.014098406, 0.7796128, 0.0029240847)
+text = "1st 12
+
+
+"
+
+[node name="17_Collision" type="CollisionShape3D" parent="1st 12" unique_id=1568881514]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 6.556511e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="1st 12" unique_id=314827042]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.012303935, 0.70984155, 6.578019e-07)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="2nd 13" type="Area3D" parent="." unique_id=782019801]
+transform = Transform3D(-6.29444e-08, 0, 3.17521, 0, 1.44, 0, -1.44, 0, -1.3879284e-07, 11.849951, -0.35345244, -4.912514)
+script = ExtResource("1_jd0nb")
+square_id = 0
+special_bet_type = "dozen3"
+square_colour = "black"
+
+[node name="Label3D2" type="Label3D" parent="2nd 13" unique_id=611374051]
+transform = Transform3D(-3.278354e-08, 1.5, 6.556708e-08, 0, -6.556708e-08, 1.5, 0.75, 6.556708e-08, 2.8660283e-15, 0.014098406, 0.7796128, 0.0029240847)
+text = "3rd 12
+
+
+"
+
+[node name="17_Collision" type="CollisionShape3D" parent="2nd 13" unique_id=320349785]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -2.861023e-06, 0.768, 6.556511e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="2nd 13" unique_id=660946983]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.012303935, 0.70984155, 6.578019e-07)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="Row_1_13" type="Area3D" parent="." unique_id=1995189716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.037327, 0, 0.36822027)
+script = ExtResource("1_jd0nb")
+square_id = 34
+special_bet_type = "column1"
+
+[node name="17_Collision" type="CollisionShape3D" parent="Row_1_13" unique_id=1232821427]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.07229996, 0.768, -1.0602429e-06)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="Row_1_13" unique_id=1392562088]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.06426811, 0.70984155, -1.0616473e-06)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="Row_2_25" type="Area3D" parent="." unique_id=1965078103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.037327, 0, -1.3830967)
+script = ExtResource("1_jd0nb")
+square_id = 35
+special_bet_type = "column2"
+square_colour = "black"
+is_even = true
+
+[node name="17_Collision" type="CollisionShape3D" parent="Row_2_25" unique_id=371795284]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.07229996, 0.768, 6.0868723e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="Row_2_25" unique_id=1353614911]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.06426811, 0.70984155, 6.072829e-07)
+mesh = SubResource("BoxMesh_kl0hw")
+
+[node name="Row_3_37" type="Area3D" parent="." unique_id=504396475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.037327, 0, -3.1414375)
+script = ExtResource("1_jd0nb")
+square_id = 36
+special_bet_type = "column3"
+is_even = true
+
+[node name="17_Collision" type="CollisionShape3D" parent="Row_3_37" unique_id=428557872]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.07229996, 0.768, 9.66315e-07)
+shape = SubResource("BoxShape3D_v5i0k")
+
+[node name="17_Mesh" type="MeshInstance3D" parent="Row_3_37" unique_id=54526509]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.06426811, 0.70984155, 9.649108e-07)
+mesh = SubResource("BoxMesh_kl0hw")
