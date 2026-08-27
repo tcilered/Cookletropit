@@ -9,6 +9,7 @@ extends Node3D
 @export var popup_scale: Vector3 = Vector3.ONE # Custom scale parameter
 
 var target_world_pos: Vector3
+var is_active: bool = false
 
 func _ready() -> void:
 	if not viewport:
@@ -40,11 +41,9 @@ func _clamp_to_screen_edge() -> void:
 	var is_behind = camera.is_position_behind(target_world_pos)
 	var screen_pos = camera.unproject_position(target_world_pos)
 
-	# Invert vector if point is behind camera plane
 	if is_behind:
 		screen_pos = screen_center - (screen_pos - screen_center)
 
-	# Check if point is outside visible screen viewport rect
 	var is_offscreen = is_behind \
 		or screen_pos.x < edge_margin \
 		or screen_pos.x > (screen_size.x - edge_margin) \
@@ -54,12 +53,10 @@ func _clamp_to_screen_edge() -> void:
 	var final_screen_pos = screen_pos
 
 	if is_offscreen:
-		# Calculate ray vector from screen center to the target's screen point
 		var dir = (screen_pos - screen_center).normalized()
 		if dir == Vector2.ZERO:
 			dir = Vector2.UP
 
-		# Project ray onto screen border box defined by edge_margin
 		var limit = (screen_size * 0.5) - Vector2(edge_margin, edge_margin)
 		var scale_factor = min(
 			abs(limit.x / dir.x) if dir.x != 0 else INF,
@@ -67,7 +64,6 @@ func _clamp_to_screen_edge() -> void:
 		)
 		final_screen_pos = screen_center + dir * scale_factor
 
-	# Project 2D screen coordinates back to 3D world space relative to camera depth
 	var depth = max(camera.global_position.distance_to(target_world_pos), 1.0)
 	global_position = camera.project_position(final_screen_pos, depth)
 
@@ -103,15 +99,23 @@ func display_text(new_text: String, wave_speed: float = 3.0, custom_scale: Vecto
 		if shader_mat:
 			shader_mat.set_shader_parameter("wave_speed", wave_speed)
 		sprite.visible = true
+	
+	# Enable click detection only after setup finishes
+	is_active = true
 
 func dismiss() -> void:
+	is_active = false
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "scale", Vector3.ZERO, 0.15)
 	if sprite:
 		tween.tween_property(sprite, "modulate:a", 0.0, 0.15)
 	tween.chain().tween_callback(queue_free)
 
-func _on_area_3d_input_event(_camera: Node, event: InputEvent, _pos: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	if not is_active:
+		return
+
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		# Blocks the click from propagating to 3D world objects under the mouse
 		get_viewport().set_input_as_handled()
 		dismiss()

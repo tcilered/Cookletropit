@@ -9,33 +9,33 @@ extends Node
 
 const ALL_FOODS: Array = [
 	{
-		"name": "Lucky Bread",
-		"description": "A golden loaf baked under a full moon.\n+0.5x payout multiplier on all wins.",
-		"model_path": "",
-		"buff_key": "lucky_bread"
+		"name": "Depressing birthday cake",
+		"description": "A cake baked with apathy under a full moon and rainbow?.\n+0.5x payout multiplier on all wins.",
+		"model_path": "res://models/Glb/depressing_cake.glb",
+		"buff_key": "Cake"
 	},
 	{
 		"name": "Power Soup",
 		"description": "A hearty bowl that sharpens the senses.\nEarns +$50 bonus after every winning spin.",
-		"model_path": "",
+		"model_path": "res://models/Glb/sad_soup.glb",
 		"buff_key": "power_soup"
 	},
 	{
 		"name": "Golden Apple",
 		"description": "Crisp and glowing with fortune.\nReduces the money threshold each round by 100.",
-		"model_path": "",
+		"model_path": "res://models/Glb/apple_pie.glb",
 		"buff_key": "golden_apple"
 	},
 	{
-		"name": "Spicy Pepper",
+		"name": "Lucky Steak",
 		"description": "Burns away bad luck.\nAny spin that earns $0 still gives back $25.",
-		"model_path": "",
-		"buff_key": "spicy_pepper"
+		"model_path": "res://models/Glb/steak.glb",
+		"buff_key": "Steak"
 	},
 	{
 		"name": "Mystic Mushroom",
 		"description": "Strange and powerful.\nOne spin per round is doubled automatically.",
-		"model_path": "",
+		"model_path": "res://models/Glb/mushrooms.glb",
 		"buff_key": "mystic_mushroom"
 	},
 ]

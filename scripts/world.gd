@@ -422,6 +422,9 @@ func get_roulette_multiplier(play_type: String) -> int:
 ###
 
 # --- FOOD SELECTION CINEMATIC ---
+@export var food_model_scale: Vector3 = Vector3(2.67, 2.67, 2.67) # Adjust default scale as needed
+
+# --- FOOD SELECTION CINEMATIC ---
 func _on_food_selected(buff_key: String, model_path: String) -> void:
 	# Apply the buff first
 	FoodData.apply_food_buff(buff_key)
@@ -449,6 +452,10 @@ func _on_food_selected(buff_key: String, model_path: String) -> void:
 			food_node = packed.instantiate()
 			food_spawn.add_child(food_node)
 			food_node.position = Vector3.ZERO
+			
+			# APPLY SCALE HERE
+			food_node.scale = food_model_scale
+			
 			print("Food model spawned: ", model_path)
 		else:
 			push_warning("_on_food_selected: could not load model: " + model_path)
