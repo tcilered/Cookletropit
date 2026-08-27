@@ -194,6 +194,16 @@ func add_charm(charm_name: String) -> void:
 			}
 			print("Added MirrorShard: ")
 
+		"CouponCharm":
+			new_charm = {
+				"name": charm_name,
+				"description": "Can only be bought once. Resets the reroll price to $100."
+			}
+			GlobalData.shop_reroll_price = 100
+			if get_tree():
+				get_tree().call_group("shops", "_sync_with_global_state")
+			print("Added Coupon Charm: Shop reroll price reset to $100.")
+
 		_:
 			new_charm = {"name": charm_name}
 			print("Warning: No custom logic found for '", charm_name, "'. Adding as generic charm.")
