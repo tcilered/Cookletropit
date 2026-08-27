@@ -196,16 +196,16 @@ transform = Transform3D(-0.40000004, 0, 0.6928203, 0, 0.8, 0, -0.6928203, 0, -0.
 
 [node name="Chute_Door" parent="." unique_id=1732487555 instance=ExtResource("26_4h6ng")]
 transform = Transform3D(-0.40000007, 0, 0.6928203, 0, 0.8, 0, -0.6928203, 0, -0.40000007, -1.23382, 3.4891582, 12.255666)
+visible = false
 
 [node name="Node3D" type="Node3D" parent="Chute_Door" unique_id=526329548]
 transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, 0.051247597, 0, 0.029587746)
 
+[node name="move_to_chute" type="Marker3D" parent="." unique_id=1745881301]
+transform = Transform3D(-0.70710677, -0.35355338, 0.61235446, 0, 0.866, 0.5, -0.70710677, 0.35355338, -0.61235446, 4.175762, 5.5, 8.129707)
 
-[node name="move_to_chute" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, -1.3, 5.5, 18.0)
-
-[node name="chute_food_spawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, 4.2, 12.4)
+[node name="chute_food_spawn" type="Marker3D" parent="." unique_id=1458257569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, 1.9712181, 12.4)
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]

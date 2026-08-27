@@ -468,4 +468,3 @@ func _on_food_selected(buff_key: String, model_path: String) -> void:
 	tween_back.tween_property(camera_node, "global_position", original_position, 1.2)
 	tween_back.tween_property(camera_node, "rotation", original_rotation, 1.2)
 	await tween_back.finished
-
