@@ -26,15 +26,25 @@ var current_chip_index: int = 0
 signal main_world_item_toggeled(item)
 const FLOATING_TEXT_SCENE = preload("res://scenes/pop_up.tscn")
 
-func spawn_text(spawn_position: Vector3, text: String) -> Node3D:
+func spawn_text(
+	spawn_position: Vector3, 
+	text: String, 
+	custom_scale: Vector3 = Vector3.ONE, 
+	move_camera: bool = false, 
+	target_camera_position: Vector3 = Vector3.ZERO, 
+	camera_duration: float = 1.5
+) -> Node3D:
 	var popup = FLOATING_TEXT_SCENE.instantiate()
-	# 1. Add to scene first
 	get_tree().current_scene.add_child(popup)
-	# 2. Set position and display text
 	popup.global_position = spawn_position
-	popup.display_text(text, 4.0)
+	popup.display_text(text, 4.0, custom_scale)
 	
-	# Return the popup so we can wait for it to close
+	if move_camera:
+		var camera = get_viewport().get_camera_3d()
+		if camera:
+			var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+			tween.tween_property(camera, "global_position", target_camera_position, camera_duration)
+	
 	return popup
 
 func _unhandled_input(event: InputEvent) -> void:

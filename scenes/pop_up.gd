@@ -4,9 +4,11 @@ extends Node3D
 @export var label: Label
 @export var sprite: Sprite3D
 @export var viewport: SubViewport
-
-# Set how wide you want the bubble to get before the text is forced to wrap to a new line
 @export var max_box_width: int = 300
+@export var edge_margin: float = 50.0 # Pixel padding from screen edges
+@export var popup_scale: Vector3 = Vector3.ONE # Custom scale parameter
+
+var target_world_pos: Vector3
 
 func _ready() -> void:
 	if not viewport:
@@ -16,40 +18,84 @@ func _ready() -> void:
 	if not label:
 		label = $SubViewport/PanelContainer/Label
 
+	target_world_pos = global_position
+	scale = popup_scale
+
 	if sprite and viewport:
 		viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 		sprite.texture = viewport.get_texture()
 		sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 
-func display_text(new_text: String, wave_speed: float = 3.0) -> void:
+func _process(_delta: float) -> void:
+	_clamp_to_screen_edge()
+
+func _clamp_to_screen_edge() -> void:
+	var camera = get_viewport().get_camera_3d()
+	if not camera:
+		return
+
+	var screen_size = get_viewport().get_visible_rect().size
+	var screen_center = screen_size * 0.5
+
+	var is_behind = camera.is_position_behind(target_world_pos)
+	var screen_pos = camera.unproject_position(target_world_pos)
+
+	# Invert vector if point is behind camera plane
+	if is_behind:
+		screen_pos = screen_center - (screen_pos - screen_center)
+
+	# Check if point is outside visible screen viewport rect
+	var is_offscreen = is_behind \
+		or screen_pos.x < edge_margin \
+		or screen_pos.x > (screen_size.x - edge_margin) \
+		or screen_pos.y < edge_margin \
+		or screen_pos.y > (screen_size.y - edge_margin)
+
+	var final_screen_pos = screen_pos
+
+	if is_offscreen:
+		# Calculate ray vector from screen center to the target's screen point
+		var dir = (screen_pos - screen_center).normalized()
+		if dir == Vector2.ZERO:
+			dir = Vector2.UP
+
+		# Project ray onto screen border box defined by edge_margin
+		var limit = (screen_size * 0.5) - Vector2(edge_margin, edge_margin)
+		var scale_factor = min(
+			abs(limit.x / dir.x) if dir.x != 0 else INF,
+			abs(limit.y / dir.y) if dir.y != 0 else INF
+		)
+		final_screen_pos = screen_center + dir * scale_factor
+
+	# Project 2D screen coordinates back to 3D world space relative to camera depth
+	var depth = max(camera.global_position.distance_to(target_world_pos), 1.0)
+	global_position = camera.project_position(final_screen_pos, depth)
+
+func display_text(new_text: String, wave_speed: float = 3.0, custom_scale: Vector3 = Vector3.ONE) -> void:
+	popup_scale = custom_scale
+	scale = popup_scale
+
 	if sprite:
 		sprite.visible = false 
 		
 	if label and viewport:
 		var panel = $SubViewport/PanelContainer
-		
-		# 1. Reset positioning and sizing completely
 		panel.position = Vector2.ZERO
 		panel.size = Vector2.ZERO 
 		
-		# 2. Tell the label to wrap and set its absolute maximum width
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.custom_minimum_size = Vector2(max_box_width, 0)
 		label.text = new_text
 		
-		# 3. Give the Viewport infinite room so the UI can expand naturally
 		viewport.size = Vector2i(max_box_width, 2000)
 		
-	# Wait for Godot's UI layout engine to process the word-wrapping
 	await get_tree().process_frame
 	await get_tree().process_frame
 	
 	if viewport:
 		var panel = $SubViewport/PanelContainer
-		# 4. Shrink-wrap the Viewport strictly to the UI's final calculated size
 		viewport.size = Vector2i(panel.size.x, panel.size.y)
 		
-	# Wait one final frame for the SubViewport to render the crop
 	await get_tree().process_frame
 
 	if sprite:
@@ -58,18 +104,14 @@ func display_text(new_text: String, wave_speed: float = 3.0) -> void:
 			shader_mat.set_shader_parameter("wave_speed", wave_speed)
 		sprite.visible = true
 
-
 func dismiss() -> void:
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "scale", Vector3.ZERO, 0.15)
 	if sprite:
 		tween.tween_property(sprite, "modulate:a", 0.0, 0.15)
 	tween.chain().tween_callback(queue_free)
-	
+
 func _on_area_3d_input_event(_camera: Node, event: InputEvent, _pos: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		dismiss()
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		get_viewport().set_input_as_handled()
 		dismiss()
