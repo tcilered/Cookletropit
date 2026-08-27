@@ -99,7 +99,10 @@ func _ready():
 	food_card_popup = FOOD_CARD_POPUP_SCENE.instantiate()
 	add_child(food_card_popup)
 	food_card_popup.food_selected.connect(_on_food_selected)
-
+	var all_shops = get_tree().get_nodes_in_group("shops")
+	for shop in all_shops:
+		if shop.has_signal("charm_purchase_requested"):
+			shop.charm_purchase_requested.connect(_on_shop_charm_purchase_requested)
 	###
 	#connecting signals
 	###
@@ -151,7 +154,14 @@ func _on_object_unhovered(node):
 	if node.get("item_info") != null:
 		print("Main World: stopped hovering over: ", node.item_info.item_name)
 
+# worl.gd
 func _on_object_clicked(node):
+	# Let shop.gd handle charm purchases directly; do not process shop items here.
+	if node.get("item_info") != null:
+		var item_name = node.item_info.item_name
+		if item_name != "bowl" and item_name != "ShopReroll":
+			return # Handled by shop.gd
+			
 	_try_purchase_charm(node)
 
 func _try_purchase_charm(node) -> bool:
@@ -187,20 +197,20 @@ func _try_purchase_charm(node) -> bool:
 		return false
 		
 		
+# worl.gd
 func _on_shop_charm_purchase_requested(node: Node) -> void:
 	if not node or node.get("item_info") == null:
 		return
 		
 	var item_name: String = node.item_info.item_name
 	
-	# 1. Forward to WheelScene so it generates and attaches functional closures
-	var wheel = get_node_or_null("WheelScene") # Ensure node path matches your scene tree
+	# Pass charm to WheelScene to construct functional closures
+	var wheel = get_node_or_null("WheelScene") # Adjust path if needed
 	if wheel and wheel.has_method("add_charm"):
 		wheel.add_charm(item_name)
 	else:
 		push_warning("WheelScene not found or missing add_charm method!")
 
-	# 2. Handle special Coupon / Reroll Reset charm
 	if item_name == "CouponCharm" or item_name == "RerollResetCharm":
 		GlobalData.shop_reroll_price = 100
 

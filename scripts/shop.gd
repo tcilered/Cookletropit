@@ -72,15 +72,24 @@ func _connect_item_signals(node: Node) -> void:
 		_connect_item_signals(child)
 
 func _on_item_clicked(node: Node) -> void:
-	if not node or node.get("item_info") == null:
+	# 1. Walk UP the tree until we find the node holding item_info
+	var target_node = node
+	while target_node != null and target_node.get("item_info") == null:
+		target_node = target_node.get_parent()
+
+	if target_node == null:
+		print("Shop Error: Could not find item_info on ", node.name, " or its parents!")
 		return
 
-	var item_info: ItemData = node.item_info
+	var item_info: ItemData = target_node.item_info
+	print("Shop recognized click on: ", item_info.item_name)
+
 	if item_info.item_name == REROLL_ITEM_NAME:
 		_try_reroll_shop()
 		return
 
-	_try_buy_charm(node, item_info)
+	_try_buy_charm(target_node, item_info)
+
 
 func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 	if GlobalData.shop_purchase_locked:
@@ -93,15 +102,15 @@ func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 		return
 
 	if GlobalData.player_stats.gold < int(item_info.item_value):
-		if GlobalData.player_stats.gold <= 0:
-			print("Litttteraly out of money!!!!!! L skill issue")
-		else:
-			print("Too poor, speed please i need this my mom is kinda homeless")
+		print("Too poor, speed please i need this my mom is kinda homeless")
 		return
 
+	# --- PURCHASE SUCCESSFUL ---
+	print("Purchase successful! Deducting gold...")
 	GlobalData.player_stats.gold -= int(item_info.item_value)
 	GlobalData.shop_purchase_locked = true
 	item_info.has_bought = true
+	
 	if item_info.item_name not in GlobalData.owned_charms_global:
 		GlobalData.owned_charms_global.append(item_info.item_name)
 
@@ -110,7 +119,21 @@ func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 		GlobalData.shop_sold_out_slots[slot_index] = true
 
 	node.visible = false
+	
+	# 1. Emit the signal (for anything else listening)
 	charm_purchase_requested.emit(node)
+	
+	# 2. DIRECT FALLBACK: Force the Wheel to update directly, ignoring signals
+	var root = get_tree().current_scene
+	# Find any node containing "Wheel" in its name (e.g., WheelScene, Wheel_Scene)
+	var wheel = root.find_child("Wheel*", true, false) 
+	
+	if wheel and wheel.has_method("add_charm"):
+		print("Directly adding charm to wheel: ", item_info.item_name)
+		wheel.add_charm(item_info.item_name)
+	else:
+		print("WARNING: Could not find Wheel directly from shop! Modifiers won't apply.")
+
 	_sync_all_shops()
 
 

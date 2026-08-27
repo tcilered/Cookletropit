@@ -23,6 +23,7 @@ albedo_texture = SubResource("ViewportTexture_fcnqv")
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 
 [node name="TV" type="Node3D" unique_id=1459355896]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="Area3D" parent="." unique_id=1931984631 instance=ExtResource("1_lnbu4")]
 transform = Transform3D(-0.99999994, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, -0.99999994, 0, 0, 0)

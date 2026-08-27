@@ -45,7 +45,11 @@ discription = "A standard crystal charm, it probably gives of negitive ions"
 item_mesh = ExtResource("8_2u3nc")
 metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
 
-[sub_resource type="BoxMesh" id="BoxMesh_ioo17"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4h6ng"]
+albedo_color = Color(0.29586652, 0.2958665, 0.2958665, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_bo7i5"]
+material = SubResource("StandardMaterial3D_4h6ng")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wse8f"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
@@ -70,7 +74,7 @@ pause_menu = NodePath("CanvasLayer/Pause_Menu")
 table_square_scene = ExtResource("2_ic0uy")
 
 [node name="Cameranode" type="Node3D" parent="." unique_id=1606248747]
-transform = Transform3D(1, 0, 0, 0, 0.30235103, 0.25881904, 0, -0.081014715, 0.9659258, 0, 3.6764674, 0)
+transform = Transform3D(1, 0, 0, 0, 0.30235103, 0.25881904, 0, -0.081014715, 0.9659258, 9.349, 3.676, 6.196)
 script = ExtResource("1_f3sb7")
 
 [node name="Camera3D" type="Camera3D" parent="Cameranode" unique_id=176010044]
@@ -81,7 +85,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7004786, 0, 1.7127172)
 visible = false
 
 [node name="text" type="MeshInstance3D" parent="." unique_id=728415868]
-transform = Transform3D(1, 0, 0, 0, 0.7539075, 0.6569806, 0, -0.6569806, 0.7539075, 10.851237, 1.0132166, -7.343439)
+transform = Transform3D(0.74094415, -0.046027612, -0.66998726, 0, 0.9976485, -0.06853769, 0.6715665, 0.050782595, 0.73920184, 19.225418, 1.9124943, -4.2218113)
 mesh = SubResource("BoxMesh_tlwt5")
 
 [node name="Label3D" type="Label3D" parent="text" unique_id=1938283990]
@@ -98,12 +102,13 @@ mesh = SubResource("BoxMesh_036b0")
 surface_material_override/0 = SubResource("StandardMaterial3D_dwbse")
 
 [node name="Crystal charm" parent="." unique_id=1888708795 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.480203, 0.9639716, -13.801898)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.90837, 0.9639716, -13.801898)
+visible = false
 item_info = SubResource("Resource_pkg7o")
 
 [node name="move_camera_on_click" type="MeshInstance3D" parent="." unique_id=1511647192]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.63488483, 0.6823206, -4.0814314)
-mesh = SubResource("BoxMesh_ioo17")
+transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 11.566625, -0.5410452, -5.540663)
+mesh = SubResource("PrismMesh_bo7i5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="move_camera_on_click" unique_id=361163961 node_paths=PackedStringArray("target")]
 collision_layer = 4
@@ -116,7 +121,7 @@ radius_for_this_spot = 6.0
 shape = SubResource("ConcavePolygonShape3D_wse8f")
 
 [node name="camera_node" type="Marker3D" parent="move_camera_on_click" unique_id=310226256]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 8.959358, 4.327858, 9.749182)
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 1.0771494, 2.587923, 5.3534107)
 
 [node name="Wheel_Scene" parent="." unique_id=1393983754 instance=ExtResource("9_ioo17")]
 transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, 15.754, 0.3288803, 6.29)
@@ -153,29 +158,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.2355623)
 visible = false
 
 [node name="Die" parent="." unique_id=299173462 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 13.220409, 1.0929818, -13.654633)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 22.648575, 1.0929818, -13.654633)
+visible = false
 item_info = SubResource("Resource_26xuy")
 
 [node name="log" type="MeshInstance3D" parent="." unique_id=2113447530]
-transform = Transform3D(0.87465876, 0.14659788, -0.4620401, 0, 0.9531728, 0.30242637, 0.48473918, -0.2645199, 0.83370095, 19.600632, 2.634268, -6.8177824)
+transform = Transform3D(0.9393127, -0.012932393, 0.34281877, 0.00077009574, 0.9993663, 0.035589643, -0.34306172, -0.033165798, 0.93872726, 6.7566705, 1.7719812, -14.158216)
 mesh = SubResource("BoxMesh_tlwt5")
 
 [node name="Label3D" type="Label3D" parent="log" unique_id=233947909]
-transform = Transform3D(0.7, 0, 0, 0, 0.6999999, -2.9802322e-08, 0, 2.9802322e-08, 0.6999999, -0.014690399, -0.16538286, 0.6577549)
+transform = Transform3D(0.69999975, 9.313226e-10, -4.4703484e-08, 0, 0.6999999, -3.5390258e-08, -1.4901161e-08, 4.8428774e-08, 0.69999975, 0.020956993, -0.16716623, 0.7070503)
 text = "67_The log_67"
 font = ExtResource("4_aqk2v")
-font_size = 100
+font_size = 90
 outline_size = 16
-width = 2000.0
+width = 1800.0
 script = ExtResource("21_bc84e")
-max_lines = 6
+max_lines = 4
 
 [node name="The cube" parent="." unique_id=1188717236 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.114613, 1.1475389, -13.489012)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 24.542778, 1.1475389, -13.489012)
+visible = false
 item_info = SubResource("Resource_il2jm")
 
 [node name="TV" parent="." unique_id=1459355896 instance=ExtResource("21_wukud")]
-transform = Transform3D(0.9883696, 0, 0.15207088, 0, 1, 0, -0.15207088, 0, 0.9883696, 5.996523, 1.7595282, -14.106064)
+transform = Transform3D(2.8333406, 0, 0.9859922, 0, 3, 0, -0.9859922, 0, 2.8333406, 6.7177033, 1.6272187, -14.414671)
 
 [node name="tiltable (1)" parent="." unique_id=828788086 instance=ExtResource("22_il2jm")]
 transform = Transform3D(3.67, 0, 0, 0, 3.67, 0, 0, 0, 3.67, 12.113918, -0.36999595, 2.6444283)
@@ -189,7 +196,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5008271, 0)
 visible = false
 
 [node name="kerr" parent="." unique_id=1193569971 instance=ExtResource("24_wjb0r")]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 3.4002547, 0.70685387, -7.02868)
+transform = Transform3D(-0.49999994, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.49999994, 21.670332, 0.70685387, -16.19128)
 
 [node name="Chute" parent="." unique_id=357611609 instance=ExtResource("25_bo7i5")]
 transform = Transform3D(-0.40000004, 0, 0.6928203, 0, 0.8, 0, -0.6928203, 0, -0.40000004, -1.2952604, 3.4666004, 12.404968)
@@ -208,7 +215,10 @@ transform = Transform3D(-0.70710677, -0.35355338, 0.61235446, 0, 0.866, 0.5, -0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9376018, 1.5786428, 12.320061)
 
 [node name="Node3D2" parent="." unique_id=2101949230 instance=ExtResource("20_bc84e")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 7.800121, 3.6893024, -13.783982)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 12.903805, 0.038420916, -15.348684)
+
+[node name="TV2" parent="." unique_id=1281545171 instance=ExtResource("21_wukud")]
+transform = Transform3D(1.4998124, 0, -1.3230889, 0, 2, 0, 1.3230889, 0, 1.4998124, 19.147028, 1.6272187, -4.2324243)
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]

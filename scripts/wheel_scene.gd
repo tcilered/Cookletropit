@@ -101,7 +101,13 @@ func add_charm(charm_name: String) -> void:
 			return
 
 	var new_charm: Dictionary = {}
-	
+	#compressed view dictionary below
+	##i.e.		"LuckyClover":
+			#new_charm = {
+				#"name": charm_name,
+				#"apply_to_roll": func(r: int) -> int: return 7 if r == 0 else r
+			#}
+			#print("Added Lucky Clover: House 0s are now 7s!")
 	match charm_name:
 		"LuckyClover":
 			new_charm = {
@@ -114,7 +120,7 @@ func add_charm(charm_name: String) -> void:
 			new_charm = {
 				"name": charm_name,
 				"apply_to_wheel": func(w: Array) -> Array:
-					for i in range(9999):
+					for i in range(3):
 						# Now pulling square numbers from the Autoload!
 						w.append_array(RouletteData.square_numbers)
 					return w
@@ -133,8 +139,14 @@ func add_charm(charm_name: String) -> void:
 		"Die":
 			new_charm = {
 				"name": charm_name,
+				"apply_to_reward": func(payout: float) -> float:
+					# randfn(mean, standard_deviation) creates a bell curve distribution
+					# Centered at 1.25, with a 0.4 deviation, most rolls stay inside the 0.1 - 2.0 range
+					var multiplier = clamp(randfn(1.25, 0.4), 0.1, 2.0)
+					print("Die multiplier applied: ", snapped(multiplier, 0.01), "X")
+					return payout * multiplier
 			}
-			print("Added Die: Randomly sets a multiplier between 0.1X to 2X, weighted at a standard distribution of prob mean centred on 1.25X")
+			print("Added Die: Randomly sets a multiplier between 0.1X to 2X, weighted mean of 1.25X")
 
 		"HotGarbage":
 			new_charm = {
@@ -195,9 +207,15 @@ func add_charm(charm_name: String) -> void:
 		"MirrorShard":
 			new_charm = {
 				"name": charm_name,
-				"description": "The shard of a shattered mirror"
+				"description": "The shard of a shattered mirror",
+				"apply_to_reward": func(payout: float) -> float:
+					# Logic: A flat 15% chance to "reflect" and double your win
+					if randf() <= 0.15:
+						print("Mirror Shard activated! Payout reflected (2X)!")
+						return payout * 2.0
+					return payout
 			}
-			print("Added MirrorShard: ")
+			print("Added MirrorShard: Grants a 15% chance to double any payout.")
 
 		"CouponCharm":
 			new_charm = {

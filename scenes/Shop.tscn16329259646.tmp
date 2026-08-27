@@ -59,16 +59,14 @@ script = ExtResource("0_shop")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=800926750]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.041731, -0.17046201, -0.13549805)
-visible = false
 mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=463370843]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.041731, 0.37907505, -0.83501506)
-visible = false
 mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="RerollButton" type="Area3D" parent="." unique_id=1343952212]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.041731, 0.13164306, 1.7650325)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.041731, 0.37907505, -0.83501506)
 script = ExtResource("6_mouse")
 item_info = SubResource("Resource_reroll")
 
@@ -101,4 +99,4 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 item_info = SubResource("Resource_mirror")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2045192156]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 1.3000287, 3.6285887)
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0.7573565, 1.6033093)

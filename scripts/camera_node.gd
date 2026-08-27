@@ -1,48 +1,72 @@
 extends Node3D
-var anchor_position: Vector3 = Vector3.ZERO
+
+# Set your custom default coordinates here
+var default_position: Vector3 = Vector3(9.349, 3.676, 6.196)
+
+var anchor_position: Vector3 = Vector3(9.349, 3.676, 6.196)
+var previous_anchor_position: Vector3 = Vector3(9.349, 3.676, 6.196)
+var previous_radius: float = 5.0 
+
 @export_group("Movement Settings")
 @export var pan_speed: float = 6.7
 @export var edge_margin: float = 16.7+6+7
 
 @export_group("Tilt Settings")
-@export var max_tilt_degrees: float = 13 # Max degrees to lean from moving
-@export var stretch_tilt_degrees: float = 8.67 # Extra degrees to lean when hitting the rubber-band stretch
-@export var tilt_in_speed: float = 2.67 # How fast it leans when you START moving
-@export var tilt_return_speed: float = 6.7 # How slowly it flattens back out when you STOP moving
+@export var max_tilt_degrees: float = 13 
+@export var stretch_tilt_degrees: float = 8.67 
+@export var tilt_in_speed: float = 2.67 
+@export var tilt_return_speed: float = 6.7 
 
 @export_group("Camera movement Limits")
-@export var limit_radius: float = 5.0 # The maximum distance the camera can travel from the center (0, 0, 0)
-
+@export var limit_radius: float = 5.0 
 
 @export_group("Stretch Settings")
 @export var max_stretch: float = 25 
-@export var snap_back_speed: float = 1 # Resistance speed while actively pushing against the boundary
-@export var idle_snap_back_speed: float = 2 # How slowly the position returns when you let go at the edge
+@export var snap_back_speed: float = 1 
+@export var idle_snap_back_speed: float = 2 
 
-# Track if the window is currently active
 var is_window_focused: bool = true
 var is_panning: bool = false
-# Inside your movement script (Node3D/Cameranode)
-func _on_object_clicked_move_requested(new_center: Vector3, new_radius: float):
-	anchor_position = new_center
-	limit_radius = new_radius
+
+func _ready():
+	# Set the initial camera placement to match your target coordinates
+	global_position = default_position
+	anchor_position = default_position
+	previous_anchor_position = default_position
+	previous_radius = limit_radius
 	
-	is_panning = true # Disable snapback during camera flight
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+
+func _on_object_clicked_move_requested(new_center: Vector3, new_radius: float):
+	if anchor_position == new_center:
+		var temp_pos = anchor_position
+		var temp_rad = limit_radius
+		
+		_trigger_camera_move(previous_anchor_position, previous_radius)
+		
+		previous_anchor_position = temp_pos
+		previous_radius = temp_rad
+		print("Toggled back to previous position: ", previous_anchor_position)
+		
+	else:
+		previous_anchor_position = anchor_position
+		previous_radius = limit_radius
+		
+		_trigger_camera_move(new_center, new_radius)
+		print("Moved to new position")
+
+func _trigger_camera_move(target_pos: Vector3, target_rad: float):
+	anchor_position = target_pos
+	limit_radius = target_rad
+	is_panning = true
 	
 	var tween = create_tween()
-	tween.tween_property(self, "global_position", new_center, 1.0)\
+	tween.tween_property(self, "global_position", target_pos, 1.0)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
 		
-	# Re-enable snapback once the camera arrives
 	tween.finished.connect(func(): is_panning = false)
-	print("new radius:", new_radius)
-	print("moved to new position")
-		
-func _ready():
-	# Confine the mouse to the window so it can hit the edges without leaving the game
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-
+	print("New radius: ", target_rad)
 # Detect when the player Alt-Tabs or clicks a different window
 func _notification(what):
 	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
