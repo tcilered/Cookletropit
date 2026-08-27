@@ -49,6 +49,12 @@ Button/styles/hover = SubResource("StyleBoxFlat_btn_hover")
 Button/styles/pressed = SubResource("StyleBoxFlat_btn_normal")
 Button/styles/focus = SubResource("StyleBoxFlat_btn_normal")
 
+[sub_resource type="Environment" id="Environment_vp"]
+background_mode = 0
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.2
+
 [node name="FoodCardPopup" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_fcpop")
@@ -67,7 +73,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
-custom_minimum_size = Vector2(0, 0)
 
 [node name="TitleLabel" type="Label" parent="Panel/VBox"]
 layout_mode = 2
@@ -93,28 +98,56 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
-custom_minimum_size = Vector2(900, 300)
+custom_minimum_size = Vector2(960, 400)
 
+# ============================================================
+# Card 0
+# ============================================================
 [node name="Card0" type="PanelContainer" parent="Panel/VBox/CardsContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(260, 280)
+custom_minimum_size = Vector2(280, 380)
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+mouse_filter = 0
 
 [node name="VBox" type="VBoxContainer" parent="Panel/VBox/CardsContainer/Card0"]
 layout_mode = 2
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(260, 0)
 
 [node name="FoodName" type="Label" parent="Panel/VBox/CardsContainer/Card0/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 theme_override_colors/font_color = Color(1.0, 0.85, 0.2, 1)
 text = "Food Name"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="ModelViewport" type="SubViewport" parent="Panel/VBox/CardsContainer/Card0/VBox"]
+transparent_bg = true
+size = Vector2i(256, 200)
+render_target_update_mode = 4
+own_world_3d = true
+world_3d = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Panel/VBox/CardsContainer/Card0/VBox/ModelViewport"]
+environment = SubResource("Environment_vp")
+
+[node name="Camera3D" type="Camera3D" parent="Panel/VBox/CardsContainer/Card0/VBox/ModelViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, 0, 1.5, 2.5)
+fov = 45.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Panel/VBox/CardsContainer/Card0/VBox/ModelViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.707, -0.707, 0, 0.707, 0.707, 0, 2, 0)
+light_energy = 1.5
+
+[node name="ModelDisplay" type="TextureRect" parent="Panel/VBox/CardsContainer/Card0/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(256, 200)
+expand_mode = 1
+stretch_mode = 5
+
 [node name="FoodDesc" type="Label" parent="Panel/VBox/CardsContainer/Card0/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
 text = "Description goes here."
 horizontal_alignment = 1
@@ -128,26 +161,54 @@ theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Pick"
 
+# ============================================================
+# Card 1
+# ============================================================
 [node name="Card1" type="PanelContainer" parent="Panel/VBox/CardsContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(260, 280)
+custom_minimum_size = Vector2(280, 380)
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+mouse_filter = 0
 
 [node name="VBox" type="VBoxContainer" parent="Panel/VBox/CardsContainer/Card1"]
 layout_mode = 2
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(260, 0)
 
 [node name="FoodName" type="Label" parent="Panel/VBox/CardsContainer/Card1/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 theme_override_colors/font_color = Color(1.0, 0.85, 0.2, 1)
 text = "Food Name"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="ModelViewport" type="SubViewport" parent="Panel/VBox/CardsContainer/Card1/VBox"]
+transparent_bg = true
+size = Vector2i(256, 200)
+render_target_update_mode = 4
+own_world_3d = true
+world_3d = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Panel/VBox/CardsContainer/Card1/VBox/ModelViewport"]
+environment = SubResource("Environment_vp")
+
+[node name="Camera3D" type="Camera3D" parent="Panel/VBox/CardsContainer/Card1/VBox/ModelViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, 0, 1.5, 2.5)
+fov = 45.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Panel/VBox/CardsContainer/Card1/VBox/ModelViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.707, -0.707, 0, 0.707, 0.707, 0, 2, 0)
+light_energy = 1.5
+
+[node name="ModelDisplay" type="TextureRect" parent="Panel/VBox/CardsContainer/Card1/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(256, 200)
+expand_mode = 1
+stretch_mode = 5
+
 [node name="FoodDesc" type="Label" parent="Panel/VBox/CardsContainer/Card1/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
 text = "Description goes here."
 horizontal_alignment = 1
@@ -161,26 +222,54 @@ theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Pick"
 
+# ============================================================
+# Card 2
+# ============================================================
 [node name="Card2" type="PanelContainer" parent="Panel/VBox/CardsContainer"]
 layout_mode = 2
-custom_minimum_size = Vector2(260, 280)
+custom_minimum_size = Vector2(280, 380)
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+mouse_filter = 0
 
 [node name="VBox" type="VBoxContainer" parent="Panel/VBox/CardsContainer/Card2"]
 layout_mode = 2
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(260, 0)
 
 [node name="FoodName" type="Label" parent="Panel/VBox/CardsContainer/Card2/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 theme_override_colors/font_color = Color(1.0, 0.85, 0.2, 1)
 text = "Food Name"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="ModelViewport" type="SubViewport" parent="Panel/VBox/CardsContainer/Card2/VBox"]
+transparent_bg = true
+size = Vector2i(256, 200)
+render_target_update_mode = 4
+own_world_3d = true
+world_3d = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Panel/VBox/CardsContainer/Card2/VBox/ModelViewport"]
+environment = SubResource("Environment_vp")
+
+[node name="Camera3D" type="Camera3D" parent="Panel/VBox/CardsContainer/Card2/VBox/ModelViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, 0, 1.5, 2.5)
+fov = 45.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Panel/VBox/CardsContainer/Card2/VBox/ModelViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.707, -0.707, 0, 0.707, 0.707, 0, 2, 0)
+light_energy = 1.5
+
+[node name="ModelDisplay" type="TextureRect" parent="Panel/VBox/CardsContainer/Card2/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(256, 200)
+expand_mode = 1
+stretch_mode = 5
+
 [node name="FoodDesc" type="Label" parent="Panel/VBox/CardsContainer/Card2/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 13
 theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
 text = "Description goes here."
 horizontal_alignment = 1
@@ -197,3 +286,10 @@ text = "Pick"
 [connection signal="pressed" from="Panel/VBox/CardsContainer/Card0/VBox/PickBtn" to="." method="_on_pick_btn_pressed" binds=[0]]
 [connection signal="pressed" from="Panel/VBox/CardsContainer/Card1/VBox/PickBtn" to="." method="_on_pick_btn_pressed" binds=[1]]
 [connection signal="pressed" from="Panel/VBox/CardsContainer/Card2/VBox/PickBtn" to="." method="_on_pick_btn_pressed" binds=[2]]
+[connection signal="mouse_entered" from="Panel/VBox/CardsContainer/Card0" to="." method="_on_card_mouse_entered" binds=[0]]
+[connection signal="mouse_exited" from="Panel/VBox/CardsContainer/Card0" to="." method="_on_card_mouse_exited" binds=[0]]
+[connection signal="mouse_entered" from="Panel/VBox/CardsContainer/Card1" to="." method="_on_card_mouse_entered" binds=[1]]
+[connection signal="mouse_exited" from="Panel/VBox/CardsContainer/Card1" to="." method="_on_card_mouse_exited" binds=[1]]
+[connection signal="mouse_entered" from="Panel/VBox/CardsContainer/Card2" to="." method="_on_card_mouse_entered" binds=[2]]
+[connection signal="mouse_exited" from="Panel/VBox/CardsContainer/Card2" to="." method="_on_card_mouse_exited" binds=[2]]
+

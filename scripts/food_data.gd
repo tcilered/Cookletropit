@@ -11,31 +11,31 @@ const ALL_FOODS: Array = [
 	{
 		"name": "Lucky Bread",
 		"description": "A golden loaf baked under a full moon.\n+0.5x payout multiplier on all wins.",
-		"model_path": "",
+		"model_path": "res://models/Glb/おにぎり.glb",
 		"buff_key": "lucky_bread"
 	},
 	{
 		"name": "Power Soup",
 		"description": "A hearty bowl that sharpens the senses.\nEarns +$50 bonus after every winning spin.",
-		"model_path": "",
+		"model_path": "res://models/Glb/vegetable_soup.glb",
 		"buff_key": "power_soup"
 	},
 	{
-		"name": "Golden Apple",
+		"name": "Golden Apple Pie",
 		"description": "Crisp and glowing with fortune.\nReduces the money threshold each round by 100.",
-		"model_path": "",
+		"model_path": "res://models/Glb/apple_pie.glb",
 		"buff_key": "golden_apple"
 	},
 	{
-		"name": "Spicy Pepper",
+		"name": "Spicy Pepperoni",
 		"description": "Burns away bad luck.\nAny spin that earns $0 still gives back $25.",
-		"model_path": "",
+		"model_path": "res://models/Glb/peppironi.glb",
 		"buff_key": "spicy_pepper"
 	},
 	{
 		"name": "Mystic Mushroom",
 		"description": "Strange and powerful.\nOne spin per round is doubled automatically.",
-		"model_path": "",
+		"model_path": "res://models/Glb/mushrooms.glb",
 		"buff_key": "mystic_mushroom"
 	},
 ]
