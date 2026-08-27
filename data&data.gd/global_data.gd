@@ -4,6 +4,11 @@ extends Node
 var save_path = "user://Cookletropitsavegame.save"
 
 var active_charms_global = []
+var owned_charms_global: Array[String] = []
+var shop_reroll_price: int = 25
+var shop_purchase_locked: bool = false
+var shop_stock_names: Array[String] = []
+var shop_sold_out_slots: Array[bool] = []
 
 # Food buff system
 var active_foods: Array = []
@@ -61,6 +66,11 @@ func reset_data():
 	}
 	active_foods = []
 	active_charms_global = []
+	owned_charms_global = []
+	shop_reroll_price = 25
+	shop_purchase_locked = false
+	shop_stock_names = []
+	shop_sold_out_slots = []
 	SPIN_MONEY_THRESHOLD = 500
 	spin_count = 0
 	money_earned_this_round = 0

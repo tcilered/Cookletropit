@@ -119,11 +119,9 @@ func _ready():
 			child.object_unhovered.connect(_on_object_unhovered)
 			child.object_clicked.connect(_on_object_clicked)
 
-	# Connect the Shop scene's charm purchase signal so shop items use the same
-	# gold-check / charm-activation flow as the main world items.
-	var shop_node = get_node_or_null("Node3D")
-	if shop_node and shop_node.has_signal("charm_purchase_requested"):
-		shop_node.charm_purchase_requested.connect(_on_object_clicked)
+	for child in get_children():
+		if child.has_signal("charm_purchase_requested"):
+			child.charm_purchase_requested.connect(_on_shop_charm_purchased)
 			
 	var board_container = $Table_Scene
 	
@@ -137,6 +135,8 @@ func _ready():
 # --- Receiver Functions ---
 
 func _on_object_hovered(node):
+	if node.get("item_info") == null:
+		return
 	if node.item_info.has_bought == true:
 		print("This item is called ", node.item_info.item_name, " and is worth ", node.item_info.item_value)
 	elif node.item_info.has_bought == false:
@@ -148,11 +148,11 @@ func _on_object_hovered(node):
 		pass
 
 func _on_object_unhovered(node):
-	if node.item_info:
+	if node.get("item_info") != null:
 		print("Main World: stopped hovering over: ", node.item_info.item_name)
 
 func _on_object_clicked(node):
-	if not node or not "item_info" in node or not node.item_info:
+	if not node or node.get("item_info") == null:
 		return
 		
 	var item_name = node.item_info.item_name
@@ -161,10 +161,17 @@ func _on_object_clicked(node):
 	if item_name == "bowl":
 		return
 
-	var active_names = GlobalData.active_charms_global.map(func(charm): return charm.get("name", ""))
-	if item_name in active_names:
+	var owned_names: Array[String] = GlobalData.owned_charms_global.duplicate()
+	for charm in GlobalData.active_charms_global:
+		var charm_name := str(charm.get("name", ""))
+		if charm_name != "" and charm_name not in owned_names:
+			owned_names.append(charm_name)
+	if item_name in owned_names:
 		print("you already have this mr Jeff Bezos")
 	elif GlobalData.player_stats.gold >= int(node.item_info.item_value):
+		node.item_info.has_bought = true
+		if item_name not in GlobalData.owned_charms_global:
+			GlobalData.owned_charms_global.append(item_name)
 		emit_signal("main_world_item_toggeled", node)
 		GlobalData.player_stats.gold -= int(node.item_info.item_value)
 	else:
@@ -172,6 +179,12 @@ func _on_object_clicked(node):
 			print("Litttteraly out of money!!!!!! L skill issue")
 		else:
 			print("Too poor, speed please i need this my mom is kinda homeless")
+
+func _on_shop_charm_purchased(node: Node) -> void:
+	if not node or node.get("item_info") == null:
+		return
+
+	emit_signal("main_world_item_toggeled", node)
 
 
 # --- SIGNAL RECEIVERS ---
@@ -343,6 +356,7 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 			# Reset round counters then show food selection
 			GlobalData.spin_count = 0
 			GlobalData.money_earned_this_round = 0
+			_refresh_shop_for_new_round()
 			food_card_popup.show_popup()
 		else:
 			print("Round FAILED — not enough money earned. Game over.")
@@ -419,6 +433,12 @@ func get_roulette_multiplier(play_type: String) -> int:
 	if normalized_type.begins_with("red") or normalized_type.begins_with("black") or normalized_type.begins_with("even") or normalized_type.begins_with("odd") or normalized_type.begins_with("low") or normalized_type.begins_with("high"): return 1
 	
 	return 35
+
+func _refresh_shop_for_new_round() -> void:
+	for child in get_children():
+		if child.has_method("start_new_round"):
+			child.start_new_round()
+			return
 
 
 ###

@@ -95,6 +95,11 @@ const HOT_CHARMS: Array[String] = [
 ]
 
 func add_charm(charm_name: String) -> void:
+	for charm in active_charms:
+		if typeof(charm) == TYPE_DICTIONARY and str(charm.get("name", "")) == charm_name:
+			print("Charm already active: ", charm_name)
+			return
+
 	var new_charm: Dictionary = {}
 	
 	match charm_name:
@@ -194,12 +199,24 @@ func add_charm(charm_name: String) -> void:
 			}
 			print("Added MirrorShard: ")
 
+		"CouponCharm":
+			new_charm = {
+				"name": charm_name,
+				"description": "Can only be bought once. Resets the reroll price to $100."
+			}
+			GlobalData.shop_reroll_price = 100
+			if get_tree():
+				get_tree().call_group("shops", "_sync_with_global_state")
+			print("Added Coupon Charm: Shop reroll price reset to $100.")
+
 		_:
 			new_charm = {"name": charm_name}
 			print("Warning: No custom logic found for '", charm_name, "'. Adding as generic charm.")
 
 	active_charms.append(new_charm)
 	GlobalData.active_charms_global = active_charms
+	if charm_name not in GlobalData.owned_charms_global:
+		GlobalData.owned_charms_global.append(charm_name)
 
 	var charm_names = active_charms.map(func(c): return c.get("name", "Unknown"))
 	print("Active charms list is now: ", charm_names)
