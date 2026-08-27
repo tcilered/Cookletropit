@@ -9,6 +9,7 @@ const RESET_CHARM_NAME: String = "CouponCharm"
 const BASE_REROLL_PRICE: int = 25
 const REROLL_RESET_PRICE: int = 100
 const REROLL_PRICE_MULTIPLIER: int = 3
+const SHOP_ITEM_SCALE := Vector3(0.2, 0.2, 0.2)
 
 const SHOP_ITEMS := {
 	"GoldenGoblet": {
@@ -99,6 +100,9 @@ func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 
 	GlobalData.player_stats.gold -= int(item_info.item_value)
 	GlobalData.shop_purchase_locked = true
+	item_info.has_bought = true
+	if item_info.item_name not in GlobalData.owned_charms_global:
+		GlobalData.owned_charms_global.append(item_info.item_name)
 
 	var slot_index = _get_slot_index(node)
 	if slot_index >= 0 and slot_index < GlobalData.shop_sold_out_slots.size():
@@ -115,8 +119,8 @@ func _try_reroll_shop() -> void:
 		return
 
 	GlobalData.player_stats.gold -= reroll_price
-	_restock_global_shop()
 	GlobalData.shop_reroll_price *= REROLL_PRICE_MULTIPLIER
+	_restock_global_shop()
 	_sync_all_shops()
 
 func _restock_global_shop() -> void:
@@ -168,6 +172,7 @@ func _refresh_stock_slots() -> void:
 			continue
 
 		var item_node = INTERACTIVE_ITEM_SCENE.instantiate()
+		item_node.scale = SHOP_ITEM_SCALE
 		item_node.item_info = _create_item_data(GlobalData.shop_stock_names[slot_index])
 		item_node.visible = not GlobalData.shop_sold_out_slots[slot_index]
 		slot.add_child(item_node)
@@ -199,9 +204,14 @@ func _get_slot_index(node: Node) -> int:
 
 func _get_owned_charm_names() -> Array[String]:
 	var owned_names: Array[String] = []
+	for charm_name in GlobalData.owned_charms_global:
+		if charm_name != "":
+			owned_names.append(charm_name)
 	for charm in GlobalData.active_charms_global:
 		if typeof(charm) == TYPE_DICTIONARY:
-			owned_names.append(str(charm.get("name", "")))
+			var active_name := str(charm.get("name", ""))
+			if active_name != "" and active_name not in owned_names:
+				owned_names.append(active_name)
 	return owned_names
 
 func start_new_round() -> void:

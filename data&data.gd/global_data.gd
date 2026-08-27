@@ -4,6 +4,7 @@ extends Node
 var save_path = "user://Cookletropitsavegame.save"
 
 var active_charms_global = []
+var owned_charms_global: Array[String] = []
 var shop_reroll_price: int = 25
 var shop_purchase_locked: bool = false
 var shop_stock_names: Array[String] = []
@@ -65,6 +66,7 @@ func reset_data():
 	}
 	active_foods = []
 	active_charms_global = []
+	owned_charms_global = []
 	shop_reroll_price = 25
 	shop_purchase_locked = false
 	shop_stock_names = []

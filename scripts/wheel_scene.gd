@@ -95,6 +95,11 @@ const HOT_CHARMS: Array[String] = [
 ]
 
 func add_charm(charm_name: String) -> void:
+	for charm in active_charms:
+		if typeof(charm) == TYPE_DICTIONARY and str(charm.get("name", "")) == charm_name:
+			print("Charm already active: ", charm_name)
+			return
+
 	var new_charm: Dictionary = {}
 	
 	match charm_name:
@@ -210,6 +215,8 @@ func add_charm(charm_name: String) -> void:
 
 	active_charms.append(new_charm)
 	GlobalData.active_charms_global = active_charms
+	if charm_name not in GlobalData.owned_charms_global:
+		GlobalData.owned_charms_global.append(charm_name)
 
 	var charm_names = active_charms.map(func(c): return c.get("name", "Unknown"))
 	print("Active charms list is now: ", charm_names)

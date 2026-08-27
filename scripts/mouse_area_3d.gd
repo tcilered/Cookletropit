@@ -123,7 +123,7 @@ func _play_hover_animation(is_hovering: bool) -> void:
 	# Skip the animation for the roulette bowl/wheel and the TV
 	if item_info != null:
 		var name_lower = item_info.item_name.to_lower()
-		if name_lower == "bowl" or name_lower == "wheel" or name_lower == "tv":
+		if name_lower == "bowl" or name_lower == "wheel" or name_lower == "tv" or name_lower == "shopreroll":
 			return
 	if _hover_tween:
 		_hover_tween.kill()

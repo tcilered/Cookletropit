@@ -161,10 +161,17 @@ func _on_object_clicked(node):
 	if item_name == "bowl":
 		return
 
-	var active_names = GlobalData.active_charms_global.map(func(charm): return charm.get("name", ""))
-	if item_name in active_names:
+	var owned_names: Array[String] = GlobalData.owned_charms_global.duplicate()
+	for charm in GlobalData.active_charms_global:
+		var charm_name := str(charm.get("name", ""))
+		if charm_name != "" and charm_name not in owned_names:
+			owned_names.append(charm_name)
+	if item_name in owned_names:
 		print("you already have this mr Jeff Bezos")
 	elif GlobalData.player_stats.gold >= int(node.item_info.item_value):
+		node.item_info.has_bought = true
+		if item_name not in GlobalData.owned_charms_global:
+			GlobalData.owned_charms_global.append(item_name)
 		emit_signal("main_world_item_toggeled", node)
 		GlobalData.player_stats.gold -= int(node.item_info.item_value)
 	else:
