@@ -15,6 +15,11 @@ signal object_clicked(interacted_node)
 # Track the instantiated mesh scene so we can easily animate/rotate it
 var _spawned_model_instance: Node3D = null
 
+# Hover pickup animation state
+var _rest_model_position: Vector3 = Vector3.ZERO
+var _rest_model_rotation: Vector3 = Vector3.ZERO
+var _hover_tween: Tween = null
+
 func _ready():
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
@@ -27,6 +32,8 @@ func _ready():
 		# Save reference to the instantiated 3D model node for easy access later
 		if spawned_wheel is Node3D:
 			_spawned_model_instance = spawned_wheel
+			_rest_model_position = spawned_wheel.position
+			_rest_model_rotation = spawned_wheel.rotation
 		
 		if item_info.surface_texture != null:
 			_apply_texture_to_all_meshes(spawned_wheel, item_info.surface_texture)
@@ -103,9 +110,34 @@ func _generate_collision_from_scene(current_node: Node):
 
 func _on_mouse_entered():
 	object_hovered.emit(self)
+	_play_hover_animation(true)
 
 func _on_mouse_exited():
 	object_unhovered.emit(self)
+	_play_hover_animation(false)
+
+# Plays a subtle "pick up" animation on hover: lifts and tilts the model
+func _play_hover_animation(is_hovering: bool) -> void:
+	if not _spawned_model_instance:
+		return
+	# Skip the animation for the roulette bowl/wheel and the TV
+	if item_info != null:
+		var name_lower = item_info.item_name.to_lower()
+		if name_lower == "bowl" or name_lower == "wheel" or name_lower == "tv":
+			return
+	if _hover_tween:
+		_hover_tween.kill()
+	_hover_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	if is_hovering:
+		_hover_tween.tween_property(_spawned_model_instance, "position",
+			_rest_model_position + Vector3(0, 0.12, 0), 0.2)
+		_hover_tween.parallel().tween_property(_spawned_model_instance, "rotation",
+			_rest_model_rotation + Vector3(0, 0, deg_to_rad(10)), 0.2)
+	else:
+		_hover_tween.tween_property(_spawned_model_instance, "position",
+			_rest_model_position, 0.2)
+		_hover_tween.parallel().tween_property(_spawned_model_instance, "rotation",
+			_rest_model_rotation, 0.2)
 
 func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

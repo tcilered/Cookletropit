@@ -118,6 +118,12 @@ func _ready():
 			child.object_hovered.connect(_on_object_hovered)
 			child.object_unhovered.connect(_on_object_unhovered)
 			child.object_clicked.connect(_on_object_clicked)
+
+	# Connect the Shop scene's charm purchase signal so shop items use the same
+	# gold-check / charm-activation flow as the main world items.
+	var shop_node = get_node_or_null("Node3D")
+	if shop_node and shop_node.has_signal("charm_purchase_requested"):
+		shop_node.charm_purchase_requested.connect(_on_object_clicked)
 			
 	var board_container = $Table_Scene
 	

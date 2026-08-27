@@ -1,11 +1,41 @@
 [gd_scene format=3 uid="uid://f1g4bxoo2bj8"]
 
+[ext_resource type="Script" uid="uid://cshopgd1234t" path="res://scripts/shop.gd" id="0_shop"]
 [ext_resource type="PackedScene" uid="uid://tgaplmhhq0bd" path="res://scenes/interactive_item.tscn" id="1_rgcs7"]
+[ext_resource type="Script" uid="uid://ckpyhrn4rssnw" path="res://data&data.gd/item_data.gd" id="2_idat"]
+[ext_resource type="PackedScene" uid="uid://c7t5k0ic8sco0" path="res://models/Glb/goblle.glb" id="3_goblet"]
+[ext_resource type="PackedScene" uid="uid://cppmaqni0mqv6" path="res://models/Glb/sowrd.glb" id="4_sword"]
+[ext_resource type="PackedScene" uid="uid://cp7oe44v3bn3x" path="res://models/Glb/mirror.glb" id="5_mirror"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(2.359497, 0.16320801, 1.2546387)
 
+[sub_resource type="Resource" id="Resource_goblet"]
+script = ExtResource("2_idat")
+item_name = "GoldenGoblet"
+item_value = 150
+discription = "The goblet of a functional alcoholic gambling king. Just holding it you feel tipsy and forget your debt."
+item_mesh = ExtResource("3_goblet")
+metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
+
+[sub_resource type="Resource" id="Resource_sword"]
+script = ExtResource("2_idat")
+item_name = "BrokenHilt"
+item_value = 100
+discription = "A sword with a broken hilt. It still offers protection against the worst rolls."
+item_mesh = ExtResource("4_sword")
+metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
+
+[sub_resource type="Resource" id="Resource_mirror"]
+script = ExtResource("2_idat")
+item_name = "MirrorShard"
+item_value = 75
+discription = "The shard of a shattered mirror."
+item_mesh = ExtResource("5_mirror")
+metadata/_custom_type_script = "uid://ckpyhrn4rssnw"
+
 [node name="Node3D" type="Node3D" unique_id=672630555]
+script = ExtResource("0_shop")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=800926750]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.041731, -0.17046201, -0.13549805)
@@ -18,13 +48,20 @@ mesh = SubResource("BoxMesh_g4v7s")
 [node name="Option_1" type="Node3D" parent="." unique_id=1188179541]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8825197, 0.29380494, 0)
 
+[node name="Area3D" parent="Option_1" unique_id=2111111111 instance=ExtResource("1_rgcs7")]
+item_info = SubResource("Resource_goblet")
+
 [node name="Option_2" type="Node3D" parent="." unique_id=1350626558]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013100028, 0.2822252, 0)
+
+[node name="Area3D" parent="Option_2" unique_id=2222222222 instance=ExtResource("1_rgcs7")]
+item_info = SubResource("Resource_sword")
 
 [node name="Option_3" type="Node3D" parent="." unique_id=124495639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7628745, 0.3192736, 0)
 
 [node name="Area3D" parent="Option_3" unique_id=1931984631 instance=ExtResource("1_rgcs7")]
+item_info = SubResource("Resource_mirror")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2045192156]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0.7573565, 1.6033093)
