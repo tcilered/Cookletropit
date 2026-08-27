@@ -2,10 +2,8 @@ extends Node
 
 # Changed the extension from .json to .save since it's now binary data
 var save_path = "user://Cookletropitsavegame.save"
-const SHOP_REROLL_BASE_PRICE: int = 25
 
 var active_charms_global = []
-var shop_reroll_price: int = SHOP_REROLL_BASE_PRICE
 
 # Food buff system
 var active_foods: Array = []
@@ -63,7 +61,6 @@ func reset_data():
 	}
 	active_foods = []
 	active_charms_global = []
-	shop_reroll_price = SHOP_REROLL_BASE_PRICE
 	SPIN_MONEY_THRESHOLD = 500
 	spin_count = 0
 	money_earned_this_round = 0
