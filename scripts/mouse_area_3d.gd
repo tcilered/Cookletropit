@@ -120,6 +120,11 @@ func _on_mouse_exited():
 func _play_hover_animation(is_hovering: bool) -> void:
 	if not _spawned_model_instance:
 		return
+	# Skip the animation for the roulette bowl/wheel and the TV
+	if item_info != null:
+		var name_lower = item_info.item_name.to_lower()
+		if name_lower == "bowl" or name_lower == "wheel" or name_lower == "tv":
+			return
 	if _hover_tween:
 		_hover_tween.kill()
 	_hover_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
