@@ -129,13 +129,15 @@ func _generate_collision_from_scene(current_node: Node):
 
 # --- Signals ---
 
-func _on_mouse_entered():
+func _on_mouse_entered() -> void:
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector3(1.15, 1.15, 1.15), 0.15)
 	object_hovered.emit(self)
-	_play_hover_animation(true)
 
-func _on_mouse_exited():
+func _on_mouse_exited() -> void:
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector3.ONE, 0.15)
 	object_unhovered.emit(self)
-	_play_hover_animation(false)
 
 # Plays a subtle "pick up" animation on hover: lifts and tilts the model
 func _play_hover_animation(is_hovering: bool) -> void:

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c7t5k0ic8sco0" path="res://models/Glb/goblle.glb" id="3_goblet"]
 [ext_resource type="PackedScene" uid="uid://cppmaqni0mqv6" path="res://models/Glb/sowrd.glb" id="4_sword"]
 [ext_resource type="PackedScene" uid="uid://cp7oe44v3bn3x" path="res://models/Glb/mirror.glb" id="5_mirror"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(2.359497, 0.16320801, 1.2546387)
 
@@ -48,25 +49,28 @@ mesh = SubResource("BoxMesh_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8825197, 0.29380494, 0)
 
 [node name="Area3D" parent="Option_1" unique_id=2111111111 instance=ExtResource("1_rgcs7")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 item_info = SubResource("Resource_goblet")
 
 [node name="Option_2" type="Node3D" parent="." unique_id=1350626558]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013100028, 0.2822252, 0)
 
-[node name="Area3D" parent="Option_2" unique_id=2222222222 instance=ExtResource("1_rgcs7")]
+[node name="Area3D" parent="Option_2" unique_id=-2072745074 instance=ExtResource("1_rgcs7")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 item_info = SubResource("Resource_sword")
 
 [node name="Option_3" type="Node3D" parent="." unique_id=124495639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7628745, 0.3192736, 0)
 
 [node name="Area3D" parent="Option_3" unique_id=1931984631 instance=ExtResource("1_rgcs7")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 item_info = SubResource("Resource_mirror")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2045192156]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0.7573565, 1.6033093)
 
 [node name="Reroll_Button" type="Node3D" parent="." unique_id=1931984600]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25000003, -0.862)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.043258876, 0.5355545)
 
 [node name="Area3D" parent="Reroll_Button" unique_id=1931984601 instance=ExtResource("1_rgcs7")]
 item_info = SubResource("Resource_mirror")

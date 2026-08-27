@@ -154,3 +154,5 @@ func _on_item_clicked(node: Node) -> void:
 		print("You can only buy one shop charm each round.")
 		return
 	charm_purchase_requested.emit(node)
+	
+	

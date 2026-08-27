@@ -207,6 +207,9 @@ transform = Transform3D(-0.70710677, -0.35355338, 0.61235446, 0, 0.866, 0.5, -0.
 [node name="chute_food_spawn" type="Marker3D" parent="." unique_id=1458257569]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9376018, 1.5786428, 12.320061)
 
+[node name="Node3D2" parent="." unique_id=773728899 instance=ExtResource("20_bc84e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.287704, 0.19512749, -7.9202943)
+
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]
 [connection signal="numrolled" from="Wheel_Scene" to="." method="_on_wheel_scene_numrolled"]
