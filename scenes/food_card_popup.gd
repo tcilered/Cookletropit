@@ -43,11 +43,7 @@ func _load_model_into_card(card_index: int, model_path: String) -> void:
 	if model_path == "":
 		return
 
-	var viewport: SubViewport = cards_container.get_child(card_index).get_node("VBox/ModelViewport")
-	var display: TextureRect = cards_container.get_child(card_index).get_node("VBox/ModelDisplay")
-
-	# Wire the SubViewport texture to the TextureRect (idempotent)
-	display.texture = viewport.get_texture()
+	var viewport: SubViewport = cards_container.get_child(card_index).get_node("VBox/ModelViewportContainer/ModelViewport")
 
 	# Clear any previous model
 	for child in viewport.get_children():
