@@ -98,6 +98,7 @@ func _ready():
 	# Spawn the food card popup (hidden until needed)
 	food_card_popup = FOOD_CARD_POPUP_SCENE.instantiate()
 	add_child(food_card_popup)
+	food_card_popup.food_selected.connect(_on_food_selected)
 
 	###
 	#connecting signals
@@ -419,3 +420,43 @@ func get_roulette_multiplier(play_type: String) -> int:
 #thanks to Maleficentcharacturmayhapsmourn
 #thanks to Comestibles disssschaaaarger tycoooon
 ###
+
+# --- FOOD SELECTION CINEMATIC ---
+func _on_food_selected(buff_key: String, model_path: String) -> void:
+	# Apply the buff first
+	FoodData.apply_food_buff(buff_key)
+
+	# Get references
+	var camera_node: Node3D = $Cameranode
+	var move_to_chute: Marker3D = $move_to_chute
+	var food_spawn: Marker3D = $chute_food_spawn
+
+	# Remember where the camera was
+	var original_position: Vector3 = camera_node.global_position
+
+	# 1 — Move camera to the chute viewpoint
+	var tween_to = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween_to.tween_property(camera_node, "global_position", move_to_chute.global_position, 1.2)
+	await tween_to.finished
+
+	# 2 — Spawn the food model at the spawn marker
+	var food_node: Node3D = null
+	if model_path != "":
+		var packed = load(model_path)
+		if packed:
+			food_node = packed.instantiate()
+			add_child(food_node)
+			food_node.global_position = food_spawn.global_position
+
+	# 3 — Wait 3 seconds
+	await get_tree().create_timer(3.0).timeout
+
+	# 4 — Despawn the model
+	if is_instance_valid(food_node):
+		food_node.queue_free()
+
+	# 5 — Return camera to original position
+	var tween_back = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween_back.tween_property(camera_node, "global_position", original_position, 1.2)
+	await tween_back.finished
+
