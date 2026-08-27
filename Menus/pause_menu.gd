@@ -11,13 +11,18 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		get_viewport().set_input_as_handled() # Stops the event from hitting world.gd
 		if get_tree().paused:
-			_on_continue_pressed()
+			# Only open/close the pause menu UI — never unpause the game when
+			# something else (e.g. the food card popup) still needs it paused.
+			if $UI.visible:
+				_on_continue_pressed()
+			else:
+				$UI.visible = true
+				print("Paused game")
 		else:
 			GlobalData.save_game()
 			get_tree().paused = true
-			print("Paused game")
 			$UI.visible = true
-			print("showing menu")
+			print("Paused game")
 
 func _on_continue_pressed() -> void:
 	get_tree().paused = false # This unfreezes the 3D world!
