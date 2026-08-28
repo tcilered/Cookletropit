@@ -52,7 +52,7 @@ func apply_food_buff(buff_key: String) -> void:
 	# Avoid duplicates
 	for food in GlobalData.active_foods:
 		if food.get("buff_key") == buff_key:
-			print("Food buff already active: ", buff_key)
+			GameLog.log("That food buff is already active.")
 			return
 
 	var entry: Dictionary = {}
@@ -63,14 +63,14 @@ func apply_food_buff(buff_key: String) -> void:
 				"apply_to_reward": func(payout: float) -> float:
 					return payout * 1.5
 			}
-			print("Food Buff: Lucky Bread – 1.5x payout multiplier active!")
+			GameLog.log("Lucky Bread equipped! All win payouts boosted by 1.5x.")
 
 		"power_soup":
 			entry = {
 				"buff_key": buff_key,
 				"win_bonus": 50
 			}
-			print("Food Buff: Power Soup – +$50 bonus on every winning spin!")
+			GameLog.log("Power Soup equipped! +$50 bonus on every winning spin.")
 
 		"golden_apple":
 			entry = {
@@ -78,24 +78,24 @@ func apply_food_buff(buff_key: String) -> void:
 				"threshold_reduction": 100
 			}
 			GlobalData.SPIN_MONEY_THRESHOLD = max(0, GlobalData.SPIN_MONEY_THRESHOLD - 100)
-			print("Food Buff: Golden Apple – threshold reduced to ", GlobalData.SPIN_MONEY_THRESHOLD)
+			GameLog.log("Golden Apple Pie equipped! Round target reduced to $" + str(GlobalData.SPIN_MONEY_THRESHOLD) + ".")
 
 		"spicy_pepper":
 			entry = {
 				"buff_key": buff_key,
 				"zero_spin_payout": 25
 			}
-			print("Food Buff: Spicy Pepper – $25 guaranteed on zero-win spins!")
+			GameLog.log("Spicy Pepperoni equipped! $25 guaranteed on zero-win spins.")
 
 		"mystic_mushroom":
 			entry = {
 				"buff_key": buff_key,
 				"double_used": false
 			}
-			print("Food Buff: Mystic Mushroom – one spin per round will be doubled!")
+			GameLog.log("Mystic Mushroom equipped! One spin per round will be doubled.")
 
 		_:
 			entry = {"buff_key": buff_key}
-			print("Warning: Unknown food buff '", buff_key, "'")
+			GameLog.log("Unknown food: " + buff_key + ".")
 
 	GlobalData.active_foods.append(entry)

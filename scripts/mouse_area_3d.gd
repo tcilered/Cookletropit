@@ -7,6 +7,7 @@ extends Area3D
 signal object_hovered(interacted_node)
 signal object_unhovered(interacted_node)
 signal object_clicked(interacted_node)
+signal object_right_clicked(interacted_node)
 
 # --- Spin Settings ---
 @export var spin_angle_degrees: float = 720.0
@@ -55,10 +56,8 @@ func _ready():
 			col_shape_node.position.y += vertical_offset
 			
 			add_child(col_shape_node)
-			print("Using custom defined shape for: ", item_info.item_name)
 		else:
 			_generate_collision_from_scene(spawned_wheel)
-			print("Auto-generating shape from mesh for: ", item_info.item_name)
 
 
 # --- Helper Functions ---
@@ -140,15 +139,11 @@ func _play_hover_animation(is_hovering: bool) -> void:
 			_rest_model_rotation, 0.2)
 
 func _on_input_event(_camera, event, _position, _normal, _shape_idx):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		print("Area3D was clicked!") 
-		if item_info != null:
-			print(" -> Attached Resource: ", item_info.item_name)
-			
-			# IF THIS ITEM IS THE BOWL/WHEEL, TRIGGER SPIN AUTOMATICALLY!
-			if item_info.item_name.to_lower() == "bowl" or item_info.item_name.to_lower() == "wheel":
-				spin_model()
-		else:
-			print(" -> WARNING: item_info is empty! Drag a .tres file into the Inspector.")
-			
-		object_clicked.emit(self)
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if item_info != null:
+				if item_info.item_name.to_lower() == "bowl" or item_info.item_name.to_lower() == "wheel":
+					spin_model()
+			object_clicked.emit(self)
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			object_right_clicked.emit(self)

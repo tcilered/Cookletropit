@@ -97,7 +97,7 @@ const HOT_CHARMS: Array[String] = [
 func add_charm(charm_name: String) -> void:
 	for charm in active_charms:
 		if typeof(charm) == TYPE_DICTIONARY and str(charm.get("name", "")) == charm_name:
-			print("Charm already active: ", charm_name)
+			GameLog.log("Already equipped: " + charm_name + ".")
 			return
 
 	var new_charm: Dictionary = {}
@@ -114,7 +114,7 @@ func add_charm(charm_name: String) -> void:
 				"name": charm_name,
 				"apply_to_roll": func(r: int) -> int: return 7 if r == 0 else r
 			}
-			print("Added Lucky Clover: House 0s are now 7s!")
+			GameLog.log("Lucky Clover added! House rolls of 0 now become 7.")
 
 		"TheCube":
 			new_charm = {
@@ -125,7 +125,7 @@ func add_charm(charm_name: String) -> void:
 						w.append_array(RouletteData.square_numbers)
 					return w
 			}
-			print("Added The Cube: Added 3 sets of square numbers to the wheel!")
+			GameLog.log("The Cube added! Three extra sets of square numbers added to the wheel.")
 
 		"Crystalcharm":
 			new_charm = {
@@ -134,7 +134,7 @@ func add_charm(charm_name: String) -> void:
 				"apply_to_reward": func(payout: float) -> float:
 					return payout * 1.5
 			}
-			print("Added Crystal Charm: Grants a 1.5x payout multiplier on all wins!")
+			GameLog.log("Crystal Charm added! All win payouts boosted by 1.5x.")
 
 		"Die":
 			new_charm = {
@@ -143,16 +143,16 @@ func add_charm(charm_name: String) -> void:
 					# randfn(mean, standard_deviation) creates a bell curve distribution
 					# Centered at 1.25, with a 0.4 deviation, most rolls stay inside the 0.1 - 2.0 range
 					var multiplier = clamp(randfn(1.25, 0.4), 0.1, 2.0)
-					print("Die multiplier applied: ", snapped(multiplier, 0.01), "X")
+					GameLog.log("Die rolled a " + str(snapped(multiplier, 0.01)) + "x multiplier!")
 					return payout * multiplier
 			}
-			print("Added Die: Randomly sets a multiplier between 0.1X to 2X, weighted mean of 1.25X")
+			GameLog.log("Die added! Applies a random 0.1x-2.0x multiplier to each win.")
 
 		"HotGarbage":
 			new_charm = {
 				"name": charm_name
 			}
-			print("Added Hot Garbage: Spawning a random high-tier charm!")
+			GameLog.log("Hot Garbage added! A random high-tier charm is on its way...")
 			var random_hot = HOT_CHARMS[randi() % HOT_CHARMS.size()]
 			call_deferred("add_charm", random_hot)
 
@@ -160,7 +160,7 @@ func add_charm(charm_name: String) -> void:
 			new_charm = {
 				"name": charm_name
 			}
-			print("Added Garbage: Spawning a random charm!")
+			GameLog.log("Garbage added! A random charm is on its way...")
 			var random_charm = ALL_CHARMS[randi() % ALL_CHARMS.size()]
 			call_deferred("add_charm", random_charm)
 
@@ -171,11 +171,11 @@ func add_charm(charm_name: String) -> void:
 				"on_zero_roll": func(charm_dict: Dictionary) -> bool:
 					if charm_dict.get("charges", 0) > 0:
 						charm_dict["charges"] -= 1
-						print("Broken Hilt protected you from 0! Remaining charges: ", charm_dict["charges"])
+						GameLog.log("Broken Hilt blocked a zero roll! Charges left: " + str(charm_dict["charges"]) + ".")
 						return true
 					return false
 			}
-			print("Added Broken Hilt: Protects against a 0-roll three times!")
+			GameLog.log("Broken Hilt added! Blocks up to 3 zero rolls.")
 
 		"TanRook":
 			new_charm = {
@@ -188,7 +188,7 @@ func add_charm(charm_name: String) -> void:
 						return reward * 2.0
 					return reward
 			}
-			print("Added Tan Rook: Moves horizontally/vertically double rewards; tile occupied flips negative!")
+			GameLog.log("Tan Rook added! Doubles rewards on its row/column; flips payout negative on its own tile.")
 
 		"GoldenGoblet":
 			new_charm = {
@@ -198,11 +198,11 @@ func add_charm(charm_name: String) -> void:
 				"process_loss": func(loss_amount: float, charm_dict: Dictionary) -> float:
 					if charm_dict.get("delay_days", 0) > 0:
 						charm_dict["delay_days"] -= 1
-						print("Golden Goblet delayed a loss of $", loss_amount, "! Days left: ", charm_dict["delay_days"])
+						GameLog.log("Golden Goblet delayed a $" + str(loss_amount) + " loss! Days left: " + str(charm_dict["delay_days"]) + ".")
 						return 0.0
 					return loss_amount
 			}
-			print("Added Golden Goblet: Delays losses for the next 3 days!")
+			GameLog.log("Golden Goblet added! Losses are delayed for 3 days.")
 
 		"MirrorShard":
 			new_charm = {
@@ -211,11 +211,11 @@ func add_charm(charm_name: String) -> void:
 				"apply_to_reward": func(payout: float) -> float:
 					# Logic: A flat 15% chance to "reflect" and double your win
 					if randf() <= 0.15:
-						print("Mirror Shard activated! Payout reflected (2X)!")
+						GameLog.log("Mirror Shard activated! Payout doubled!")
 						return payout * 2.0
 					return payout
 			}
-			print("Added MirrorShard: Grants a 15% chance to double any payout.")
+			GameLog.log("Mirror Shard added! 15% chance to double any payout.")
 
 		"CouponCharm":
 			new_charm = {
@@ -225,11 +225,11 @@ func add_charm(charm_name: String) -> void:
 			GlobalData.shop_reroll_price = 100
 			if get_tree():
 				get_tree().call_group("shops", "_sync_with_global_state")
-			print("Added Coupon Charm: Shop reroll price reset to $100.")
+			GameLog.log("Coupon Charm added! Shop reroll price reset to $100.")
 
 		_:
 			new_charm = {"name": charm_name}
-			print("Warning: No custom logic found for '", charm_name, "'. Adding as generic charm.")
+			GameLog.log("New charm added: " + charm_name + ".")
 
 	active_charms.append(new_charm)
 	GlobalData.active_charms_global = active_charms
@@ -237,13 +237,12 @@ func add_charm(charm_name: String) -> void:
 		GlobalData.owned_charms_global.append(charm_name)
 
 	var charm_names = active_charms.map(func(c): return c.get("name", "Unknown"))
-	print("Active charms list is now: ", charm_names)
+	GameLog.log("Active charms: " + ", ".join(charm_names) + ".")
 
 
 # --- Signal Handling ---
 func _on_object_hovered(node):
 	node.scale = Vector3(1.21, 1.21, 1.21) # Slight pop effect when hovered
-	print("hovering over Wheel!")
 	
 	var mesh_instance = _get_target_mesh(node)
 	if mesh_instance:
@@ -291,7 +290,7 @@ func _on_object_clicked(node):
 
 	# Logic for clicking the bowl (the "Play" button)
 	if item_name == "bowl":
-		print("--- SPINNING ---")
+		GameLog.log("Spinning the wheel...")
 		
 		# Dynamically resolve whatever model is attached
 		var spin_target = _get_spin_target(node)
@@ -306,7 +305,7 @@ func _on_object_clicked(node):
 				
 		var result = spin_wheel()
 		numrolled.emit(result)
-		print("Result: ", result)
+		GameLog.log("Ball lands on: " + str(result) + "!")
 	
 	# Logic for picking up a charm
 	else:

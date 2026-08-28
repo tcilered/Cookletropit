@@ -56,12 +56,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			# Scroll up: Increase chip size, clamp to max array size
 			current_chip_index = min(current_chip_index + 1, chip_tiers.size() - 1)
-			print("Selected Chip Amount: ", chip_tiers[current_chip_index]["amount"])
+			GameLog.log("Bet size: $" + str(chip_tiers[current_chip_index]["amount"]) + ".")
 			
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			# Scroll down: Decrease chip size, clamp to 0
 			current_chip_index = max(current_chip_index - 1, 0)
-			print("Selected Chip Amount: ", chip_tiers[current_chip_index]["amount"])
+			GameLog.log("Bet size: $" + str(chip_tiers[current_chip_index]["amount"]) + ".")
 
 func _physics_process(delta: float) -> void:
 	pass
@@ -88,7 +88,7 @@ func run_intro_sequence() -> void:
 	
 	# --- STEP 4 ---
 	# Move camera again or continue the game
-	print("Tutorial sequence finished!")
+	pass
 
 func _ready():
 	spawn_text(Vector3(0, 0, 0), "Welcome to the table! Use the scroll wheel to change bet size and buy charms to change the odds. Click on the cube to move the camera. Click the wheel to spin and test your luck.")
@@ -108,12 +108,12 @@ func _ready():
 	###
 	video_player.finished.connect(_on_video_finished)
 	tv.object_clicked.connect(_on_tv_clicked)
+	tv.object_right_clicked.connect(_on_tv_right_clicked)
 	
 	if pause_menu:
-		print("hiding pause menu")
 		pause_menu.hide()
 	else:
-		print("_ready in main broken")
+		pass
 
 
 	for child in get_children():
@@ -141,18 +141,14 @@ func _on_object_hovered(node):
 	if node.get("item_info") == null:
 		return
 	if node.item_info.has_bought == true:
-		print("This item is called ", node.item_info.item_name, " and is worth ", node.item_info.item_value)
+		pass
 	elif node.item_info.has_bought == false:
-		#create popup of info and colour change and increase in scale
-		print("This item is called ", node.item_info.item_name, " and is worth ", node.item_info.item_value)
 		pass
 	else:
-		print("uh you own and don't own this at the same time, kms")
 		pass
 
 func _on_object_unhovered(node):
-	if node.get("item_info") != null:
-		print("Main World: stopped hovering over: ", node.item_info.item_name)
+	pass
 
 # worl.gd
 func _on_object_clicked(node):
@@ -180,7 +176,7 @@ func _try_purchase_charm(node) -> bool:
 			owned_names.append(charm_name)
 
 	if item_name in owned_names:
-		print("you already have this mr Jeff Bezos")
+		GameLog.log("You already own this charm.")
 		return false
 	elif GlobalData.player_stats.gold >= int(node.item_info.item_value):
 		node.item_info.has_bought = true
@@ -191,9 +187,9 @@ func _try_purchase_charm(node) -> bool:
 		return true
 	else:
 		if GlobalData.player_stats.gold <= 0:
-			print("Litttteraly out of money!!!!!! L skill issue")
+			GameLog.log("Wallet is empty!")
 		else:
-			print("Too poor, speed please i need this my mom is kinda homeless")
+			GameLog.log("Not enough gold.")
 		return false
 		
 		
@@ -238,9 +234,9 @@ func _on_square_placing_requested(play_type: String, origin_square_id: int, glob
 			# Refund the ENTIRE stacked amount stored in the dictionary
 			GlobalData.player_stats.gold += active_bets[bet_key]["amount"]
 			active_bets.erase(bet_key)
-			print("Bet removed: ", bet_key, ". Gold refunded.")
+			GameLog.log("Bet removed. Gold refunded.")
 		else:
-			print("No bet to cancel here.")
+			GameLog.log("No bet on that spot to remove.")
 
 	# ==========================================
 	# LEFT CLICK: PLACE NEW OR STACK BET
@@ -252,7 +248,7 @@ func _on_square_placing_requested(play_type: String, origin_square_id: int, glob
 			if active_bets.has(bet_key):
 				GlobalData.player_stats.gold -= current_bet_amount
 				active_bets[bet_key]["amount"] += current_bet_amount
-				print("Bet stacked! Total on this spot: ", active_bets[bet_key]["amount"])
+				GameLog.log("Bet stacked! Total on this spot: $" + str(active_bets[bet_key]["amount"]) + ".")
 				# Note: Since you mentioned the model doesn't change when stacking, 
 				# we just update the math above and do nothing visually.
 				
@@ -275,9 +271,9 @@ func _on_square_placing_requested(play_type: String, origin_square_id: int, glob
 					"amount": current_bet_amount,
 					"origin_square_id": origin_square_id
 				}
-				print("New bet placed! Remaining Gold: ", GlobalData.player_stats.gold)
+				GameLog.log("Bet placed! Gold remaining: $" + str(GlobalData.player_stats.gold) + ".")
 		else:
-			print("Not enough gold to place a bet of ", current_bet_amount, "!")
+			GameLog.log("Not enough gold for a $" + str(current_bet_amount) + " bet.")
 
 func _on_square_hover_entered(square_id: int) -> void:
 	pass
@@ -290,13 +286,26 @@ func _on_square_hover_moved(play_type: String, origin_square_id: int, global_pos
 	
 
 func _on_tv_clicked(clicked_node):
-	print("World scene received click from: ", clicked_node.name)
 	# Stop the video if it's already running, then play from the start
 	if tv_is_playing:
 		return
 		
 	tv_is_playing = true
 	video_player.play()
+
+func _on_tv_right_clicked(_clicked_node) -> void:
+	GameLog.log("--- SHOP ITEMS ---")
+	var shops = get_tree().get_nodes_in_group("shops")
+	if shops.is_empty():
+		GameLog.log("Shop not found.")
+		return
+	var shop = shops[0]
+	if not shop.has_method("get_stock_info"):
+		GameLog.log("Shop info unavailable.")
+		return
+	var stock_info: Array[String] = shop.get_stock_info()
+	for info in stock_info:
+		GameLog.log(info)
 		
 func _on_video_finished() -> void:
 	# Unlock input when the video ends so it can be clicked again
@@ -306,7 +315,7 @@ func _on_video_finished() -> void:
 
 func _on_wheel_scene_numrolled(roll: Variant) -> void:
 	roll_recived = int(roll)
-	print("--- WHEEL RESULT: ", roll_recived, " ---")
+	GameLog.log("Wheel result: " + str(roll_recived) + ".")
 	
 	var round_winnings = 0.0
 	var had_any_win = false
@@ -337,13 +346,13 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 				if food.get("buff_key") == "mystic_mushroom" and not food.get("double_used", true):
 					payout *= 2.0
 					food["double_used"] = true
-					print("Food Buff: Mystic Mushroom doubled this spin!")
+					GameLog.log("Mystic Mushroom activated! This spin's payout is doubled.")
 					break
 			
 			round_winnings += payout
-			print("Bet ", bet_key, " WON! Base: $", base_payout, " | Paid with Buffs: $", payout)
+			GameLog.log("WIN! Payout with bonuses: $" + str(int(payout)) + ".")
 		else:
-			print("Bet ", bet_key, " LOST.")
+			GameLog.log("Lost that bet.")
 		
 		# Clean up the chip visual now that the spin is finished
 		if is_instance_valid(bet_data["chip_node"]):
@@ -355,20 +364,20 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 			if food.get("buff_key") == "spicy_pepper":
 				round_winnings += food.get("zero_spin_payout", 0)
 				if round_winnings > 0:
-					print("Food Buff: Spicy Pepper gives $", food.get("zero_spin_payout", 0), " consolation!")
+					GameLog.log("Spicy Pepper activated! Consolation payout: $" + str(food.get("zero_spin_payout", 0)) + ".")
 				break
 
 	if round_winnings > 0:
 		GlobalData.player_stats.gold += int(round_winnings)
-		print("Total Payout Added to Wallet: $", round_winnings)
+		GameLog.log("Added $" + str(int(round_winnings)) + " to your wallet.")
 	
 	# Track round money and spin count
 	GlobalData.money_earned_this_round += int(round_winnings)
 	GlobalData.spin_count += 1
 	
-	print("Round progress: ", GlobalData.spin_count, "/", GlobalData.SPINS_PER_ROUND,
-		" | Earned this round: $", GlobalData.money_earned_this_round,
-		" / $", GlobalData.SPIN_MONEY_THRESHOLD)
+	GameLog.log("Round " + str(GlobalData.spin_count) + "/" + str(GlobalData.SPINS_PER_ROUND)
+		+ " — Earned: $" + str(GlobalData.money_earned_this_round)
+		+ " / $" + str(GlobalData.SPIN_MONEY_THRESHOLD) + " needed.")
 	
 	# Clear out active bets registry for the next spin round
 	active_bets.clear()
@@ -376,7 +385,7 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 	# Check round end condition
 	if GlobalData.spin_count >= GlobalData.SPINS_PER_ROUND:
 		if GlobalData.money_earned_this_round >= GlobalData.SPIN_MONEY_THRESHOLD:
-			print("Round passed! Showing food card popup.")
+			GameLog.log("Round complete! Choose your food reward.")
 			# Reset mystic_mushroom double flag for next round
 			for food in GlobalData.active_foods:
 				if food.get("buff_key") == "mystic_mushroom":
@@ -387,7 +396,7 @@ func _on_wheel_scene_numrolled(roll: Variant) -> void:
 			_refresh_shop_for_new_round()
 			food_card_popup.show_popup()
 		else:
-			print("Round FAILED — not enough money earned. Game over.")
+			GameLog.log("Round failed. Target of $" + str(GlobalData.SPIN_MONEY_THRESHOLD) + " not reached. Game over.")
 			spawn_text(Vector3(0, 1, 0), "GAME OVER! You didn't earn $" + str(GlobalData.SPIN_MONEY_THRESHOLD) + " in 4 spins!")
 			await get_tree().create_timer(3.0).timeout
 			GlobalData.reset_data()
@@ -509,8 +518,6 @@ func _on_food_selected(buff_key: String, model_path: String) -> void:
 			
 			# APPLY SCALE HERE
 			food_node.scale = food_model_scale
-			
-			print("Food model spawned: ", model_path)
 		else:
 			push_warning("_on_food_selected: could not load model: " + model_path)
 

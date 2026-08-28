@@ -17,6 +17,7 @@ config/icon="res://Image textures/icon.svg"
 
 [autoload]
 
+GameLog="*res://scripts/game_log.gd"
 GlobalData="*uid://cex2ds1t28tvk"
 RouletteData="*uid://ctojjia3heba3"
 FoodData="*res://scenes/food_data.gd"
