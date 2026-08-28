@@ -205,7 +205,7 @@ transform = Transform3D(-0.40000004, 0, 0.6928203, 0, 0.8, 0, -0.6928203, 0, -0.
 transform = Transform3D(-0.40000007, 0, 0.6928203, 0, 0.8, 0, -0.6928203, 0, -0.40000007, -1.23382, 3.4891582, 12.255666)
 visible = false
 
-[node name="Node3D" type="Node3D" parent="Chute_Door" unique_id=526329548]
+[node name="Chute_rotation_point" type="Node3D" parent="Chute_Door" unique_id=526329548]
 transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, 0.051247597, 0, 0.029587746)
 
 [node name="move_to_chute" type="Marker3D" parent="." unique_id=1745881301]
