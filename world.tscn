@@ -132,7 +132,6 @@ transform = Transform3D(0.74593836, 0, 0, 0, 0.911, 0, 0, 0, 0.6758623, 7.007774
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=724063881]
 transform = Transform3D(0.40588737, 0.68430024, -0.60579586, 0.12663788, 0.61434674, 0.7788074, 0.90510684, -0.39282477, 0.16269724, -29.399345, 80.57942, 0)
-light_energy = 2.0
 light_indirect_energy = 5.423
 light_volumetric_fog_energy = 2.171
 
