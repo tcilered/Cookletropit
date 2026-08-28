@@ -2,7 +2,8 @@ extends Node3D
 @export var pause_menu: Control
 @export var table_square_scene: PackedScene 
 @export var bet_placed: int 
-
+@export var ambiance_volume: float = -12.67 # 0 equalriblium
+var bg_audio_player: AudioStreamPlayer
 # Track bets using a Dictionary. Key: unique_bet_string, Value: Dictionary of bet data
 @onready var tv: Node3D = $TV/Area3D # Adjust path if TV is nested under another node
 @onready var video_player: VideoStreamPlayer = $TV/SubViewport/VideoStreamPlayer
@@ -67,12 +68,26 @@ func _physics_process(delta: float) -> void:
 
 
 func _ready():
+	# --- AUDIO SETUP ---
+	bg_audio_player = AudioStreamPlayer.new()
+	add_child(bg_audio_player)
 	
+	# Load the audio file using the project's res:// path
+	var ambiance_stream = load("res://Audio/freesound_community-casino-ambiance-19130 (1).mp3") as AudioStreamMP3
+	
+	if ambiance_stream:
+		ambiance_stream.loop = true # Tell the MP3 to loop automatically
+		bg_audio_player.stream = ambiance_stream
+		bg_audio_player.volume_db = ambiance_volume # Set the volume based on your variable
+		bg_audio_player.play()
+	else:
+		print("[ERROR] Failed to load casino ambiance audio.")
+	# -------------------
+
 	# --- STEP 1 ---
 	# Spawn the first popup and wait for the player to click it
 	var popup1 = spawn_text(Vector3(9.375,1.856,4.58), "Welcome to the table!")
 	await popup1.tree_exited 
-	
 	
 	# --- STEP 2 ---
 	# Spawn the second popup
@@ -82,7 +97,7 @@ func _ready():
 	var popup3 = spawn_text(Vector3(9.375,1.856,4.58), "Move around with WASD or move your mouse to the edge of the screen.")
 	await popup3.tree_exited
 
-# --- STEP 4 ---
+	# --- STEP 4 ---
 	var popup4 = spawn_text(
 		Vector3(9.375, 1.856, 4.58),
 		".",
@@ -177,7 +192,6 @@ func _ready():
 			child.hover_entered.connect(_on_square_hover_entered)
 			child.hover_exited.connect(_on_square_hover_exited)
 			child.hover_moved.connect(_on_square_hover_moved)
-
 # --- Receiver Functions ---
 
 func _on_object_hovered(node):

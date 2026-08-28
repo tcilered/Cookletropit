@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dbivla06tmahq"
+path="res://.godot/imported/freesound_community-casino-ambiance-19130 (1).mp3-3e0709fd6462692b1f2f4dbe3772c706.mp3str"
+
+[deps]
+
+source_file="res://Audio/freesound_community-casino-ambiance-19130 (1).mp3"
+dest_files=["res://.godot/imported/freesound_community-casino-ambiance-19130 (1).mp3-3e0709fd6462692b1f2f4dbe3772c706.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -3,7 +3,7 @@ extends Node3D
 # --- Configuration & Defaults ---
 # Default mesh node name inside spawned scenes if no specific path is given in item_info
 @export var default_mesh_node_name: String = "Object_9"
-
+@export var wheel_volume: float = -23.67
 # Customizable variables for the spin
 @export var spin_angle_degrees: float = randi_range(520, 900) # How far to spin (can change this in Inspector)
 @export var spin_duration: float = 2.0        # How long the spin takes in seconds
@@ -15,12 +15,15 @@ var active_charms: Array = []
 var wheel_audio_player: AudioStreamPlayer # Add this line
 
 func _ready():
-	# --- Add these lines for the audio setup ---
+# --- audio setup ---
 	wheel_audio_player = AudioStreamPlayer.new()
 	add_child(wheel_audio_player)
 	# Assuming the Audio folder is in your main project folder
 	var spin_sound = load("res://Audio/spinopel-a-roulette-ball-429831.mp3") 
 	wheel_audio_player.stream = spin_sound
+	
+	# Add this line to set the volume to your variable:
+	wheel_audio_player.volume_db = wheel_volume 
 	# -------------------------------------------
 	
 	for child in get_children():
