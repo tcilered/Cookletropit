@@ -10,7 +10,7 @@ const BASE_REROLL_PRICE: int = 25
 const REROLL_RESET_PRICE: int = 100
 const REROLL_PRICE_MULTIPLIER: int = 3
 const SHOP_ITEM_SCALE := Vector3(0.2, 0.2, 0.2)
-
+var purchase_audio_player: AudioStreamPlayer
 const SHOP_ITEMS := {
 	"GoldenGoblet": {
 		"price": 150,
@@ -50,6 +50,12 @@ const SHOP_ITEMS := {
 }
 
 func _ready() -> void:
+	# --- AUDIO SETUP ---
+	purchase_audio_player = AudioStreamPlayer.new()
+	add_child(purchase_audio_player)
+	var purchase_sound = load("res://Audio/freesound_community-cha-ching-7053.mp3")
+	purchase_audio_player.stream = purchase_sound
+	# -------------------
 	add_to_group("shops")
 	_ensure_global_shop_state()
 	_connect_item_signals(self)
@@ -107,6 +113,10 @@ func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 
 	# --- PURCHASE SUCCESSFUL ---
 	print("[SHOP TRANSACTION SUCCESS]: Purchased '", item_info.item_name, "' for $", item_info.item_value, ".")
+	
+	# Play the cha-ching sound!
+	purchase_audio_player.play()
+	
 	GlobalData.player_stats.gold -= int(item_info.item_value)
 	GlobalData.shop_purchase_locked = true
 	item_info.has_bought = true
