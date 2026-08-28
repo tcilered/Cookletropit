@@ -121,7 +121,7 @@ radius_for_this_spot = 6.0
 shape = SubResource("ConcavePolygonShape3D_wse8f")
 
 [node name="camera_node" type="Marker3D" parent="move_camera_on_click" unique_id=310226256]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 1.0771494, 2.587923, 5.3534107)
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 1.077, 2.693, 5.353)
 
 [node name="Wheel_Scene" parent="." unique_id=1393983754 instance=ExtResource("9_ioo17")]
 transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, 15.754, 0.3288803, 6.29)
@@ -219,6 +219,9 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 12.903805, 
 
 [node name="TV2" parent="." unique_id=1281545171 instance=ExtResource("21_wukud")]
 transform = Transform3D(1.4998124, 0, -1.3230889, 0, 2, 0, 1.3230889, 0, 1.4998124, 19.147028, 1.6272187, -4.2324243)
+
+[node name="Node3D3" type="Node3D" parent="." unique_id=1350517164]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 11.159955, 1.5642109, -2.2702627)
 
 [connection signal="main_world_item_toggeled" from="." to="Wheel_Scene" method="_on_node_3d_main_world_item_toggeled"]
 [connection signal="move_requested" from="move_camera_on_click/StaticBody3D" to="Cameranode" method="_on_object_clicked_move_requested"]

@@ -38,10 +38,9 @@ func spawn_text(
 	target_camera_position: Vector3 = Vector3.ZERO, 
 	camera_duration: float = 1.5
 ) -> Node3D:
-	var popup = FLOATING_TEXT_SCENE.instantiate()
+	var popup = FLOATING_TEXT_SCENE.instantiate() as FloatingText
 	get_tree().current_scene.add_child(popup)
-	popup.global_position = spawn_position
-	popup.display_text(text, 4.0, custom_scale)
+	popup.display_text(text, 4.0, custom_scale, spawn_position)
 	
 	if move_camera:
 		var camera = get_viewport().get_camera_3d()
@@ -66,34 +65,75 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	pass
 
-func run_intro_sequence() -> void:
-	# --- STEP 1 ---
-	# Spawn the first popup and wait for the player to click it
-	var popup1 = spawn_text(Vector3(0, 2, 0), "Welcome to the table!")
-	await popup1.tree_exited 
-	
-	# --- STEP 2 ---
-	# Move the camera (Assuming you have a Camera3D node, adjust the path)
-	var camera = get_viewport().get_camera_3d()
-	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(camera, "global_position", Vector3(2, 3, 2), 1.5)
-	
-	# Wait for the camera movement to finish
-	await tween.finished
-	
-	# --- STEP 3 ---
-	# Spawn the second popup
-	var popup2 = spawn_text(Vector3(2, 2, 0), "Use the scroll wheel to change chips.")
-	await popup2.tree_exited
-	
-	# --- STEP 4 ---
-	# Move camera again or continue the game
-	print("Tutorial sequence finished!")
 
 func _ready():
-	spawn_text(Vector3(0, 0, 0), "Welcome to the table! Use the scroll wheel to change bet size and buy charms to change the odds. Click on the cube to move the camera. Click the wheel to spin and test your luck.")
-	# Start the sequence
-	#run_intro_sequence()
+	
+	# --- STEP 1 ---
+	# Spawn the first popup and wait for the player to click it
+	var popup1 = spawn_text(Vector3(9.375,1.856,4.58), "Welcome to the table!")
+	await popup1.tree_exited 
+	
+	
+	# --- STEP 2 ---
+	# Spawn the second popup
+	var popup2 = spawn_text(Vector3(9.375,1.856,4.58), "Use the scroll wheel to change chips size and thus bet size.")
+	await popup2.tree_exited
+	
+	var popup3 = spawn_text(Vector3(9.375,1.856,4.58), "Move around with WASD or move your mouse to the edge of the screen.")
+	await popup3.tree_exited
+
+# --- STEP 4 ---
+	var popup4 = spawn_text(
+		Vector3(9.375, 1.856, 4.58),
+		".",
+		Vector3.ONE,
+		true,
+		Vector3(11.1, 4, -2.3),
+		1.5
+	)
+	await popup4.tree_exited
+	
+	var popup7 = spawn_text(Vector3(9.375,1.856,4.58), "Click on the gray triangle to vist the shop and to get back. You can only buy 1 item per round and each reroll triples in price each time.")
+	await popup7.tree_exited 
+
+	# --- STEP 5 ---
+	var popup5 = spawn_text(
+		Vector3(9.375, 2.5, 4.58),
+		"Click on the gray triangle to vist the shop and to get back. You can only buy 1 item per round and each reroll triples in price each time.",
+		Vector3.ONE,
+		true,
+		Vector3(9.375, 5, 6.196),
+		1.5
+	)
+	await popup5.tree_exited
+
+	var popup9 = spawn_text(
+		Vector3(9.375, 2.5, 4.58),
+		"You can bet on the other squares, like colors, odd, evens, 1st, 2nd, or 3rd dozen, or the 12 tall columns.",
+		Vector3.ONE,
+		true,
+		Vector3(9.375, 5, 6.196),
+		1.5
+	)
+	await popup9.tree_exited
+
+	var popup6 = spawn_text(
+		Vector3(9.375, 2.5, 4.58),
+		"Click straight on a numbered square to make a bet, you can split between two by clicking an edge, or 4 by clicking a corner.",
+		Vector3.ONE,
+		true,
+		Vector3(9.375, 5, 6.196),
+		1.5
+	)
+	await popup6.tree_exited
+
+	var popup8 = spawn_text(Vector3(9.375,1.856,4.58), "Click on the wheel to spin and test your luck, your wins and losses are displayed on the TV.")
+	await popup8.tree_exited 
+
+	var popup10 = spawn_text(Vector3(9.375,1.856,4.58), "Your goal is to try to make enough money to afford food each day(4spins). If you don't get enough money you starve, survive for as long as you can against escalating food prices!")
+	await popup10.tree_exited 
+
+	print("Tutorial sequence finished!")
 
 	# Spawn the food card popup (hidden until needed)
 	food_card_popup = FOOD_CARD_POPUP_SCENE.instantiate()

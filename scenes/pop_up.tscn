@@ -7,12 +7,14 @@
 bg_color = Color(0.5712129, 0.11761678, 0.09306919, 0.6313726)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0bbd1"]
+size = Vector3(13.7812805, 10.86377, 0.029296875)
 
 [node name="FloatingText" type="Node3D" unique_id=349366276]
 script = ExtResource("1_ui8ff")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=523630248]
 transform = Transform3D(0.67, 0, 0, 0, 0.67, 0, 0, 0, 0.67, 0, 0, 0)
+render_priority = 10
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1702178790]
 transparent_bg = true

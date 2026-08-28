@@ -1,6 +1,6 @@
 extends Node
 
-# Changed the extension from .json to .save since it's now binary data
+#save it's now binary data
 var save_path = "user://Cookletropitsavegame.save"
 
 var active_charms_global = []
@@ -13,8 +13,12 @@ var shop_sold_out_slots: Array[bool] = []
 # Food buff system
 var active_foods: Array = []
 
-# Round tracking (4 spins per round, must earn threshold to continue)
+# Round tracking (4 spins per round, threshold scales exponentially per round)
 const SPINS_PER_ROUND: int = 4
+var current_round: int = 1
+const BASE_MONEY_THRESHOLD: float = 500.0
+const THRESHOLD_GROWTH_FACTOR: float = 1.4 # Base exponent factor (1.30 to 1.40 keeps it smooth)
+
 var SPIN_MONEY_THRESHOLD: int = 500
 var spin_count: int = 0
 var money_earned_this_round: int = 0
@@ -26,38 +30,68 @@ var player_stats = {
 	"last_position": Vector2(150, 300) 
 }
 
-###
-#LOADING AND SAVING
-###
 
-func save_game():
+func _ready() -> void:
+	update_money_threshold()
+
+
+# --- THRESHOLD SCALING ---
+
+func update_money_threshold() -> void:
+	# Calculates threshold: Base * (1.35 ^ (round - 1))
+	# Starts at $500 and scales smoothly without skyrocketing instantly like 2^x
+	SPIN_MONEY_THRESHOLD = int(BASE_MONEY_THRESHOLD * pow(THRESHOLD_GROWTH_FACTOR, current_round - 1))
+
+
+func advance_round() -> void:
+	current_round += 1
+	spin_count = 0
+	money_earned_this_round = 0
+	update_money_threshold()
+	print("[ROUND_SYS] Advanced to Round ", current_round, " | Target Goal: $", SPIN_MONEY_THRESHOLD)
+
+
+# --- LOADING AND SAVING ---
+
+func save_game() -> void:
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	print(save_path)
 	if file:
-		# store_var() takes ANY Godot variable and saves it directly
-		file.store_var(player_stats)
+		var save_data = {
+			"player_stats": player_stats,
+			"current_round": current_round,
+			"owned_charms": owned_charms_global,
+			"shop_reroll_price": shop_reroll_price
+		}
+		file.store_var(save_data)
 		print("Game Saved!")
 
-func load_game():
+
+func load_game() -> void:
 	if not FileAccess.file_exists(save_path):
 		print("No save file found.")
 		return
 	
 	var file = FileAccess.open(save_path, FileAccess.READ)
-	
-	# get_var() pulls the data out exactly as it was saved
 	var data = file.get_var()
 	
-	# Double check that the data we loaded is actually a Dictionary
 	if typeof(data) == TYPE_DICTIONARY:
-		player_stats = data
-		print("Game Loaded!")
+		if data.has("player_stats"):
+			player_stats = data["player_stats"]
+		if data.has("current_round"):
+			current_round = data["current_round"]
+		if data.has("owned_charms"):
+			owned_charms_global = Array(data["owned_charms"], TYPE_STRING, "", null)
+		if data.has("shop_reroll_price"):
+			shop_reroll_price = data["shop_reroll_price"]
+			
+		update_money_threshold()
+		print("Game Loaded! Round: ", current_round, " Target: $", SPIN_MONEY_THRESHOLD)
 
-###
-# MISC
-###
 
-func reset_data():
+# --- MISC ---
+
+func reset_data() -> void:
 	player_stats = {
 		"health": 400,
 		"gold": 6767,
@@ -71,6 +105,8 @@ func reset_data():
 	shop_purchase_locked = false
 	shop_stock_names = []
 	shop_sold_out_slots = []
-	SPIN_MONEY_THRESHOLD = 500
+	
+	current_round = 1
 	spin_count = 0
 	money_earned_this_round = 0
+	update_money_threshold()
