@@ -46,14 +46,14 @@ func _on_object_clicked_move_requested(new_center: Vector3, new_radius: float):
 		
 		previous_anchor_position = temp_pos
 		previous_radius = temp_rad
-		print("Toggled back to previous position: ", previous_anchor_position)
+		print("Client, please return to your position.")
 		
 	else:
 		previous_anchor_position = anchor_position
 		previous_radius = limit_radius
 		
 		_trigger_camera_move(new_center, new_radius)
-		print("Moved to new position")
+		print("Client, please have a look.")
 
 func _trigger_camera_move(target_pos: Vector3, target_rad: float):
 	anchor_position = target_pos
@@ -66,7 +66,7 @@ func _trigger_camera_move(target_pos: Vector3, target_rad: float):
 		.set_ease(Tween.EASE_OUT)
 		
 	tween.finished.connect(func(): is_panning = false)
-	print("New radius: ", target_rad)
+	print("Chain length: ", target_rad, "meters")
 # Detect when the player Alt-Tabs or clicks a different window
 func _notification(what):
 	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:

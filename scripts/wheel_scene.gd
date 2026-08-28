@@ -97,35 +97,28 @@ const HOT_CHARMS: Array[String] = [
 func add_charm(charm_name: String) -> void:
 	for charm in active_charms:
 		if typeof(charm) == TYPE_DICTIONARY and str(charm.get("name", "")) == charm_name:
-			print("Charm already active: ", charm_name)
+			print("[CHARM STATUS] Charm already active: " + str(charm_name))
 			return
 
 	var new_charm: Dictionary = {}
-	#compressed view dictionary below
-	##i.e.		"LuckyClover":
-			#new_charm = {
-				#"name": charm_name,
-				#"apply_to_roll": func(r: int) -> int: return 7 if r == 0 else r
-			#}
-			#print("Added Lucky Clover: House 0s are now 7s!")
+
 	match charm_name:
 		"LuckyClover":
 			new_charm = {
 				"name": charm_name,
 				"apply_to_roll": func(r: int) -> int: return 7 if r == 0 else r
 			}
-			print("Added Lucky Clover: House 0s are now 7s!")
+			print("[CHARM APPLIED] " + str(charm_name) + " — House 0s converted to 7s.")
 
 		"TheCube":
 			new_charm = {
 				"name": charm_name,
 				"apply_to_wheel": func(w: Array) -> Array:
 					for i in range(3):
-						# Now pulling square numbers from the Autoload!
 						w.append_array(RouletteData.square_numbers)
 					return w
 			}
-			print("Added The Cube: Added 3 sets of square numbers to the wheel!")
+			print("[CHARM APPLIED] " + str(charm_name) + " — Appended 3 sets of square numbers to wheel.")
 
 		"Crystalcharm":
 			new_charm = {
@@ -134,25 +127,23 @@ func add_charm(charm_name: String) -> void:
 				"apply_to_reward": func(payout: float) -> float:
 					return payout * 1.5
 			}
-			print("Added Crystal Charm: Grants a 1.5x payout multiplier on all wins!")
+			print("[CHARM APPLIED] " + str(charm_name) + " — 1.5x payout multiplier granted.")
 
 		"Die":
 			new_charm = {
 				"name": charm_name,
 				"apply_to_reward": func(payout: float) -> float:
-					# randfn(mean, standard_deviation) creates a bell curve distribution
-					# Centered at 1.25, with a 0.4 deviation, most rolls stay inside the 0.1 - 2.0 range
 					var multiplier = clamp(randfn(1.25, 0.4), 0.1, 2.0)
-					print("Die multiplier applied: ", snapped(multiplier, 0.01), "X")
+					print("[BUFF EVENT] Die multiplier calculated: " + str(snapped(multiplier, 0.01)) + "x")
 					return payout * multiplier
 			}
-			print("Added Die: Randomly sets a multiplier between 0.1X to 2X, weighted mean of 1.25X")
+			print("[CHARM APPLIED] " + str(charm_name) + " — Random payout multiplier active (0.1x - 2.0x).")
 
 		"HotGarbage":
 			new_charm = {
 				"name": charm_name
 			}
-			print("Added Hot Garbage: Spawning a random high-tier charm!")
+			print("[CHARM APPLIED] " + str(charm_name) + " — Spawning high-tier charm...")
 			var random_hot = HOT_CHARMS[randi() % HOT_CHARMS.size()]
 			call_deferred("add_charm", random_hot)
 
@@ -160,7 +151,7 @@ func add_charm(charm_name: String) -> void:
 			new_charm = {
 				"name": charm_name
 			}
-			print("Added Garbage: Spawning a random charm!")
+			print("[CHARM APPLIED] " + str(charm_name) + " — Spawning random charm...")
 			var random_charm = ALL_CHARMS[randi() % ALL_CHARMS.size()]
 			call_deferred("add_charm", random_charm)
 
@@ -171,11 +162,11 @@ func add_charm(charm_name: String) -> void:
 				"on_zero_roll": func(charm_dict: Dictionary) -> bool:
 					if charm_dict.get("charges", 0) > 0:
 						charm_dict["charges"] -= 1
-						print("Broken Hilt protected you from 0! Remaining charges: ", charm_dict["charges"])
+						print("[BUFF EVENT] Broken Hilt protected against 0-roll. Remaining charges: " + str(charm_dict["charges"]))
 						return true
 					return false
 			}
-			print("Added Broken Hilt: Protects against a 0-roll three times!")
+			print("[CHARM APPLIED] " + str(charm_name) + " — 3 charges of 0-roll protection active.")
 
 		"TanRook":
 			new_charm = {
@@ -188,7 +179,7 @@ func add_charm(charm_name: String) -> void:
 						return reward * 2.0
 					return reward
 			}
-			print("Added Tan Rook: Moves horizontally/vertically double rewards; tile occupied flips negative!")
+			print("[CHARM APPLIED] " + str(charm_name) + " — Rook alignment bonus active.")
 
 		"GoldenGoblet":
 			new_charm = {
@@ -198,24 +189,23 @@ func add_charm(charm_name: String) -> void:
 				"process_loss": func(loss_amount: float, charm_dict: Dictionary) -> float:
 					if charm_dict.get("delay_days", 0) > 0:
 						charm_dict["delay_days"] -= 1
-						print("Golden Goblet delayed a loss of $", loss_amount, "! Days left: ", charm_dict["delay_days"])
+						print("[BUFF EVENT] Golden Goblet delayed $" + str(loss_amount) + " loss. Days left: " + str(charm_dict["delay_days"]))
 						return 0.0
 					return loss_amount
 			}
-			print("Added Golden Goblet: Delays losses for the next 3 days!")
+			print("[CHARM APPLIED] " + str(charm_name) + " — Loss deferral active (3 days remaining).")
 
 		"MirrorShard":
 			new_charm = {
 				"name": charm_name,
 				"description": "The shard of a shattered mirror",
 				"apply_to_reward": func(payout: float) -> float:
-					# Logic: A flat 15% chance to "reflect" and double your win
 					if randf() <= 0.15:
-						print("Mirror Shard activated! Payout reflected (2X)!")
+						print("[BUFF EVENT] Mirror Shard triggered! Payout doubled (2.0x).")
 						return payout * 2.0
 					return payout
 			}
-			print("Added MirrorShard: Grants a 15% chance to double any payout.")
+			print("[CHARM APPLIED] " + str(charm_name) + " — 15% reflection chance active.")
 
 		"CouponCharm":
 			new_charm = {
@@ -225,11 +215,11 @@ func add_charm(charm_name: String) -> void:
 			GlobalData.shop_reroll_price = 100
 			if get_tree():
 				get_tree().call_group("shops", "_sync_with_global_state")
-			print("Added Coupon Charm: Shop reroll price reset to $100.")
+			print("[CHARM APPLIED] " + str(charm_name) + " — Shop reroll price reset to $100.")
 
 		_:
 			new_charm = {"name": charm_name}
-			print("Warning: No custom logic found for '", charm_name, "'. Adding as generic charm.")
+			print("[WARNING] Unrecognized charm identifier: " + str(charm_name) + ". Registered as generic charm.")
 
 	active_charms.append(new_charm)
 	GlobalData.active_charms_global = active_charms
@@ -237,13 +227,13 @@ func add_charm(charm_name: String) -> void:
 		GlobalData.owned_charms_global.append(charm_name)
 
 	var charm_names = active_charms.map(func(c): return c.get("name", "Unknown"))
-	print("Active charms list is now: ", charm_names)
+	print("[CHARM INVENTORY] Active list updated: " + str(charm_names))
 
 
 # --- Signal Handling ---
 func _on_object_hovered(node):
-	node.scale = Vector3(1.21, 1.21, 1.21) # Slight pop effect when hovered
-	print("hovering over Wheel!")
+	node.scale = Vector3(1.21, 1.21, 1.21)
+	print("[INSPECT] Wheel module hovered.")
 	
 	var mesh_instance = _get_target_mesh(node)
 	if mesh_instance:
@@ -264,18 +254,13 @@ func _get_spin_target(node: Node) -> Node3D:
 	if not node:
 		return null
 	
-	# First, find the actual MeshInstance3D inside this node (using our helper from earlier)
 	var mesh = _get_target_mesh(node)
 	
 	if mesh:
-		# If the mesh's immediate parent isn't the root interactive Area3D/Node,
-		# rotate the parent container (this handles GLTF/FBX import root nodes nicely)
 		if mesh.get_parent() != node and mesh.get_parent() is Node3D:
 			return mesh.get_parent() as Node3D
-		# Otherwise rotate the mesh directly
 		return mesh
 		
-	# Fallback: if no mesh found, rotate the first Node3D child
 	for child in node.get_children():
 		if child is Node3D:
 			return child
@@ -289,11 +274,9 @@ func _on_object_clicked(node):
 
 	var item_name = node.item_info.item_name
 
-	# Logic for clicking the bowl (the "Play" button)
 	if item_name == "bowl":
-		print("--- SPINNING ---")
+		print("[SYSTEM] Wheel initiation sequence started.")
 		
-		# Dynamically resolve whatever model is attached
 		var spin_target = _get_spin_target(node)
 		
 		if spin_target:
@@ -306,9 +289,8 @@ func _on_object_clicked(node):
 				
 		var result = spin_wheel()
 		numrolled.emit(result)
-		print("Result: ", result)
+		print("[SYSTEM] Wheel spin outcome: [" + str(result) + "]")
 	
-	# Logic for picking up a charm
 	else:
 		add_charm(item_name)
 

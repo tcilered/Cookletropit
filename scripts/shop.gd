@@ -78,11 +78,11 @@ func _on_item_clicked(node: Node) -> void:
 		target_node = target_node.get_parent()
 
 	if target_node == null:
-		print("Shop Error: Could not find item_info on ", node.name, " or its parents!")
+		print("[SHOP ERROR]: Target item metadata could not be resolved.")
 		return
 
 	var item_info: ItemData = target_node.item_info
-	print("Shop recognized click on: ", item_info.item_name)
+	print("[SHOP CONSOLE]: Item targeted -> ", item_info.item_name)
 
 	if item_info.item_name == REROLL_ITEM_NAME:
 		_try_reroll_shop()
@@ -93,20 +93,20 @@ func _on_item_clicked(node: Node) -> void:
 
 func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 	if GlobalData.shop_purchase_locked:
-		print("Shop already used this round.")
+		print("[SHOP TRANSACTION DENIED]: Purchases locked for current round.")
 		return
 
 	var owned_names = _get_owned_charm_names()
 	if item_info.item_name in owned_names:
-		print("you already have this mr Jeff Bezos")
+		print("[SHOP TRANSACTION DENIED]: Item '", item_info.item_name, "' is already owned.")
 		return
 
 	if GlobalData.player_stats.gold < int(item_info.item_value):
-		print("Too poor, speed please i need this my mom is kinda homeless")
+		print("[SHOP TRANSACTION DENIED]: Insufficient funds. Price: $", item_info.item_value, " | Available: $", GlobalData.player_stats.gold)
 		return
 
 	# --- PURCHASE SUCCESSFUL ---
-	print("Purchase successful! Deducting gold...")
+	print("[SHOP TRANSACTION SUCCESS]: Purchased '", item_info.item_name, "' for $", item_info.item_value, ".")
 	GlobalData.player_stats.gold -= int(item_info.item_value)
 	GlobalData.shop_purchase_locked = true
 	item_info.has_bought = true
@@ -129,10 +129,10 @@ func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 	var wheel = root.find_child("Wheel*", true, false) 
 	
 	if wheel and wheel.has_method("add_charm"):
-		print("Directly adding charm to wheel: ", item_info.item_name)
+		print("[CHARM MANAGER]: Active charm equipped -> ", item_info.item_name)
 		wheel.add_charm(item_info.item_name)
 	else:
-		print("WARNING: Could not find Wheel directly from shop! Modifiers won't apply.")
+		print("[WARNING]: Wheel target offline. Charm modifier not applied.")
 
 	_sync_all_shops()
 
@@ -141,11 +141,12 @@ func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 func _try_reroll_shop() -> void:
 	var reroll_price := int(GlobalData.shop_reroll_price)
 	if GlobalData.player_stats.gold < reroll_price:
-		print("Too poor to reroll the shop.")
+		print("[SHOP REROLL FAILED]: Insufficient funds. Reroll Cost: $", reroll_price, " | Available: $", GlobalData.player_stats.gold)
 		return
 
 	GlobalData.player_stats.gold -= reroll_price
 	GlobalData.shop_reroll_price *= REROLL_PRICE_MULTIPLIER
+	print("[SHOP CONSOLE]: Restocking items for $", reroll_price, ". Next reroll cost: $", GlobalData.shop_reroll_price)
 	_restock_global_shop()
 	_sync_all_shops()
 

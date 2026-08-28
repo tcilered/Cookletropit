@@ -48,14 +48,14 @@ func advance_round() -> void:
 	spin_count = 0
 	money_earned_this_round = 0
 	update_money_threshold()
-	print("[ROUND_SYS] Advanced to Round ", current_round, " | Target Goal: $", SPIN_MONEY_THRESHOLD)
+	print("[ROUND_SYS] Up time: ", current_round, " days", " | Current price of meal: $", SPIN_MONEY_THRESHOLD)
 
 
 # --- LOADING AND SAVING ---
 
 func save_game() -> void:
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	print(save_path)
+	#print(save_path)
 	if file:
 		var save_data = {
 			"player_stats": player_stats,
@@ -64,12 +64,12 @@ func save_game() -> void:
 			"shop_reroll_price": shop_reroll_price
 		}
 		file.store_var(save_data)
-		print("Game Saved!")
+		#print("Game Saved!")
 
 
 func load_game() -> void:
 	if not FileAccess.file_exists(save_path):
-		print("No save file found.")
+		#print("No save file found.")
 		return
 	
 	var file = FileAccess.open(save_path, FileAccess.READ)
@@ -86,7 +86,7 @@ func load_game() -> void:
 			shop_reroll_price = data["shop_reroll_price"]
 			
 		update_money_threshold()
-		print("Game Loaded! Round: ", current_round, " Target: $", SPIN_MONEY_THRESHOLD)
+		print("System reboot! Round: ", current_round, " Target: $", SPIN_MONEY_THRESHOLD)
 
 
 # --- MISC ---
@@ -94,7 +94,7 @@ func load_game() -> void:
 func reset_data() -> void:
 	player_stats = {
 		"health": 400,
-		"gold": 6767,
+		"gold": 250,
 		"current_level": 1,
 		"last_position": Vector2.ZERO
 	}

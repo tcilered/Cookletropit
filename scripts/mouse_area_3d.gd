@@ -55,10 +55,10 @@ func _ready():
 			col_shape_node.position.y += vertical_offset
 			
 			add_child(col_shape_node)
-			print("Using custom defined shape for: ", item_info.item_name)
+			#print("Using custom defined shape for: ", item_info.item_name)
 		else:
 			_generate_collision_from_scene(spawned_wheel)
-			print("Auto-generating shape from mesh for: ", item_info.item_name)
+			#print("Auto-generating shape from mesh for: ", item_info.item_name)
 
 
 # --- Helper Functions ---
@@ -91,7 +91,7 @@ func _generate_collision_from_scene(current_node: Node):
 	if current_node is MeshInstance3D:
 		if current_node.mesh != null:
 			if "Cone" in current_node.name or "Placeholder" in current_node.name:
-				print("Skipping unintended mesh for collision: ", current_node.name)
+				#print("Skipping unintended mesh for collision: ", current_node.name)
 				for child in current_node.get_children():
 					_generate_collision_from_scene(child)
 				return
@@ -141,9 +141,9 @@ func _play_hover_animation(is_hovering: bool) -> void:
 
 func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		print("Area3D was clicked!") 
+		print("Client choice registered!") 
 		if item_info != null:
-			print(" -> Attached Resource: ", item_info.item_name)
+			print(" -> Choice: ", item_info.item_name)
 			
 			# IF THIS ITEM IS THE BOWL/WHEEL, TRIGGER SPIN AUTOMATICALLY!
 			if item_info.item_name.to_lower() == "bowl" or item_info.item_name.to_lower() == "wheel":

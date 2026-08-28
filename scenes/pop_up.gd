@@ -77,7 +77,7 @@ func display_text(new_text: String, wave_speed: float = 3.0, custom_scale: Vecto
 		sprite.visible = true
 	
 	is_active = true
-	print("[POPUP_SYS] Displaying floating popup at target coordinates: ", target_world_pos)
+	print("[POPUP_SYS] Speaker in use!")
 	
 	await get_tree().create_timer(0.7).timeout
 	can_dismiss = true

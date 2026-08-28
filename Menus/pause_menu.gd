@@ -17,18 +17,18 @@ func _unhandled_input(event: InputEvent) -> void:
 				_on_continue_pressed()
 			else:
 				$UI.visible = true
-				print("Paused game")
+				#print("Paused game")
 		else:
 			GlobalData.save_game()
 			get_tree().paused = true
 			$UI.visible = true
-			print("Paused game")
+			#print("Paused game")
 
 func _on_continue_pressed() -> void:
 	get_tree().paused = false # This unfreezes the 3D world!
 	$UI.visible = false
 	# This hides the pause menu so you can play again
-	print("Unpaused and hid world")
+	#print("Unpaused and hid world")
 
 func _on_new_btn_p_pressed() -> void:
 	get_tree().paused = false

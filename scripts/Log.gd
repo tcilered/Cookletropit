@@ -43,9 +43,34 @@ func _process(_delta: float) -> void:
 
 
 func _add_line(message: String) -> void:
-	# Format the message with a cmd-style prompt arrow
-	var formatted_message = "> " + message
+	var clean = message.strip_edges()
 	
+	# Skip empty lines
+	if clean.is_empty():
+		return
+		
+	# 1. Block Godot Engine boot / renderer headers
+	if clean.begins_with("Godot Engine") or clean.begins_with("D3D12") or clean.begins_with("Vulkan") or clean.begins_with("OpenGL"):
+		return
+
+	# 2. Block C++ Physics & Engine source errors (Jolt Physics, transforms, core calls)
+	if clean.contains("set_transform") or clean.contains("modules/jolt_physics") or clean.contains("core/object"):
+		return
+
+	# 3. Block GDScript compiler / reload warnings (unused parameters/variables)
+	if clean.begins_with("GDScript::reload") or clean.contains("UNUSED_PARAMETER") or clean.contains("UNUSED_VARIABLE"):
+		return
+
+	# 4. Block Engine level errors, script trace lines, and stack traces
+	if clean.begins_with("WARNING:") or clean.begins_with("ERROR:") or clean.begins_with("<C++") or clean.begins_with("<Stack") or clean.begins_with("<GDScript"):
+		return
+		
+	# 5. Block internal engine signal warnings or direct script line traces (e.g. world.gd:167)
+	if clean.contains("is already connected to given callable") or clean.contains("Method/function failed"):
+		return
+
+	# Format and display valid player log lines
+	var formatted_message = "> " + clean
 	_log_history.append(formatted_message)
 	
 	while _log_history.size() > max_lines:

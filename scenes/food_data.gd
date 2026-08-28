@@ -96,6 +96,6 @@ func apply_food_buff(buff_key: String) -> void:
 
 		_:
 			entry = {"buff_key": buff_key}
-			print("Warning: Unknown food buff '", buff_key, "'")
+			print("Warning: Unknown food and thus side effects!! '", buff_key, "'")
 
 	GlobalData.active_foods.append(entry)

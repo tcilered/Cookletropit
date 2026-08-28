@@ -96,11 +96,11 @@ func _ready():
 			unique_mat.albedo_color = Color("000000")
 
 func _on_mouse_entered():
-	print("--- Mouse Entered Square: ", square_id, " ---")
+	print("[SYSTEM]: Cursor focus gained on Square #", square_id)
 	hover_entered.emit(square_id)
 
 func _on_mouse_exited():
-	print("--- Mouse Exited Square: ", square_id, " ---")
+	print("[SYSTEM]: Cursor focus lost on Square #", square_id)
 	current_hover_zone = "none"
 	hover_exited.emit(square_id)
 
@@ -130,7 +130,7 @@ func _input_event(_camera, event, click_position, _click_normal, _shape_idx):
 			current_hover_zone = detected_zone
 			# Convert the raw edge into the unified string before emitting
 			var unified_zone = get_shared_border_dynamic(detected_zone)
-			print("Hovering Zone: ", unified_zone, " on Square: ", square_id)
+			#print("[BETTING CONSOLE]: Targeted zone changed to '", unified_zone, "' (Square #", square_id, ")")
 			hover_moved.emit(unified_zone, square_id, click_position)
 
 	# FIX 2: Check for ANY mouse button press, then filter for Left or Right
@@ -140,8 +140,8 @@ func _input_event(_camera, event, click_position, _click_normal, _shape_idx):
 			var unified_zone = get_shared_border_dynamic(detected_zone)
 			
 			# Just for debugging: Print different messages based on the click
-			var action_str = "STACK/PLACE" if event.button_index == MOUSE_BUTTON_LEFT else "CANCEL/REFUND"
-			print(action_str, " requested for: '", unified_zone, "' at global position: ", click_position)
+			var action_str = "BET PLACED" if event.button_index == MOUSE_BUTTON_LEFT else "BET REFUNDED"
+			print("[BETTING CONSOLE]: Client chose -> ", action_str, " | Target: ", unified_zone)#add for bug testing" | Position: ", click_position 
 			
 			# Emit the signal with all 4 expected arguments!
 			placing_requested.emit(unified_zone, square_id, click_position, event.button_index)
