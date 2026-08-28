@@ -3,19 +3,6 @@
 [ext_resource type="Script" uid="uid://bil8nss6w0pqs" path="res://Menus/main_menu.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://bjmfumi5lbhg5" path="res://Image textures/epic gamer assets/MENU.png.png" id="2_7vrkn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11"]
-resource_name = "theme_toggle_button"
-bg_color = Color(0.2, 0.2, 0.2, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.4, 0.4, 0.4, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 resource_name = "black_button_hover"
 bg_color = Color(0.3, 0.3, 0.3, 1)
@@ -110,24 +97,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ThemeToggleBtn" type="Button" parent="UI/MainContainer" unique_id=599413016]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -120.0
-offset_top = 15.0
-offset_right = -20.0
-offset_bottom = 50.0
-grow_horizontal = 0
-theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_11")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_11")
-theme_override_styles/hover = SubResource("StyleBoxFlat_11")
-theme_override_styles/focus = SubResource("StyleBoxFlat_11")
-text = "🎨 THEME"
-
 [node name="Title" type="Label" parent="UI/MainContainer" unique_id=822326208]
 layout_mode = 1
 anchors_preset = 8
@@ -201,6 +170,7 @@ text = "START NEW
 GAME"
 
 [node name="NetworkInfoPanel" type="Panel" parent="UI/MainContainer" unique_id=1840288446]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

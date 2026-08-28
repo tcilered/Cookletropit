@@ -163,7 +163,7 @@ visible = false
 item_info = SubResource("Resource_26xuy")
 
 [node name="log" type="MeshInstance3D" parent="." unique_id=2113447530]
-transform = Transform3D(0.9393127, -0.012932393, 0.34281877, 0.00077009574, 0.9993663, 0.035589643, -0.34306172, -0.033165798, 0.93872726, 6.7566705, 1.7719812, -14.158216)
+transform = Transform3D(0.93931264, -0.01293239, 0.3428187, -0.010181343, 0.99779826, 0.065537095, -0.34291145, -0.06505017, 0.93711275, 7.300097, 1.9573642, -12.681746)
 mesh = SubResource("BoxMesh_tlwt5")
 
 [node name="Label3D" type="Label3D" parent="log" unique_id=233947909]
@@ -172,9 +172,9 @@ text = "67_The log_67"
 font = ExtResource("4_aqk2v")
 font_size = 90
 outline_size = 16
-width = 1800.0
+width = 1700.0
 script = ExtResource("21_bc84e")
-max_lines = 4
+max_lines = 6
 
 [node name="The cube" parent="." unique_id=1188717236 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 24.542778, 1.1475389, -13.489012)
@@ -182,14 +182,13 @@ visible = false
 item_info = SubResource("Resource_il2jm")
 
 [node name="TV" parent="." unique_id=1459355896 instance=ExtResource("21_wukud")]
-transform = Transform3D(2.8333406, 0, 0.9859922, 0, 3, 0, -0.9859922, 0, 2.8333406, 6.7177033, 1.6272187, -14.414671)
+transform = Transform3D(2.8333406, 0, 0.98599225, -0.031474363, 2.9984713, 0.09044451, -0.9854898, -0.09576453, 2.8318968, 7.26113, 1.804489, -12.933449)
 
 [node name="tiltable (1)" parent="." unique_id=828788086 instance=ExtResource("22_il2jm")]
 transform = Transform3D(3.67, 0, 0, 0, 3.67, 0, 0, 0, 3.67, 12.113918, -0.36999595, 2.6444283)
 
 [node name="ruum (1)" parent="." unique_id=1247547284 instance=ExtResource("22_wjb0r")]
 transform = Transform3D(5.678, 0, 0, 0, 5.678, 0, 0, 0, 5.678, 13.071901, -5.898354, -4.990725)
-visible = false
 
 [node name="pop_up" parent="." unique_id=349366276 instance=ExtResource("23_il2jm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5008271, 0)
@@ -201,11 +200,11 @@ transform = Transform3D(-0.49999994, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.49
 [node name="Chute" parent="." unique_id=357611609 instance=ExtResource("25_bo7i5")]
 transform = Transform3D(-0.40000004, 0, 0.6928203, 0, 0.8, 0, -0.6928203, 0, -0.40000004, -1.2952604, 3.4666004, 12.404968)
 
-[node name="Chute_Door" parent="." unique_id=1732487555 instance=ExtResource("26_4h6ng")]
-transform = Transform3D(-0.40000007, 0, 0.6928203, 0, 0.8, 0, -0.6928203, 0, -0.40000007, -1.23382, 3.4891582, 12.255666)
+[node name="Chute rotation point" type="Node3D" parent="." unique_id=526329548]
+transform = Transform3D(-0.43111524, 0, 0.6738989, 0, 0.8, 0, -0.6738989, 0, -0.43111524, 0.5289837, 2.6347969, 12.719568)
 
-[node name="Chute rotation point" type="Node3D" parent="Chute_Door" unique_id=526329548]
-transform = Transform3D(0.99896395, 0, 0.04550907, 0, 1, 0, -0.04550907, 0, 0.99896395, -1.6039419, -1.0679517, 1.6183515)
+[node name="Chute_Door" parent="Chute rotation point" unique_id=1732487555 instance=ExtResource("26_4h6ng")]
+transform = Transform3D(0.99896383, 0, -0.04550907, 0, 0.99999994, 0, 0.04550907, 0, 0.99896383, 1.6759291, 1.0679517, -1.5436802)
 
 [node name="move_to_chute" type="Marker3D" parent="." unique_id=1745881301]
 transform = Transform3D(-0.70710677, -0.35355338, 0.61235446, 0, 0.866, 0.5, -0.70710677, 0.35355338, -0.61235446, 4.175762, 5.5, 8.129707)

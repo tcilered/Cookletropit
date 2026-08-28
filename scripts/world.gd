@@ -107,9 +107,12 @@ func _ready():
 	)
 	await popup5.tree_exited
 
+	var popup16 = spawn_text(Vector3(9.375,1.856,4.58), "Press the red button to reroll")
+	await popup16.tree_exited
+
 	var popup9 = spawn_text(
 		Vector3(9.375, 2.5, 4.58),
-		"You can bet on the other squares, like colors, odd, evens, 1st, 2nd, or 3rd dozen, or the 12 tall columns.",
+		"You can bet on the other squares, like colors, odd, evens, 1st, 2nd, or 3rd dozen, or the 12 tall columns. Each bet has a higher payout based on the higher risk up to a 35X like traditional roulette before modifiers.",
 		Vector3.ONE,
 		true,
 		Vector3(9.375, 5, 6.196),
@@ -524,6 +527,9 @@ func _on_food_selected(buff_key: String, model_path: String) -> void:
 	var camera_node: Node3D = $Cameranode
 	var move_to_chute: Marker3D = $move_to_chute
 	var food_spawn: Marker3D = $chute_food_spawn
+	
+	# Reference your chute rotation point (update the NodePath to match your scene tree)
+	var chute_rotation_point: Node3D = $"Chute rotation point"
 
 	# Remember where the camera was
 	var original_position: Vector3 = camera_node.global_position
@@ -533,6 +539,18 @@ func _on_food_selected(buff_key: String, model_path: String) -> void:
 	var tween_to = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	tween_to.tween_property(camera_node, "global_position", move_to_chute.global_position, 1.2)
 	tween_to.tween_property(camera_node, "rotation", move_to_chute.rotation, 1.2)
+	
+# 1.5 — Animate the Chute Rotation Point alongside the camera movement
+	var chute_tween = create_tween()
+	
+	# Rotate forward by 240 degrees
+	chute_tween.tween_property(chute_rotation_point, "rotation_degrees:y", 240.0, 1.0).as_relative()
+	
+	# Wait for 3.8 seconds
+	chute_tween.tween_interval(3.8)
+	
+	# Rotate the remaining 120 degrees in the SAME direction to complete the 360 circle
+	chute_tween.tween_property(chute_rotation_point, "rotation_degrees:y", 120.0, 1.0).as_relative()
 	await tween_to.finished
 
 	# 2 — Spawn the food model at the spawn marker
