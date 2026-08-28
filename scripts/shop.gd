@@ -78,11 +78,9 @@ func _on_item_clicked(node: Node) -> void:
 		target_node = target_node.get_parent()
 
 	if target_node == null:
-		print("Shop Error: Could not find item_info on ", node.name, " or its parents!")
 		return
 
 	var item_info: ItemData = target_node.item_info
-	print("Shop recognized click on: ", item_info.item_name)
 
 	if item_info.item_name == REROLL_ITEM_NAME:
 		_try_reroll_shop()
@@ -93,20 +91,20 @@ func _on_item_clicked(node: Node) -> void:
 
 func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 	if GlobalData.shop_purchase_locked:
-		print("Shop already used this round.")
+		GameLog.log("Shop already used this round.")
 		return
 
 	var owned_names = _get_owned_charm_names()
 	if item_info.item_name in owned_names:
-		print("you already have this mr Jeff Bezos")
+		GameLog.log("You already own this charm.")
 		return
 
 	if GlobalData.player_stats.gold < int(item_info.item_value):
-		print("Too poor, speed please i need this my mom is kinda homeless")
+		GameLog.log("Not enough gold.")
 		return
 
 	# --- PURCHASE SUCCESSFUL ---
-	print("Purchase successful! Deducting gold...")
+	GameLog.log("Purchase complete!")
 	GlobalData.player_stats.gold -= int(item_info.item_value)
 	GlobalData.shop_purchase_locked = true
 	item_info.has_bought = true
@@ -129,10 +127,7 @@ func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 	var wheel = root.find_child("Wheel*", true, false) 
 	
 	if wheel and wheel.has_method("add_charm"):
-		print("Directly adding charm to wheel: ", item_info.item_name)
 		wheel.add_charm(item_info.item_name)
-	else:
-		print("WARNING: Could not find Wheel directly from shop! Modifiers won't apply.")
 
 	_sync_all_shops()
 
@@ -141,7 +136,7 @@ func _try_buy_charm(node: Node, item_info: ItemData) -> void:
 func _try_reroll_shop() -> void:
 	var reroll_price := int(GlobalData.shop_reroll_price)
 	if GlobalData.player_stats.gold < reroll_price:
-		print("Too poor to reroll the shop.")
+		GameLog.log("Not enough gold to reroll the shop.")
 		return
 
 	GlobalData.player_stats.gold -= reroll_price
@@ -250,3 +245,15 @@ func start_new_round() -> void:
 func reset_reroll_price() -> void:
 	GlobalData.shop_reroll_price = REROLL_RESET_PRICE
 	_sync_all_shops()
+
+func get_stock_info() -> Array[String]:
+	var result: Array[String] = []
+	for i in range(GlobalData.shop_stock_names.size()):
+		var charm_name: String = GlobalData.shop_stock_names[i]
+		var definition: Dictionary = SHOP_ITEMS.get(charm_name, {})
+		var price: int = int(definition.get("price", 0))
+		var desc: String = str(definition.get("description", "No description."))
+		var sold_out: bool = GlobalData.shop_sold_out_slots[i] if i < GlobalData.shop_sold_out_slots.size() else false
+		var status: String = " [SOLD OUT]" if sold_out else " - $" + str(price)
+		result.append(charm_name + status + ": " + desc)
+	return result
