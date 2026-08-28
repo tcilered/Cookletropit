@@ -527,15 +527,19 @@ func _on_food_selected(buff_key: String, model_path: String) -> void:
 	var camera_node: Node3D = $Cameranode
 	var move_to_chute: Marker3D = $move_to_chute
 	var food_spawn: Marker3D = $chute_food_spawn
+	var chute_door: Node3D = $Chute_Door
+	var chute_rotation_point: Node3D = chute_door.get_node("Chute_rotation_point")
 
 	# Remember where the camera was
 	var original_position: Vector3 = camera_node.global_position
 	var original_rotation: Vector3 = camera_node.rotation
+	var original_door_rotation: Vector3 = chute_rotation_point.rotation
 
-	# 1 — Move camera to the chute viewpoint (position + rotation)
+	# 1 — Move camera to the chute viewpoint (position + rotation) and rotate the chute door open
 	var tween_to = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	tween_to.tween_property(camera_node, "global_position", move_to_chute.global_position, 1.2)
 	tween_to.tween_property(camera_node, "rotation", move_to_chute.rotation, 1.2)
+	tween_to.tween_property(chute_rotation_point, "rotation", original_door_rotation + Vector3(0.0, deg_to_rad(90.0), 0.0), 1.2)
 	await tween_to.finished
 
 	# 2 — Spawn the food model at the spawn marker
@@ -564,8 +568,9 @@ func _on_food_selected(buff_key: String, model_path: String) -> void:
 	# 5 — Sit at chute for 4 more seconds
 	await get_tree().create_timer(4.0).timeout
 
-	# 6 — Return camera to original position and rotation
+	# 6 — Return camera to original position and rotation, and close the chute door
 	var tween_back = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	tween_back.tween_property(camera_node, "global_position", original_position, 1.2)
 	tween_back.tween_property(camera_node, "rotation", original_rotation, 1.2)
+	tween_back.tween_property(chute_rotation_point, "rotation", original_door_rotation, 1.2)
 	await tween_back.finished
