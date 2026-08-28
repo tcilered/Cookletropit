@@ -12,9 +12,17 @@ var spin_angle_rand_change =  randi_range(300, 360)
 
 signal numrolled(roll)
 var active_charms: Array = []
-
+var wheel_audio_player: AudioStreamPlayer # Add this line
 
 func _ready():
+	# --- Add these lines for the audio setup ---
+	wheel_audio_player = AudioStreamPlayer.new()
+	add_child(wheel_audio_player)
+	# Assuming the Audio folder is in your main project folder
+	var spin_sound = load("res://Audio/spinopel-a-roulette-ball-429831.mp3") 
+	wheel_audio_player.stream = spin_sound
+	# -------------------------------------------
+	
 	for child in get_children():
 		if child.has_signal("object_clicked"):
 			child.object_hovered.connect(_on_object_hovered)
@@ -276,6 +284,9 @@ func _on_object_clicked(node):
 
 	if item_name == "bowl":
 		print("[SYSTEM] Wheel initiation sequence started.")
+		
+		# Play the loaded MP3
+		wheel_audio_player.play() 
 		
 		var spin_target = _get_spin_target(node)
 		
